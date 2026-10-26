@@ -157,6 +157,7 @@ Turn:
 Irreversible result:
 Exit state:
 Direct trigger for the next scene:
+Transition element for the next scene (third element):
 Audience knows / character knows / withheld:
 ```
 
@@ -168,6 +169,8 @@ Hard gates:
 - If the scene can be deleted without changing any later decision, merge it, rebuild it, or remove it.
 - Enter late and leave after the consequential change, not after every topic has been discussed.
 - A scene may end unresolved, but it may not end unchanged.
+
+- Pair every adjacent scene through a third element: one shared or opposing carrier between the two scenes — a character trait (playful child -> childlike adult), an action, an object (greenhouse -> jungle), a line, a light quality (dawn shadow -> sunset glow), a sound (waves -> snoring), or an idea. The card names it and the next scene's entry realizes it. When two consecutive scenes carry no resonant or contrasting element, the seam reads as a file jump even though the causal state is intact; add or redirect the element instead of adding exposition.
 
 ## 6. Prove The Silent Action Spine
 
@@ -210,6 +213,8 @@ specific fact
 ```
 
 Do not jump directly from a minor disagreement to total humiliation, violence, confession, or thematic declaration without pressure and prior history capable of carrying the jump.
+
+Nature never jumps. Mark each consequential exchange as escalation, static pressure, or a jump. A jump is allowed only when prior pressure and history can carry it; otherwise insert the missing middle rungs (disappointment -> irritation -> anger -> attack -> threat -> premeditation) rather than leaping. A rung-less leap reads as melodrama — the ruthless killer pausing to help a stranger across the road — unless the jump itself is the motivated event and its cause is visible on the page.
 
 ## 8. Track Information, Props, And Motifs
 

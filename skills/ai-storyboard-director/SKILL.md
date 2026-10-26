@@ -32,6 +32,7 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 | 寻找更有力的视点、光学、复杂路径或注意力接力；明确要求院线/好莱坞摄影完成度 | `references/cinematography-design-engine.md`；按实际设计问题使用 |
 | 选择具体镜组、微距/探针/潜望、分焦、移轴或变焦等光学方案 | `references/optical-shot-selection.md`；按画面需要主动选型，保留专业名称及可见作用 |
 | 需要选择媒介、影片参照、摄影机、胶片/数字成像与镜头质感，或整改光色与电影质感 | `references/color-and-image-formation.md`；形成与题材相配的整体摄影方案，已定方案直接继承 |
+| 画面有棚拍感、渲染感、塑料感；要量化光比、色温对冲、空气介质与质感配方 | `references/cinematic-realism-clauses.md`；全部正向写法，与已定摄影方案叠加执行 |
 | 接收场景设计数据或图片，核对其能否承载目标镜头，或编译实际附图的执行文本 | `references/reference-design-and-handoff.md`；区分美术/空间、首尾画框与风格职责，继承已定视觉 |
 | 从观看任务选择摄影机制、点名 FCML 或查具体运镜 | `references/fcml-motion-index.md`；先查短索引，再只读相关规范条目，不把整库当默认上下文 |
 | 已定分镜转视频提示词 | `references/production-contract.md`；沿用完整镜头，不重新设计 |
