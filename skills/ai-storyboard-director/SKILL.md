@@ -40,6 +40,7 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 | 正反打、多主体轴线、越轴、复杂遮挡或空间争议 | `references/framing-and-axis.md` |
 | 当前动作包含近身交锋、对招或争夺中的攻防；打击感诊断 | 主动读取 `references/fight-design.md`，不等用户另点名；具体案例需要时再读 `references/fight-reference-case.md` |
 | 画面涉及能量特效本体（剑气、能量流体、龙形能量、毒雾侵蚀、冲击波）；打斗特效提示词 | `references/energy-vfx-design.md`；材质声明、空间位置、撞击/接触作用方式三件必写，编排仍先走 fight-design |
+| 用人物运动方式、朝向、站位高低与距离传达情绪/关系/权力；追逐或对峙的多机位调度 | `references/blocking-emotion-grammar.md`；运动三式选主导者，朝向与站位写成可见调度，不写情绪标签 |
 | 诊断推进/变焦、横移/摇摄、环绕执行偏差 | `references/camera-motion-diagnostics.md`；普通设计无需加载实验 |
 | 在明确作品目录保存、修改或恢复镜头 | `references/design-memory-protocol.md`，实际运行 `scripts/design_memory.py` 并读取所需场景；不重读全片历史 |
 | 阶段或输出范围确有歧义 | `references/delivery-mode-guard.md` |
