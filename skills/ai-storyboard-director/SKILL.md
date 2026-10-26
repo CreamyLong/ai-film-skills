@@ -39,6 +39,7 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 | 局部修订 | 当前成品与受影响上下文；涉及台词时序或提示词结构才补读生产合同，涉及空间才补读空间专项 |
 | 正反打、多主体轴线、越轴、复杂遮挡或空间争议 | `references/framing-and-axis.md` |
 | 当前动作包含近身交锋、对招或争夺中的攻防；打击感诊断 | 主动读取 `references/fight-design.md`，不等用户另点名；具体案例需要时再读 `references/fight-reference-case.md` |
+| 画面涉及能量特效本体（剑气、能量流体、龙形能量、毒雾侵蚀、冲击波）；打斗特效提示词 | `references/energy-vfx-design.md`；材质声明、空间位置、撞击/接触作用方式三件必写，编排仍先走 fight-design |
 | 诊断推进/变焦、横移/摇摄、环绕执行偏差 | `references/camera-motion-diagnostics.md`；普通设计无需加载实验 |
 | 在明确作品目录保存、修改或恢复镜头 | `references/design-memory-protocol.md`，实际运行 `scripts/design_memory.py` 并读取所需场景；不重读全片历史 |
 | 阶段或输出范围确有歧义 | `references/delivery-mode-guard.md` |
