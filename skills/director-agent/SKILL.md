@@ -24,6 +24,7 @@ Read the user's material, current scope, locked facts and relevant preceding sta
 | Explicit independent audit or substantial script cold read | `references/screenplay-cold-read-protocol.md`; an isolated reader is independent only when explicitly available and allowed |
 | Large-scope coverage or suspected generic/shallow completion | `references/anti-laziness-contract.md` |
 | 审稿、改编忠实度核对、阶段产物审查、审查报告 | `references/review-contract.md`；只出发现与修订要求，不代改来源文件；改编项目必查第 1 表 |
+| 原著拆解、小说分析、章节索引、分集候选、这本书值不值得改 | `references/novel-breakdown-pipeline.md`；只读结构化分析，产物落 `.project-assets/source-analysis/`，S5 候选交接剧本阶段，改编忠实度由审查合同回查 span |
 | Current facts, disputed theory, named sources or platform capabilities | `references/research-update-protocol.md`; verify only the claims needed now |
 
 `references/local-knowledge-map.md` indexes bundled topics; `references/github-project-watchlist.md` is optional research context, not a routine dependency. All runtime references are inside this package. No private knowledge directory or sibling Skill is required.
