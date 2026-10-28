@@ -15,6 +15,7 @@ Read the user's material, current scope, locked facts and relevant preceding sta
 |---|---|
 | 写剧本、创作完整故事、substantial 改剧本 | `references/screenplay-writing-core.md`; after the readable draft, `references/screenplay-state-engine.md` for causality and inheritance |
 | 局部对白、one-scene repair | Relevant sections of `references/screenplay-writing-core.md` plus the affected source and adjoining state; load the state engine only if the repair changes knowledge, causality, a setup or payoff |
+| Dialogue craft: writing or revising lines, subtext, exposition, distinct character voices | `references/dialogue-writing-techniques.md`; line-level techniques that run only after structural gates pass — when a line carries no choice or reaction, repair the scene action first |
 | 剧本诊断 | Writing core and the state-engine sections relevant to the suspected break; locate the earliest failure before polishing symptoms |
 | Full screenplay or substantial quality calibration | Add `references/screenplay-exemplar-benchmarks.md`; examples are mechanisms, never plot or dialogue to copy |
 | 导演方案、导演分析、分镜前分析、创意镜头/转场思路 | `references/director-thinking-spine.md`; read `references/verified-director-logic.md` when the decision needs its detailed framework or source-sensitive premise |

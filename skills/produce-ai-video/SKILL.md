@@ -40,7 +40,7 @@ Use this mode when the user supplies or has repeatedly adjusted a storyboard, ti
 
 ## Run the autonomous workflow
 
-1. **Lock sources and acceptance.** Identify the unique project, current script version, approved assets, fixed decisions, requested video scope, permissions, cost boundary, and relevant acceptance checks. Reuse verified, unchanged context; a local correction reads the affected material and required continuity, not the whole project again. Separate verified facts, unknowns, assumptions, and conventions.
+1. **Lock sources and acceptance.** Identify the unique project, current script version, approved assets, fixed decisions, requested video scope, permissions, cost boundary, and relevant acceptance checks. Reuse verified, unchanged context; a local correction reads the affected material and required continuity, not the whole project again. Separate verified facts, unknowns, assumptions, and conventions. Every character in the task must carry a locked multi-view character asset before any keyframe work: front, exact 90-degree side and back full body plus a medium shot. A visible character whose multi-view asset is missing or still pending stops the task at asset completion, not at prompt time.
 2. **Interpret the script.** Determine the dramatic event, character objective, power relation, information reveal, physical action, emotional turn, sound cue, entry state, and exit state. Read [autonomous-production-workflow.md](references/autonomous-production-workflow.md) for the auditable decision framework.
 3. **Direct before prompting.** Decide what the audience must see and in what order. Build a world-state model for space, subjects, props, light sources, movement axes, and continuity. Read [spatial-consistency-ledger.md](references/spatial-consistency-ledger.md) when locking multi-character scenes, reversible props, or cross-segment entrances.
 4. **Design segments and shots.** Treat a segment as a dramatic sequence and a shot as one uninterrupted viewpoint. Choose continuous staging, cuts or a mixed structure from performance, viewing order and spatial relations; there is no minimum shot count or fixed duration grid. Every cut must change what the audience can understand or experience. A deliberate long take needs no special exemption.
@@ -54,6 +54,7 @@ Use this mode when the user supplies or has repeatedly adjusted a storyboard, ti
 
 ## Enforce hard rules
 
+- Every character in the task requires its locked multi-view character asset (three full-body views plus medium shot) before keyframe generation. A missing character asset stops the batch; do not improvise a character's identity from a single portrait or one good keyframe.
 - Do not start from prompt formatting. Start from what the audience must see.
 - Do not equate a script paragraph, generation segment, and shot.
 - Do not equate continuity with a fixed camera. Keep the world state fixed while recalculating screen projection after every camera change.
