@@ -28,6 +28,7 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 | 当前工作 | 所需资料 |
 |---|---|
 | 新设计分镜、重设计尚未锁定的拍法 | `references/shot-design-engine.md`；该文件包含普通设计所需核心 |
+| Scene shot-size rhythm, visual distribution, all-close-up sequences | `references/shot-size-rhythm.md`; working shot size method: open one stop wider, settle, one-stop alternation, wide and extreme close-up as marked departures |
 | 创意镜头思路、另给拍法或转场方案 | `references/creative-shot-ideas.md`；只为所选位置提供思路与取舍，不默认生成 |
 | 寻找更有力的视点、光学、复杂路径或注意力接力；明确要求院线/好莱坞摄影完成度 | `references/cinematography-design-engine.md`；按实际设计问题使用 |
 | 选择具体镜组、微距/探针/潜望、分焦、移轴或变焦等光学方案 | `references/optical-shot-selection.md`；按画面需要主动选型，保留专业名称及可见作用 |
