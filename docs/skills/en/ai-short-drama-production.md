@@ -103,7 +103,12 @@ Production-control orchestration and gap auditing for existing decisions, includ
 - [`references/control-contracts.md`](../../../skills/ai-short-drama-production/references/control-contracts.md)
 - [`references/independent-production-core.md`](../../../skills/ai-short-drama-production/references/independent-production-core.md)
 - [`references/production-handoff.md`](../../../skills/ai-short-drama-production/references/production-handoff.md)
+- [`references/series-bible.md`](../../../skills/ai-short-drama-production/references/series-bible.md)
 - [`references/SOURCE-LEDGER.md`](../../../skills/ai-short-drama-production/references/SOURCE-LEDGER.md)
+
+**Deterministic helpers**
+
+- [`scripts/series_check.py`](../../../skills/ai-short-drama-production/scripts/series_check.py)
 
 **Distribution notices in new ZIP builds**
 
