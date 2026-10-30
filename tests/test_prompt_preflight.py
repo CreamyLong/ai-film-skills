@@ -342,6 +342,31 @@ class PromptPreflightTests(unittest.TestCase):
         with self.assertRaises(checker.InputError):
             checker.audit(bad)
 
+    def test_h3_base_prompt_runs_structural_check(self):
+        self.data["prompt_format"] = "h3_base"
+        self.data["h3_mode"] = "i2va"
+        self.data["prompt"] = (
+            "For the target video, at 0.00 seconds into the target video, "
+            "<Picture 1> (from [Shot 1]) is fully referenced.\n\n"
+            "integrated_multimodal_description: [Shot 1] The woman in "
+            "<Picture 1> turns to the window and says, "
+            "<d>[English] I get off at the next station.</d>\n\n"
+            "overall_soundscape: A steady wheel rhythm.\n\n"
+            "non_diegetic_music: N/A\n")
+        self.data["locks"] = {"required": ["turns to the window"], "forbidden": []}
+        result = checker.audit(self.data)
+        self.assertEqual(result["h3_base_structure"], "checked")
+        self.assertEqual(result["findings"], [])
+        bad = copy.deepcopy(self.data)
+        del bad["h3_mode"]
+        result = checker.audit(bad)
+        self.assertEqual(result["status"], "BLOCK")
+        self.assertIn("H3_BASE_MODE_UNDECLARED", codes(result))
+        bad = copy.deepcopy(self.data)
+        bad["prompt"] = bad["prompt"].replace("overall_soundscape:", "notes:")
+        result = checker.audit(bad)
+        self.assertIn("FIELD_STRUCTURE", codes(result))
+
     def test_shot_and_prompt_reports_can_be_bound_to_the_same_text(self):
         shot_cli = ROOT / "skills/produce-ai-video/scripts/shot_preflight.py"
         shot_spec = importlib.util.spec_from_file_location("shot_checker", shot_cli)

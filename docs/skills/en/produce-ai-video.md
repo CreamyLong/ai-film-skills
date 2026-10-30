@@ -49,7 +49,11 @@ A full production and validation contract; with the required host tools and perm
 7. Before each actual video-model submission, review the exact payload, approved assets and relevant story and episode handoffs; repair or stop on unresolved hard requirements, then review actual media and affected boundaries.
 8. Record prompt compilation scope, additions, fallback and reference bindings; compare local preflight hashes while retaining independent semantic and keyframe review.
 9. When the target runtime accepts the official H3 Context-IR format, compile through the six-section structure with semantic Subject labels, retention markers, shot times and dialogue tags, declare prompt_format in the payload, and run the structural checker; structure alone never proves semantic, media or continuity approval.
-10. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
+10. When the target runtime runs an H3 base mode (t2va/i2va/fl2va/l2va), compile through the official three-field structure with the mode's alignment instruction, shot times and dialogue tags, declare prompt_format "h3_base" with h3_mode in the payload, and run the structural checker; structure alone never proves semantic, media or continuity approval.
+11. For other providers, translate the same director decisions into the venue's verified prompt dialect — one shell per prompt, unverified dialects stay marked unverified — and record prompt_format and provider identity in the submission record.
+12. Run mechanical media QC (streams, duration, resolution, frame rate, black and frozen frames, audio level and loudness, subtitle cue coverage, contact-sheet evidence) on every generated segment and the assembled cut; measurements are evidence, not approval.
+13. Assemble and deliver through a derived EDL, seam verification, subtitle-to-dialogue coverage, loudness and spec checks, and a delivery manifest; every failure returns to the earliest owning layer.
+14. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
 
 <!-- contract:returns -->
 ## 6. Return, rework, and rollback
@@ -109,11 +113,14 @@ A full production and validation contract; with the required host tools and perm
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
+- [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
 - [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
 - [`references/prompt-compilation-preflight.md`](../../../skills/produce-ai-video/references/prompt-compilation-preflight.md)
+- [`references/provider-shells.md`](../../../skills/produce-ai-video/references/provider-shells.md)
 - [`references/qualified-video-acceptance.md`](../../../skills/produce-ai-video/references/qualified-video-acceptance.md)
+- [`references/release-assembly.md`](../../../skills/produce-ai-video/references/release-assembly.md)
 - [`references/segment-seam-continuity.md`](../../../skills/produce-ai-video/references/segment-seam-continuity.md)
 - [`references/shot-audit-protocol.md`](../../../skills/produce-ai-video/references/shot-audit-protocol.md)
 - [`references/spatial-consistency-ledger.md`](../../../skills/produce-ai-video/references/spatial-consistency-ledger.md)
@@ -123,6 +130,8 @@ A full production and validation contract; with the required host tools and perm
 **Deterministic helpers**
 
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
+- [`scripts/h3_base_check.py`](../../../skills/produce-ai-video/scripts/h3_base_check.py)
+- [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)

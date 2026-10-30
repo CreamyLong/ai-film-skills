@@ -20,22 +20,31 @@ H3_LABEL = re.compile(r"<(Picture|Video|Audio) ([1-9][0-9]*)>")
 H3_LABEL_LIKE = re.compile(r"<\s*(?:picture|image|video|audio)\s*[0-9]+\s*>", re.I)
 LABEL_KIND = {"Picture": "image", "Video": "video", "Audio": "audio"}
 KINDS = ("image", "video", "audio", "other")
-PROMPT_FORMATS = ("narrative", "context_ir")
+PROMPT_FORMATS = ("narrative", "context_ir", "h3_base")
+H3_BASE_MODES = ("t2va", "i2va", "fl2va", "l2va")
 
 
-def load_context_ir_checker():
-    """Load the co-located Context-IR structural checker; None when not packaged."""
+def load_checker(filename, module_name):
+    """Load a co-located structural checker; None when not packaged."""
     import importlib.util
-    path = Path(__file__).resolve().parent / "context_ir_check.py"
+    path = Path(__file__).resolve().parent / filename
     if not path.is_file():
         return None
-    spec = importlib.util.spec_from_file_location("context_ir_check", path)
+    spec = importlib.util.spec_from_file_location(module_name, path)
     module = importlib.util.module_from_spec(spec)
     try:
         spec.loader.exec_module(module)
     except Exception:
         return None
     return module
+
+
+def load_context_ir_checker():
+    return load_checker("context_ir_check.py", "context_ir_check")
+
+
+def load_h3_base_checker():
+    return load_checker("h3_base_check.py", "h3_base_check")
 
 
 class InputError(Exception):
@@ -112,8 +121,9 @@ def file_fingerprint(path):
 
 def audit(data):
     root_fields = {"schema", "model", "parameters", "prompt", "prompt_format",
-                   "compiler", "locks", "asset_inventory", "binding", "attachments"}
-    required_fields = root_fields - {"prompt_format"}
+                   "h3_mode", "compiler", "locks", "asset_inventory", "binding",
+                   "attachments"}
+    required_fields = root_fields - {"prompt_format", "h3_mode"}
     object_fields(data, root_fields, required_fields, "root")
     require(data["schema"] == SCHEMA, "unsupported schema")
     require(text(data["model"]), "/model: expected nonempty text")
@@ -344,9 +354,31 @@ def audit(data):
             "Verify label-to-file bindings in the actual model adapter.")
 
     context_ir_status = "not_declared"
+    h3_base_status = "not_declared"
     prompt_format = data.get("prompt_format")
     if prompt_format is not None:
         require(prompt_format in PROMPT_FORMATS, "/prompt_format: invalid value")
+    if prompt_format == "h3_base":
+        mode = data.get("h3_mode")
+        if mode not in H3_BASE_MODES:
+            add("H3_BASE_MODE_UNDECLARED", "block", "/h3_mode",
+                "Declare the base mode: " + ", ".join(H3_BASE_MODES) + ".")
+        else:
+            checker = load_h3_base_checker()
+            if checker is None:
+                h3_base_status = "checker_unavailable"
+                add("H3_BASE_CHECKER_UNAVAILABLE", "review", "/prompt_format",
+                    "Install the base-mode checker package or verify structure manually.")
+            else:
+                h3_base_status = "checked"
+                duration = data["parameters"].get("duration_seconds")
+                if not isinstance(duration, (int, float)) or isinstance(duration, bool):
+                    duration = None
+                for finding in checker.audit(data["prompt"], mode, duration)["findings"]:
+                    add(finding["code"], finding["severity"], "/prompt" + (
+                        "" if str(finding["location"]).startswith("/")
+                        else ":" + str(finding["location"])),
+                        finding["repair_direction"])
     if prompt_format == "context_ir":
         checker = load_context_ir_checker()
         if checker is None:
@@ -385,6 +417,7 @@ def audit(data):
         "declared_payload_sha256": payload_hash,
         "attachments": checked,
         "context_ir_structure": context_ir_status,
+        "h3_base_structure": h3_base_status,
         "findings": findings,
     }
 

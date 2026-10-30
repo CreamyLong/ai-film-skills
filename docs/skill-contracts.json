@@ -2220,6 +2220,22 @@
           "zh-CN": "目标运行时接受官方 H3 Context-IR 格式时，按六段结构编译，使用语义化 Subject 标签、关系标记、镜头时间与台词标签，在提交记录中声明 prompt_format 并运行结构校验；结构通过不证明语义、素材或连续性合格。"
         },
         {
+          "en": "When the target runtime runs an H3 base mode (t2va/i2va/fl2va/l2va), compile through the official three-field structure with the mode's alignment instruction, shot times and dialogue tags, declare prompt_format \"h3_base\" with h3_mode in the payload, and run the structural checker; structure alone never proves semantic, media or continuity approval.",
+          "zh-CN": "目标运行时走 H3 基础模式（t2va/i2va/fl2va/l2va）时，按官方三字段结构编译，带该模式的对齐指令、镜头时间与台词标签，在提交记录中声明 prompt_format \"h3_base\" 与 h3_mode 并运行结构校验；结构通过不证明语义、素材或连续性合格。"
+        },
+        {
+          "en": "For other providers, translate the same director decisions into the venue's verified prompt dialect — one shell per prompt, unverified dialects stay marked unverified — and record prompt_format and provider identity in the submission record.",
+          "zh-CN": "面向其他提供商时，把同一批导演决定转写为该节点已核实的提示词方言——一条提示词只用一种外壳，未核实的方言保持标记 unverified——并在提交记录中登记 prompt_format 与 provider 标识。"
+        },
+        {
+          "en": "Run mechanical media QC (streams, duration, resolution, frame rate, black and frozen frames, audio level and loudness, subtitle cue coverage, contact-sheet evidence) on every generated segment and the assembled cut; measurements are evidence, not approval.",
+          "zh-CN": "对每个生成片段与合成成片做机械质检（流、时长、分辨率、帧率、黑帧与冻结帧、音量与响度、字幕 cue 覆盖、联系表证据）；测量值只是证据，不是通过结论。"
+        },
+        {
+          "en": "Assemble and deliver through a derived EDL, seam verification, subtitle-to-dialogue coverage, loudness and spec checks, and a delivery manifest; every failure returns to the earliest owning layer.",
+          "zh-CN": "按推导的 EDL、接缝核验、字幕对台词覆盖、响度与规格检查及导出清单组装交付；任一项失败都回最早责任层。"
+        },
+        {
           "en": "Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.",
           "zh-CN": "每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。"
         }
