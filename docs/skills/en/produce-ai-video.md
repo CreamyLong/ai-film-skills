@@ -48,7 +48,8 @@ A full production and validation contract; with the required host tools and perm
 6. Preserve the selected photography in the current six-module order with visual style second and an unnumbered negative prompt at the end. Keep professional optical names together with their visible action.
 7. Before each actual video-model submission, review the exact payload, approved assets and relevant story and episode handoffs; repair or stop on unresolved hard requirements, then review actual media and affected boundaries.
 8. Record prompt compilation scope, additions, fallback and reference bindings; compare local preflight hashes while retaining independent semantic and keyframe review.
-9. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
+9. When the target runtime accepts the official H3 Context-IR format, compile through the six-section structure with semantic Subject labels, retention markers, shot times and dialogue tags, declare prompt_format in the payload, and run the structural checker; structure alone never proves semantic, media or continuity approval.
+10. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
 
 <!-- contract:returns -->
 ## 6. Return, rework, and rollback
@@ -107,6 +108,7 @@ A full production and validation contract; with the required host tools and perm
 
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
+- [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
 - [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
@@ -120,6 +122,7 @@ A full production and validation contract; with the required host tools and perm
 
 **Deterministic helpers**
 
+- [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)

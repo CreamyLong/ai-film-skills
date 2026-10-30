@@ -48,7 +48,8 @@
 6. 按视觉风格第二、末尾附不编号负面提示词的现行六模块顺序保全已选摄影，专业光学名称与可见过程一同交接。
 7. 每次实际视频模型提交前审核准确的提交内容、已审资产及相关剧情和跨集交接；硬条件未解决时修复或停止，再核对真实素材与受影响的接缝。
 8. 记录提示词编译范围、增补、回退及素材绑定；比对本地预检哈希，并保留独立语义和关键帧审核。
-9. 每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。
+9. 目标运行时接受官方 H3 Context-IR 格式时，按六段结构编译，使用语义化 Subject 标签、关系标记、镜头时间与台词标签，在提交记录中声明 prompt_format 并运行结构校验；结构通过不证明语义、素材或连续性合格。
+10. 每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。
 
 <!-- contract:returns -->
 ## 6. 退回、重做与版本回滚
@@ -107,6 +108,7 @@
 
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
+- [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
 - [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
@@ -120,6 +122,7 @@
 
 **确定性辅助脚本**
 
+- [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)

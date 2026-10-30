@@ -2216,6 +2216,10 @@
           "zh-CN": "记录提示词编译范围、增补、回退及素材绑定；比对本地预检哈希，并保留独立语义和关键帧审核。"
         },
         {
+          "en": "When the target runtime accepts the official H3 Context-IR format, compile through the six-section structure with semantic Subject labels, retention markers, shot times and dialogue tags, declare prompt_format in the payload, and run the structural checker; structure alone never proves semantic, media or continuity approval.",
+          "zh-CN": "目标运行时接受官方 H3 Context-IR 格式时，按六段结构编译，使用语义化 Subject 标签、关系标记、镜头时间与台词标签，在提交记录中声明 prompt_format 并运行结构校验；结构通过不证明语义、素材或连续性合格。"
+        },
+        {
           "en": "Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.",
           "zh-CN": "每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。"
         }

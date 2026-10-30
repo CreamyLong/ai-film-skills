@@ -308,6 +308,40 @@ class PromptPreflightTests(unittest.TestCase):
         self.assertEqual(result["status"], "REVIEW_REQUIRED")
         self.assertEqual(result["findings"], [])
 
+    def test_context_ir_prompt_runs_structural_check(self):
+        audio = self.root / "voice.wav"
+        audio.write_bytes(b"synthetic test audio")
+        self.data["attachments"].append(attachment(audio, "<Audio 1>", "audio"))
+        self.data["binding"]["max_by_kind"]["audio"] = 4
+        self.data["prompt_format"] = "context_ir"
+        self.data["prompt"] = (
+            "subject_definitions:\n"
+            "<Subject 1> is the examiner in <Picture 1>.\n"
+            "<Picture 1> is the first frame of [Shot 1].\n"
+            "<Audio 1> is the voice-timbre reference for <Subject 1> (S1).\n\n"
+            "summary:\n"
+            "[reference generation + audio reference] <Subject 1> speaks.\n\n"
+            "retention_analysis:\n"
+            "<Subject 1>: fully_preserved - identity retained.\n"
+            "<Picture 1>: fully_preserved - opening frame retained.\n"
+            "<Audio 1>: reference - timbre only.\n\n"
+            "detailed_description:\n"
+            "[Shot 1] <Subject 1> (S1) at the <Picture 1> framing says, "
+            "<d>[Mandarin] 会议开始。</d>\n\n"
+            "overall_soundscape:\nRoom tone.\n\nnon_diegetic_music:\nN/A\n")
+        self.data["locks"] = {"required": ["会议开始"], "forbidden": []}
+        result = checker.audit(self.data)
+        self.assertEqual(result["context_ir_structure"], "checked")
+        self.assertEqual(result["findings"], [])
+        bad = copy.deepcopy(self.data)
+        bad["prompt"] = bad["prompt"].replace("retention_analysis:", "notes:")
+        result = checker.audit(bad)
+        self.assertEqual(result["status"], "BLOCK")
+        self.assertIn("SECTION_STRUCTURE", codes(result))
+        bad["prompt_format"] = "unknown_format"
+        with self.assertRaises(checker.InputError):
+            checker.audit(bad)
+
     def test_shot_and_prompt_reports_can_be_bound_to_the_same_text(self):
         shot_cli = ROOT / "skills/produce-ai-video/scripts/shot_preflight.py"
         shot_spec = importlib.util.spec_from_file_location("shot_checker", shot_cli)

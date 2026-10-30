@@ -20,6 +20,22 @@ H3_LABEL = re.compile(r"<(Picture|Video|Audio) ([1-9][0-9]*)>")
 H3_LABEL_LIKE = re.compile(r"<\s*(?:picture|image|video|audio)\s*[0-9]+\s*>", re.I)
 LABEL_KIND = {"Picture": "image", "Video": "video", "Audio": "audio"}
 KINDS = ("image", "video", "audio", "other")
+PROMPT_FORMATS = ("narrative", "context_ir")
+
+
+def load_context_ir_checker():
+    """Load the co-located Context-IR structural checker; None when not packaged."""
+    import importlib.util
+    path = Path(__file__).resolve().parent / "context_ir_check.py"
+    if not path.is_file():
+        return None
+    spec = importlib.util.spec_from_file_location("context_ir_check", path)
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
 
 
 class InputError(Exception):
@@ -95,9 +111,10 @@ def file_fingerprint(path):
 
 
 def audit(data):
-    root_fields = {"schema", "model", "parameters", "prompt", "compiler", "locks",
-                   "asset_inventory", "binding", "attachments"}
-    object_fields(data, root_fields, root_fields, "root")
+    root_fields = {"schema", "model", "parameters", "prompt", "prompt_format",
+                   "compiler", "locks", "asset_inventory", "binding", "attachments"}
+    required_fields = root_fields - {"prompt_format"}
+    object_fields(data, root_fields, required_fields, "root")
     require(data["schema"] == SCHEMA, "unsupported schema")
     require(text(data["model"]), "/model: expected nonempty text")
     require(isinstance(data["parameters"], dict), "/parameters: expected object")
@@ -326,6 +343,27 @@ def audit(data):
         add("REFERENCE_BINDING_OPAQUE", "review", "/binding/scheme",
             "Verify label-to-file bindings in the actual model adapter.")
 
+    context_ir_status = "not_declared"
+    prompt_format = data.get("prompt_format")
+    if prompt_format is not None:
+        require(prompt_format in PROMPT_FORMATS, "/prompt_format: invalid value")
+    if prompt_format == "context_ir":
+        checker = load_context_ir_checker()
+        if checker is None:
+            context_ir_status = "checker_unavailable"
+            add("CONTEXT_IR_CHECKER_UNAVAILABLE", "review", "/prompt_format",
+                "Install the Context-IR checker package or verify structure manually.")
+        else:
+            context_ir_status = "checked"
+            duration = data["parameters"].get("duration_seconds")
+            if not isinstance(duration, (int, float)) or isinstance(duration, bool):
+                duration = None
+            for finding in checker.audit(data["prompt"], duration)["findings"]:
+                add(finding["code"], finding["severity"], "/prompt" + (
+                    "" if str(finding["location"]).startswith("/")
+                    else ":" + str(finding["location"])),
+                    finding["repair_direction"])
+
     payload_hash = None
     if all(item["sha256"] is not None for item in payload_attachments):
         payload = {"model": data["model"], "parameters": data["parameters"],
@@ -346,6 +384,7 @@ def audit(data):
         "prompt_sha256": sha256_text(data["prompt"]),
         "declared_payload_sha256": payload_hash,
         "attachments": checked,
+        "context_ir_structure": context_ir_status,
         "findings": findings,
     }
 
