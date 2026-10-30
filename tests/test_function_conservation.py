@@ -84,6 +84,65 @@ class FunctionConservationTests(unittest.TestCase):
         for required in ("五列人读分镜", "数字10信息内核", "六大模块外层", "十二项完成门", "时间轴"):
             self.assertIn(required, compiler)
 
+    def test_compiled_prompt_preflight_is_required_but_not_semantic_approval(self) -> None:
+        entry = text("skills/produce-ai-video/SKILL.md")
+        compiler = text("skills/produce-ai-video/references/storyboard-prompt-compiler.md")
+        protocol = text("skills/produce-ai-video/references/prompt-compilation-preflight.md")
+        self.assertIn("scripts/prompt_preflight.py", entry)
+        self.assertIn("match their prompt hashes", entry)
+        self.assertIn("死者保持剧情指定的静止", compiler)
+        self.assertIn("未入镜的法医脸不要求面部表演", compiler)
+        self.assertIn("不是语义理解", protocol)
+        self.assertIn("不是服务器实际收到请求的证明", protocol)
+
+    def test_production_router_triages_without_owning_downstream_work(self) -> None:
+        entry = text("skills/film-production-router/SKILL.md")
+        cases = text("skills/film-production-router/references/routing-cases.md")
+        for required in ("Earliest responsible layer", "Routing table", "Blocked or unknown items",
+                         "Not routed", "does not guarantee that the host can switch skills",
+                         "never route \"regenerate\" as a fix"):
+            self.assertIn(required, entry)
+        for role in ("DIRECTOR", "STORYBOARD", "CHARACTER_ASSET", "SCENE_ASSET", "PROP_ASSET",
+                     "VIDEO_PRODUCTION", "PRODUCTION_CONTROL"):
+            self.assertIn(role, entry)
+        for case in ("Voice changes between clips", "Background changes between angles",
+                     "Dialogue exists in the script but not in the submitted prompt",
+                     "Old clip reused after prompt or reference changed"):
+            self.assertIn(case, cases)
+
+    def test_video_submission_preflight_is_required_and_scope_bounded(self) -> None:
+        entry = text("skills/produce-ai-video/SKILL.md")
+        preflight = text("skills/produce-ai-video/references/submission-preflight.md")
+        self.assertIn("Before every video-model submission, including retries", entry)
+        self.assertIn("submission-preflight.md", entry)
+        for required in (
+            "不是自动拦截模型调用的程序",
+            "不因此启动生图、上传或付费",
+            "正面、精确90度侧面、背面全身及中景",
+            "同一空间主图和反打图",
+            "当前镜头覆盖不到的必要区域",
+            "声音克隆",
+            "跨集事实或上一段尾态缺失",
+            "闪回、蒙太奇、省略和有意跳切",
+            "等待授权",
+            "实际提示词、图片/声音附件、参数和目标模型",
+            "重新检查受影响项及完整提交包",
+            "实际观看当前片段",
+            "抽帧不能证明帧间动作连续",
+            "不声称检查手段能保证每一帧绝无问题",
+        ):
+            self.assertIn(required, preflight)
+
+    def test_video_continuity_requires_actual_media_not_reference_alone(self) -> None:
+        frame_review = text("skills/produce-ai-video/references/keyframe-visual-review.md")
+        acceptance = text("skills/produce-ai-video/references/qualified-video-acceptance.md")
+        seam = text("skills/produce-ai-video/references/segment-seam-continuity.md")
+        self.assertIn("不能证明其他帧或跨集实际画面一致", frame_review)
+        self.assertIn("跨集相关人物或场景应对照已验收的实际画面", frame_review)
+        self.assertIn("相关跨集实际素材", acceptance)
+        self.assertIn("不能保证一致性或成本", seam)
+        self.assertNotIn("一致性 100%", seam)
+
     def test_market_analysis_keeps_quantitative_and_reproducible_modes(self) -> None:
         contract = text("skills/d-official-market-analysis/references/analysis-capability-contract.md")
         for required in ("数据质量", "产品与商业判断", "指标诊断", "TAM/SAM/SOM", "图表", "Jupyter", "完成前验证", "正式报告"):

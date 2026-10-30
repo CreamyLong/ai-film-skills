@@ -5,12 +5,12 @@
 ## Repository layers
 
 ```text
-skills/<name>/                18 regular, self-contained packages
+skills/<name>/                19 regular, self-contained packages
 experimental/<name>/          3 opt-in packages; excluded from the complete-studio ZIP
 docs/skill-contracts.json      reviewed bilingual documentation and inventory contract
-docs/skills/en/               21 generated English guides
-docs/skills/zh-CN/            21 generated Simplified Chinese guides
-docs/WORKFLOW.md               complete workflow, handoffs and 21 film + 1 web responsibilities
+docs/skills/en/               22 generated English guides
+docs/skills/zh-CN/            22 generated Simplified Chinese guides
+docs/WORKFLOW.md               complete workflow, handoffs and 22 film + 1 web responsibilities
 docs/assets/production-workflow.mmd  editable full workflow source
 docs/showcase/manifest.json    21 accepted visual outputs and explicit evidence state
 docs/i18n/                    translated entry pages
@@ -29,7 +29,7 @@ Each package contains its own `SKILL.md`, necessary `references/`, and optional 
 | `docs/WORKFLOW.md` | Optional orchestration and explicit handoffs; not a new runtime super-Skill |
 | Showcase manifest | File-level public examples and recorded acceptance, not generalized success rates |
 
-Edit runtime instructions and the reviewed contract where needed, then regenerate 42 guides with `scripts/generate_skill_guides.py`. The generated pages are not an independently edited authority.
+Edit runtime instructions and the reviewed contract where needed, then regenerate 44 guides with `scripts/generate_skill_guides.py`. The generated pages are not an independently edited authority.
 
 ## Authority follows the deliverable
 
@@ -41,7 +41,7 @@ Creative shot ideas are separate text choices; adopting one is not generation co
 
 ## Counting and distribution
 
-The 21 repository modules are 20 filmmaking modules plus `web-design-director`. An external xianxia link adds one workflow responsibility, not a bundled module. Thus the complete workflow shows 21 filmmaking responsibilities plus one web helper, while the repository still builds 18 regular and 3 experimental packages.
+The 22 repository modules are 21 filmmaking modules plus `web-design-director`. An external xianxia link adds one workflow responsibility, not a bundled module. Thus the complete workflow shows 22 filmmaking responsibilities plus one web helper, while the repository still builds 19 regular and 3 experimental packages.
 
 Current source, old published archives and standalone Preview artifacts have different refs. Source Storyboard Director is the 5.7.1 overhaul candidate; Release v1.3.0 preserves 5.4.4. See [Installation](INSTALLATION.md) before choosing a distribution.
 

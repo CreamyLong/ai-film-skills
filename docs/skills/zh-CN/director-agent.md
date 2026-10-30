@@ -103,18 +103,25 @@
 **引用资料**
 
 - [`references/anti-laziness-contract.md`](../../../skills/director-agent/references/anti-laziness-contract.md)
+- [`references/dialogue-writing-techniques.md`](../../../skills/director-agent/references/dialogue-writing-techniques.md)
 - [`references/director-thinking-spine.md`](../../../skills/director-agent/references/director-thinking-spine.md)
 - [`references/director-workbench-protocol.md`](../../../skills/director-agent/references/director-workbench-protocol.md)
 - [`references/github-project-watchlist.md`](../../../skills/director-agent/references/github-project-watchlist.md)
 - [`references/local-knowledge-map.md`](../../../skills/director-agent/references/local-knowledge-map.md)
+- [`references/novel-breakdown-pipeline.md`](../../../skills/director-agent/references/novel-breakdown-pipeline.md)
 - [`references/production-storyboard-compiler.md`](../../../skills/director-agent/references/production-storyboard-compiler.md)
 - [`references/research-update-protocol.md`](../../../skills/director-agent/references/research-update-protocol.md)
+- [`references/review-contract.md`](../../../skills/director-agent/references/review-contract.md)
 - [`references/screenplay-ai-execution-compiler.md`](../../../skills/director-agent/references/screenplay-ai-execution-compiler.md)
 - [`references/screenplay-cold-read-protocol.md`](../../../skills/director-agent/references/screenplay-cold-read-protocol.md)
 - [`references/screenplay-exemplar-benchmarks.md`](../../../skills/director-agent/references/screenplay-exemplar-benchmarks.md)
 - [`references/screenplay-state-engine.md`](../../../skills/director-agent/references/screenplay-state-engine.md)
 - [`references/screenplay-writing-core.md`](../../../skills/director-agent/references/screenplay-writing-core.md)
 - [`references/verified-director-logic.md`](../../../skills/director-agent/references/verified-director-logic.md)
+
+**确定性辅助脚本**
+
+- [`scripts/novel_index.py`](../../../skills/director-agent/scripts/novel_index.py)
 
 **其他随包文件**
 

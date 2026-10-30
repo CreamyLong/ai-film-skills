@@ -52,7 +52,7 @@ python -B scripts/check_skill_suite.py --profile B --temp-dir TEMP --sample REVI
 python -B scripts/build_review_profiles.py --output OUTPUT --temp-dir TEMP --allow-external-output
 ```
 
-两个ZIP都包含18项常规与3项实验Skill及逐包许可。A无Jev运行依赖；B只对分镜5.7.1增加可选Jev复核说明、原样复核脚本和根入口段落，标为5.7.1-jev，其余共同核心保持相同。PROFILE.json固定为candidate、用户测试pending、默认不联网且不默认启用；两个包有同一common_core_digest。分镜VERSION_MANIFEST.json与自身SHA记录实际字节，输出manifest.json及ZIP哈希用于冻结比对。
+这两个历史冻结ZIP包含当时的18项常规与3项实验Skill及逐包许可；当前源码为19项常规与3项实验，见仓库目录。A无Jev运行依赖；B只对分镜5.7.1增加可选Jev复核说明、原样复核脚本和根入口段落，标为5.7.1-jev，其余共同核心保持相同。PROFILE.json固定为candidate、用户测试pending、默认不联网且不默认启用；两个包有同一common_core_digest。分镜VERSION_MANIFEST.json与自身SHA记录实际字节，输出manifest.json及ZIP哈希用于冻结比对。
 
 构建会拒绝链接、路径越界、非空输出以及检测到的私密文件或常见凭证格式；不能以扫描替代来源范围审查。精简运行包不包含依赖完整仓库测试资源的维护质量门。构建不安装、不切换默认、不晋升、不发布；用户准入仍执行下一节。
 

@@ -46,6 +46,9 @@ A full production and validation contract; with the required host tools and perm
 4. Watch the whole render at least twice: once for story/emotion, once for technical and continuity defects.
 5. Repair blocking failures and deliver with the honest status `qualified`, `candidate`, or `unfinished/needs validation`.
 6. Preserve the selected photography in the current six-module order with visual style second and an unnumbered negative prompt at the end. Keep professional optical names together with their visible action.
+7. Before each actual video-model submission, review the exact payload, approved assets and relevant story and episode handoffs; repair or stop on unresolved hard requirements, then review actual media and affected boundaries.
+8. Record prompt compilation scope, additions, fallback and reference bindings; compare local preflight hashes while retaining independent semantic and keyframe review.
+9. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
 
 <!-- contract:returns -->
 ## 6. Return, rework, and rollback
@@ -60,6 +63,8 @@ A full production and validation contract; with the required host tools and perm
 - [ ] Story, shot design, spatial and asset continuity, generation quality, edit, sound, and delivery all pass their applicable hard gates.
 - [ ] The actual final file opens and has been watched from beginning to end; no hidden replacement file is reviewed instead.
 - [ ] Rights, costs, permissions, and unresolved limitations are explicit.
+- [ ] Ledger reviews record explicit user or delegated authority with evidence hashes; registration, hash and gateway checks are structural only and never replace semantic, visual, audio or continuity review.
+- [ ] Character multi-view, matching location views, applicable props and voice rights are prepared; continuity and prompt evidence are checked for the current scope, with missing evidence marked unverified.
 
 <!-- contract:pass -->
 ## 8. Pass standard and states
@@ -100,9 +105,25 @@ A full production and validation contract; with the required host tools and perm
 
 **References**
 
+- [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
+- [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
+- [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
+- [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
+- [`references/prompt-compilation-preflight.md`](../../../skills/produce-ai-video/references/prompt-compilation-preflight.md)
 - [`references/qualified-video-acceptance.md`](../../../skills/produce-ai-video/references/qualified-video-acceptance.md)
+- [`references/segment-seam-continuity.md`](../../../skills/produce-ai-video/references/segment-seam-continuity.md)
+- [`references/shot-audit-protocol.md`](../../../skills/produce-ai-video/references/shot-audit-protocol.md)
+- [`references/spatial-consistency-ledger.md`](../../../skills/produce-ai-video/references/spatial-consistency-ledger.md)
 - [`references/storyboard-prompt-compiler.md`](../../../skills/produce-ai-video/references/storyboard-prompt-compiler.md)
+- [`references/submission-preflight.md`](../../../skills/produce-ai-video/references/submission-preflight.md)
+
+**Deterministic helpers**
+
+- [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
+- [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
+- [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
+- [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
 
 **Distribution notices in new ZIP builds**
 

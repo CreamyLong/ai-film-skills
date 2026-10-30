@@ -11,7 +11,7 @@ Current source and the [ai-storyboard-director-v5.8.6 release](https://github.co
 |---|---|---|
 | [Storyboard 5.8.6 release](https://github.com/62656456/ai-film-skills/releases/tag/ai-storyboard-director-v5.8.6) | Current six-module cinematic prompt and professional optics, with aligned production handoffs | Install the complete ai-storyboard-director.zip or select the matching source tag |
 | [v1.4.0 historical release snapshot](https://github.com/62656456/ai-film-skills/releases/tag/v1.4.0) | Storyboard Director A 5.7.2, 21 standalone ZIPs and an 18-regular-package complete archive, manifest and SHA-256 checksums | Choose one complete ZIP; experimental packages remain opt-in |
-| Current source tree | Storyboard Director 5.8.6 with task-driven professional optics, cinematic image formation and the revised six-module prompt; 21 modules: 18 regular plus 3 experimental. Media effects and user acceptance are recorded separately. | Clone or download the intended source ref and use the local installer |
+| Current source tree | Storyboard Director 5.8.6 with task-driven professional optics, cinematic image formation and the revised six-module prompt; 22 modules: 19 regular plus 3 experimental. Media effects and user acceptance are recorded separately. | Clone or download the intended source ref and use the local installer |
 | [Published v1.3.0](https://github.com/62656456/ai-film-skills/releases/tag/v1.3.0) | Historical snapshot with Storyboard Director 5.4.4 and the older 19-module inventory | Use when deliberately reproducing that release; its ZIP does not track current source |
 | Separately labeled 5.6 standalone Preview | An independently labeled preview artifact with its own manifest | Read that artifact's label and scope; do not treat it as a new complete-studio release |
 
@@ -53,7 +53,7 @@ The external [xianxia-visual-director](https://github.com/liyue-aigc/xianxia-vis
 
 ## Published ZIPs and complete studio
 
-The [v1.3.0 assets](https://github.com/62656456/ai-film-skills/releases/tag/v1.3.0) contain individual module ZIPs and `open-film-skills-complete.zip`. These are old snapshots. Current source builds contain 18 regular modules in the complete archive; the 3 experiments are separate opt-in ZIPs. Inspect the build manifest's source ref and hashes.
+The [v1.3.0 assets](https://github.com/62656456/ai-film-skills/releases/tag/v1.3.0) contain individual module ZIPs and `open-film-skills-complete.zip`. These are old snapshots. Current source builds contain 19 regular modules in the complete archive; the 3 experiments are separate opt-in ZIPs. Inspect the build manifest's source ref and hashes.
 
 For manual installation, copy each selected complete module folder into the host's documented Skill location. An upload-based host may accept the standalone ZIP. Native paths and the difference between instruction reading and native activation are described in [Compatibility](COMPATIBILITY.md).
 

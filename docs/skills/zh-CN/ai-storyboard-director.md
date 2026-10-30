@@ -112,21 +112,26 @@
 
 **引用资料**
 
+- [`references/blocking-emotion-grammar.md`](../../../skills/ai-storyboard-director/references/blocking-emotion-grammar.md)
 - [`references/camera-motion-diagnostics.md`](../../../skills/ai-storyboard-director/references/camera-motion-diagnostics.md)
+- [`references/cinematic-realism-clauses.md`](../../../skills/ai-storyboard-director/references/cinematic-realism-clauses.md)
 - [`references/cinematography-design-engine.md`](../../../skills/ai-storyboard-director/references/cinematography-design-engine.md)
 - [`references/color-and-image-formation.md`](../../../skills/ai-storyboard-director/references/color-and-image-formation.md)
 - [`references/creative-shot-ideas.md`](../../../skills/ai-storyboard-director/references/creative-shot-ideas.md)
 - [`references/delivery-mode-guard.md`](../../../skills/ai-storyboard-director/references/delivery-mode-guard.md)
 - [`references/design-memory-protocol.md`](../../../skills/ai-storyboard-director/references/design-memory-protocol.md)
+- [`references/energy-vfx-design.md`](../../../skills/ai-storyboard-director/references/energy-vfx-design.md)
 - [`references/fcml-motion-index.md`](../../../skills/ai-storyboard-director/references/fcml-motion-index.md)
 - [`references/fight-design.md`](../../../skills/ai-storyboard-director/references/fight-design.md)
 - [`references/fight-reference-case.md`](../../../skills/ai-storyboard-director/references/fight-reference-case.md)
 - [`references/framing-and-axis.md`](../../../skills/ai-storyboard-director/references/framing-and-axis.md)
+- [`references/h3-native-av-contract.md`](../../../skills/ai-storyboard-director/references/h3-native-av-contract.md)
 - [`references/optical-shot-selection.md`](../../../skills/ai-storyboard-director/references/optical-shot-selection.md)
 - [`references/production-contract.md`](../../../skills/ai-storyboard-director/references/production-contract.md)
 - [`references/project-visual-style.md`](../../../skills/ai-storyboard-director/references/project-visual-style.md)
 - [`references/reference-design-and-handoff.md`](../../../skills/ai-storyboard-director/references/reference-design-and-handoff.md)
 - [`references/shot-design-engine.md`](../../../skills/ai-storyboard-director/references/shot-design-engine.md)
+- [`references/shot-size-rhythm.md`](../../../skills/ai-storyboard-director/references/shot-size-rhythm.md)
 
 **确定性辅助脚本**
 

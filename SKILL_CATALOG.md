@@ -2,7 +2,7 @@
 
 当前分镜源码为 **5.8.6**：以5.7.7为基础，保留摄影、光色、打戏和空间规则，加入FCML离线机制与起中终画框比较。当前版本通过仓库源码安装；v1.4.0归档仍冻结为5.7.2，不能用旧归档代表现行源码。
 
-**本仓库21个源码包：18项常规＋3项实验；42份英文/简体中文指南。** 此页列出每包实际用途、源码版本和直接文件入口，GitHub仓库首页是[README](README.md)。
+**本仓库22个源码包：19项常规＋3项实验；44份英文/简体中文指南。** 此页列出每包实际用途、源码版本和直接文件入口，GitHub仓库首页是[README](README.md)。
 
 [完整工作流](docs/WORKFLOW.md) · [全部双语指南](docs/skills/INDEX.md) · [安装](docs/INSTALLATION.md) · [原创版权与商用](COMMERCIAL_USE.md)
 
@@ -16,7 +16,7 @@
 python scripts/install_skill.py <skill-name> --platform codex
 ```
 
-安装器读取实际检出版本；实验包另需`--experimental`。完整套装只含18项常规包，实验包单独选择。工具、模型、额度与账号权限不由Skill本身提供。
+安装器读取实际检出版本；实验包另需`--experimental`。完整套装只含19项常规包，实验包单独选择。工具、模型、额度与账号权限不由Skill本身提供。
 
 ## Story and directing
 
@@ -58,6 +58,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 
 | 技能 / 职责 | 逐项用途 | 当前源码版本 | 分发 | 入口 |
 |---|---|---|---|---|
+| `film-production-router`<br/>问题分诊与角色分派 | 判断问题属于哪个生产层，按责任顺序分派给对应角色并给出复核标准 | — | 常规 | [运行正文](skills/film-production-router/SKILL.md) · [中文说明](docs/skills/zh-CN/film-production-router.md) · [EN](docs/skills/en/film-production-router.md) · 源码安装 |
 | `produce-ai-video`<br/>实际视频生产 | 统筹实际生成、选片、剪辑、对白音效、完整播放审查与修复 | — | 常规 | [运行正文](skills/produce-ai-video/SKILL.md) · [中文说明](docs/skills/zh-CN/produce-ai-video.md) · [EN](docs/skills/en/produce-ai-video.md) · [5.8.6同步发布 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/produce-ai-video.zip) |
 | `ai-short-drama-production`<br/>短剧控制 | 五列分镜＋一条六模块母提示词；现行六模块已对齐，文本验证通过，实片待验 | — | 常规；未部署 | [运行正文](skills/ai-short-drama-production/SKILL.md) · [中文说明](docs/skills/zh-CN/ai-short-drama-production.md) · [EN](docs/skills/en/ai-short-drama-production.md) · [5.8.6同步发布 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/ai-short-drama-production.zip) |
 | `web-design-director`<br/>网页辅助 | 明确网页或应用界面任务时设计与审核；仓库README维护不触发建站 | 1.3.0 | 常规 | [运行正文](skills/web-design-director/SKILL.md) · [中文说明](docs/skills/zh-CN/web-design-director.md) · [EN](docs/skills/en/web-design-director.md) · [v1.4.0 ZIP](https://github.com/62656456/ai-film-skills/releases/download/v1.4.0/web-design-director.zip) |
@@ -106,7 +107,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 
 [xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director)只提供上游链接，不再分发其源码或ZIP；上游尚无已核实再分发许可。十种视觉路线为八项常规类型、实验硬科幻和外部仙侠。
 
-本仓库21包＝20项影视＋1项网页辅助；另计外部仙侠后，完整工作流是21项影视职责＋1项网页辅助。外部项不计入21包或42份指南。
+本仓库22包＝21项影视＋1项网页辅助；另计外部仙侠后，完整工作流是22项影视职责＋1项网页辅助。外部项不计入22包或44份指南。
 
 ## 实际证据与返修
 

@@ -12,6 +12,10 @@ The two DejaVu Sans 2.37 font files in `docs/assets/fonts/` are unchanged inputs
 
 The repository presentation was informed by the public information architecture of [OmniRoute](https://github.com/diegosouzapw/OmniRoute): visual thesis, fast navigation, diagrams, multilingual entry points, copyable installation, visible project status, contribution routes, security policy, and third-party notices. No OmniRoute branding, artwork, README prose, code, or private data is copied into this repository.
 
+## OpenH3-IR mechanism study
+
+The video production Skill studied [OpenH3-IR](https://github.com/ruashots/open-h3-ir/tree/fd031e136ae3d89147324c0d1b2aa65e838c21f5), an independent Apache-2.0 project, for reference binding, bounded additions, validation and fallback reporting. This repository implements its own limited local checks; it does not bundle or require OpenH3-IR, its code or its media. MiniMax H3 and any optional external model have their own separate terms.
+
 ## Excluded packages
 
 - `xianxia-visual-director` was installed from a third-party repository whose redistribution license was not verified. It is not included.

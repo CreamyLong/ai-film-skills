@@ -60,9 +60,9 @@ flowchart TB
 
 分镜入口在明确作品目录内保存导演意图、已选镜头、进入/退出状态和来源哈希，并恢复当前场所需知识。保存与恢复、明确几何检查、设计语义审阅、用户审美和真实视频效果分别验证。程序不自动评判好不好看，也不能强制所有聊天入口执行。
 
-## 21项影视职责与1项网页辅助
+## 22项影视职责与1项网页辅助
 
-计数口径：本仓库分发 **18项常规＋3项实验＝21个模块**，其中20项用于影视、1项用于网页。工作流另列外部仙侠技能，因此是 **21项影视职责＋1项网页辅助**；外部仙侠不计入本仓库21个模块、42份双语指南或ZIP。
+计数口径：本仓库分发 **19项常规＋3项实验＝22个模块**，其中21项用于影视、1项用于网页。工作流另列外部仙侠技能，因此是 **22项影视职责＋1项网页辅助**；外部仙侠不计入本仓库22个模块、44份双语指南或ZIP。
 
 | # | Skill | 职责与交付 | 分发/使用边界 |
 |---|---|---|---|
@@ -86,7 +86,7 @@ flowchart TB
 | 18 | [ai-short-drama-production](skills/zh-CN/ai-short-drama-production.md) | 短剧节拍、资产、调度、光线、动作与QC控制合同 | 独立合同按请求交分镜或提示词；实片效果待验，宿主启用需实际安装确认 |
 | 19 | [d-official-market-analysis](skills/zh-CN/d-official-market-analysis.md) | 选题与平台研究、来源、数据、结论与独立待批准记录 | 按需研究；报告不授权知识写入 |
 | 20 | [d-data-analysis-semantic-layer](skills/zh-CN/d-data-analysis-semantic-layer.md) | 用户批准后校验、版本化写入与回读 | 目标和批准来自当前任务；已存知识仍检查时效 |
-| 21 | [guofeng-visual-director](skills/zh-CN/guofeng-visual-director.md) | 古风文化、空间、人物器物、构图光色与完整图像提示词 | 候选实验包；不自动视为历史准确还原 |
+| 22 | [guofeng-visual-director](skills/zh-CN/guofeng-visual-director.md) | 古风文化、空间、人物器物、构图光色与完整图像提示词 | 候选实验包；不自动视为历史准确还原 |
 | 辅助 | [web-design-director](skills/zh-CN/web-design-director.md) | 作品站、资产库、工作台和网页展示 | 只用于明确网页或应用界面任务；仓库README维护不触发建站 |
 
 十一种视觉路线＝八项常规类型＋实验硬科幻＋外部仙侠＋古风候选。选择取决于作品，不要求一次加载十一项，也不把风格名变成统一色表或固定镜头。

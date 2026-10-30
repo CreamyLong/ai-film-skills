@@ -14,7 +14,7 @@ Use these messages only with the linked public evidence. Do not add model-succes
 npx --yes skills@latest add 62656456/ai-film-skills --list
 ```
 
-This route was verified with `skills` 1.5.23. It discovers the 18 stable modules; the isolated experiment remains outside default discovery.
+This route was verified with `skills` 1.5.23. It discovers the 19 stable modules; the isolated experiment remains outside default discovery.
 
 Live directory: https://skills.sh/62656456/ai-film-skills
 
@@ -44,7 +44,7 @@ https://github.com/62656456/ai-film-skills
 
 ## Directory submission entry
 
-**Open Film Skills** — 21 standalone Agent Skills for script-to-screen AI filmmaking, including directing, reusable character/scene/prop assets, cinematic storyboards, generation prompts, production, and evidence-aware review across compatible Agent hosts. Current distribution: v1.4.0 with Storyboard Director A5.7.2.
+**Open Film Skills** — 22 standalone Agent Skills for script-to-screen AI filmmaking, including directing, reusable character/scene/prop assets, cinematic storyboards, generation prompts, production, and evidence-aware review across compatible Agent hosts. Current distribution: v1.4.0 with Storyboard Director A5.7.2.
 
 ## Evidence links
 

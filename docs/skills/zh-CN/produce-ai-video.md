@@ -46,6 +46,9 @@
 4. 至少完整观看两遍：一遍看故事与情绪，一遍看技术与连续性。
 5. 修复阻塞问题，并以“合格成片 / 候选成片 / 未完成或待验证”诚实交付。
 6. 按视觉风格第二、末尾附不编号负面提示词的现行六模块顺序保全已选摄影，专业光学名称与可见过程一同交接。
+7. 每次实际视频模型提交前审核准确的提交内容、已审资产及相关剧情和跨集交接；硬条件未解决时修复或停止，再核对真实素材与受影响的接缝。
+8. 记录提示词编译范围、增补、回退及素材绑定；比对本地预检哈希，并保留独立语义和关键帧审核。
+9. 每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。
 
 <!-- contract:returns -->
 ## 6. 退回、重做与版本回滚
@@ -60,6 +63,8 @@
 - [ ] 故事、镜头、空间与资产连续性、生成质量、剪辑、声音和交付通过适用硬门。
 - [ ] 真实最终文件可打开并已从头看到尾，没有用其他文件代替审核。
 - [ ] 版权、费用、权限和未解决边界明确。
+- [ ] 台账审核须记录明确的用户或委托权限及证据哈希；登记、哈希和网关检查只是结构检查，不能替代语义、画面、声音或连续性审核。
+- [ ] 人物多视图、同空间多角度场景、适用道具及声音权利已准备；按当前范围核对连续性与提示词证据，缺证据标为待验证。
 
 <!-- contract:pass -->
 ## 8. 过关标准与状态
@@ -100,9 +105,25 @@
 
 **引用资料**
 
+- [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
+- [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
+- [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
+- [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
+- [`references/prompt-compilation-preflight.md`](../../../skills/produce-ai-video/references/prompt-compilation-preflight.md)
 - [`references/qualified-video-acceptance.md`](../../../skills/produce-ai-video/references/qualified-video-acceptance.md)
+- [`references/segment-seam-continuity.md`](../../../skills/produce-ai-video/references/segment-seam-continuity.md)
+- [`references/shot-audit-protocol.md`](../../../skills/produce-ai-video/references/shot-audit-protocol.md)
+- [`references/spatial-consistency-ledger.md`](../../../skills/produce-ai-video/references/spatial-consistency-ledger.md)
 - [`references/storyboard-prompt-compiler.md`](../../../skills/produce-ai-video/references/storyboard-prompt-compiler.md)
+- [`references/submission-preflight.md`](../../../skills/produce-ai-video/references/submission-preflight.md)
+
+**确定性辅助脚本**
+
+- [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
+- [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
+- [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
+- [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
 
 **新构建 ZIP 的分发许可文件**
 
