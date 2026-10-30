@@ -52,6 +52,26 @@ def unique_json(pairs):
     return result
 
 
+CJK = re.compile(r"[㐀-䶿一-鿿豈-﫿　-〿！-･]")
+WORD = re.compile(r"[A-Za-z0-9'’]+")
+CJK_RATE = 4.0
+WORD_RATE = 2.5
+LINE_OVERHEAD = 0.35
+LINE_MINIMUM = 1.2
+TIGHT_RATIO = 0.85
+
+
+def estimate_speech_seconds(line):
+    """Estimate one line's spoken duration from text alone; not a recording."""
+    cjk = len(CJK.findall(line))
+    words = len(WORD.findall(line))
+    return max(LINE_MINIMUM, cjk / CJK_RATE + words / WORD_RATE + LINE_OVERHEAD)
+
+
+def dialogue_budget_seconds(dialogue):
+    return round(sum(estimate_speech_seconds(line["text"]) for line in dialogue), 3)
+
+
 def audit(data):
     object_fields(data, {"schema", "tracked_items", "shots"},
                   {"schema", "tracked_items", "shots"}, "root")
@@ -100,6 +120,19 @@ def audit(data):
             if route == "silent" or line["text"] not in target:
                 add("DIALOGUE_NOT_MAPPED", "block", sid, f"{loc}/dialogue/{dindex}",
                     "Map the exact line to the selected audio submission, or resolve the silent-audio conflict.")
+
+        if dialogue:
+            estimate = dialogue_budget_seconds(dialogue)
+            hashes[-1]["speech_estimate_seconds"] = estimate
+            if estimate > duration:
+                add("DIALOGUE_BUDGET_EXCEEDED", "block", sid, f"{loc}/duration_seconds",
+                    "The declared lines need about %.1fs; extend the shot to at least that, "
+                    "move lines to another shot, or record a verified faster delivery; "
+                    "do not drop lines." % estimate)
+            elif estimate > duration * TIGHT_RATIO:
+                add("DIALOGUE_BUDGET_TIGHT", "review", sid, f"{loc}/duration_seconds",
+                    "The declared lines need about %.1fs of the %.1fs shot; verify pauses, "
+                    "breaths and action beats still fit." % (estimate, duration))
 
         timing = shot.get("speech_timing")
         if dialogue and timing is None:

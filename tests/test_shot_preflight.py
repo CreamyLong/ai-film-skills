@@ -88,6 +88,22 @@ class ShotPreflightTests(unittest.TestCase):
         del data["shots"][0]["speech_timing"]
         self.assertIn("SPEECH_TIMING_UNVERIFIED", codes(checker.audit(data)))
 
+    def test_dialogue_budget_blocks_unfittable_lines_and_flags_tight_shots(self):
+        data = sample()
+        long_line = "这是一段远超四秒钟可以说完的长台词，需要将近十秒才能讲完。"
+        data["shots"][0]["dialogue"] = [{"speaker": "Mira", "text": long_line}]
+        data["shots"][0]["prompt"] = "Mira says: " + long_line
+        result = checker.audit(data)
+        self.assertEqual(result["status"], "BLOCK")
+        self.assertIn("DIALOGUE_BUDGET_EXCEEDED", codes(result))
+        estimate = result["prompts"][0]["speech_estimate_seconds"]
+        self.assertGreater(estimate, 4.0)
+        data["shots"][0]["duration_seconds"] = estimate + 2
+        data["shots"][1]["duration_seconds"] = estimate + 2
+        self.assertNotIn("DIALOGUE_BUDGET_EXCEEDED", codes(checker.audit(data)))
+        data["shots"][0]["duration_seconds"] = estimate * 1.1
+        self.assertIn("DIALOGUE_BUDGET_TIGHT", codes(checker.audit(data)))
+
     def test_state_jump_and_transition_evidence(self):
         data = sample()
         second = data["shots"][1]
