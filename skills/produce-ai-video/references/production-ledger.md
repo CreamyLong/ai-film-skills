@@ -6,6 +6,8 @@
 
 台账和网关只证明**登记、哈希、依赖、版本和请求一致**。它们不看图、不听音、不理解剧情，也不能阻止绕过脚本的直接调用。审核结论必须来自人工或宿主的独立复核，并以证据文件登记。
 
+费用、权利、排期与改稿按 [production-controls.md](production-controls.md) 写入现有项目记录；锁画与后期按 [editorial-workflow.md](editorial-workflow.md) 和 [finishing-and-delivery.md](finishing-and-delivery.md) 绑定同版产物。现有脚本未实现预算扣减、法律权利判断或自动平台合规，不得声称这些已被程序强制检查。
+
 ## 台账：production_state.py
 
 命令从 JSON 文件读取，不把私密值放进 shell 参数：

@@ -50,6 +50,6 @@ Worked examples of symptom-to-role assignment. Each case names the observable sy
 
 ## Not routing
 
-- A request that already names its stage and artifact (for example "rewrite this dialogue") goes straight to the owning role; the router adds no value.
+- A request that already names its stage and artifact (for example "rewrite this dialogue") goes straight to the owning role without full-project planning; continue through the host when available and requested.
 - A routing decision never replaces the owning role's own review of the actual material.
 - If two layers could own a symptom, route to the earlier one first and state what evidence would move it downstream.

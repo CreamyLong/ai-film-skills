@@ -40,7 +40,7 @@
 <!-- contract:workflow -->
 ## 5. 流程逻辑
 
-1. 取得现行导演与节拍决定，不用通用公式重做。
+1. 继承现行决定，只补缺失的整季/分集作用与表演。增量检查重放完整历史、钉住版本，拒绝冲突覆盖和提前开关线；显式登记回归，不把闪回写回当前状态。
 2. 沿用批准资产；未定资产可标候选支持文本设计，正式生成前完成相应审阅。
 3. 按需建立调度、布光、动作和草图转镜头控制合同。
 4. 编译点名控制合同、可读分镜或六模块提示词；两者都要才交分镜与提示词，保留全部锁定。
@@ -57,7 +57,7 @@
 <!-- contract:review -->
 ## 7. 审核门
 
-- [ ] 钩子、目标、阻力、信息差、权力转折、代价和结尾钩子可观察，不是形容词。
+- [ ] 钩子、目标、阻力、信息差、权力转折、代价及适合剧型的悬念或局部解决可观察；核倾听、表演连续性、可剪覆盖、锁画与改稿版本交接，不只核注册状态。
 - [ ] 批准与候选资产状态分明；调度能解释世界空间及每个机位投影；光有实体来源，动作有起点、路径、终点和反应。
 - [ ] 切镜或连续长镜明确、锁定结构不变、台词时间成立，最终提示词保留已选摄影与尾态连续性。
 
@@ -78,6 +78,7 @@
 <!-- contract:boundaries -->
 ## 10. 边界、依赖与权限
 
+- 禁止编写或运行批量生成提示词的脚本，不得循环套模板、替换变量、拼接正文或批量调用模型代写。完整提示词须逐项撰写复核，脚本只可校验或原样保存已完成正文；编译、事后润色和多条请求均不构成例外。
 - 它可以单独整理已批准决定或审计控制缺口，但不会复制导演、资产、类型、生成和 QC 的全部能力。
 - 独立交接按当前阶段交分镜或提示词，两者都要才分别交付；保留本包生产控制，不引入其他包状态程序。
 - 创意镜头以独立文字备选交付，说明故事作用、可见过程、前后衔接与取舍；采用只修改选中设计，不自动授权生成。
@@ -104,6 +105,7 @@
 - [`references/independent-production-core.md`](../../../skills/ai-short-drama-production/references/independent-production-core.md)
 - [`references/production-handoff.md`](../../../skills/ai-short-drama-production/references/production-handoff.md)
 - [`references/series-bible.md`](../../../skills/ai-short-drama-production/references/series-bible.md)
+- [`references/series-development.md`](../../../skills/ai-short-drama-production/references/series-development.md)
 - [`references/SOURCE-LEDGER.md`](../../../skills/ai-short-drama-production/references/SOURCE-LEDGER.md)
 
 **确定性辅助脚本**

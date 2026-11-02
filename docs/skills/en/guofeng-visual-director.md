@@ -63,6 +63,7 @@ A complete visual brief, image prompt, controlled variant or diagnosis.
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - No automatic xianxia, wuxia, fixed dynasty, image generation or full-film expansion.
 
 <!-- contract:agents -->

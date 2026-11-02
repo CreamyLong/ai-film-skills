@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STABLE_ROOT = ROOT / "skills"
 EXPERIMENTAL_ROOT = ROOT / "experimental"
 PLATFORMS = ("codex", "claude-code", "trae", "codebuddy", "workbuddy", "generic")
+SKILL_ALIASES = {"film-production-router": "film-production-orchestrator"}
 
 
 def discover() -> dict[str, tuple[Path, str]]:
@@ -52,6 +53,14 @@ def install(source: Path, target_root: Path, force: bool) -> Path:
     destination = target_root / source.name
     if not is_within(destination.resolve(strict=False), target_root):
         raise SafetyError(f"installation destination escapes target root: {destination}")
+    for alias, canonical in SKILL_ALIASES.items():
+        legacy = target_root / alias
+        if source.name == canonical and (legacy.exists() or is_link_like(legacy)):
+            raise SafetyError(
+                f"legacy installation exists at {legacy}; review and move it outside "
+                "the host discovery directory before installing the renamed Skill. "
+                "--force does not remove legacy installations."
+            )
     target_root.mkdir(parents=True, exist_ok=True)
 
     if destination.exists() and not force:
@@ -109,7 +118,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Install one self-contained Open Film Skill from this checkout."
     )
-    parser.add_argument("skill", nargs="?", help="Skill directory name")
+    parser.add_argument("skill", nargs="?", help="Canonical Skill name or supported legacy alias")
     parser.add_argument("--list", action="store_true", help="List available Skills")
     parser.add_argument(
         "--platform",
@@ -131,6 +140,10 @@ def main() -> int:
         return 0
     if not args.skill:
         parser.error("provide a Skill name or use --list")
+    if args.skill in SKILL_ALIASES:
+        canonical = SKILL_ALIASES[args.skill]
+        print(f"Skill renamed: {args.skill} -> {canonical}", file=sys.stderr)
+        args.skill = canonical
     if args.skill not in skills:
         print(f"Unknown Skill: {args.skill}", file=sys.stderr)
         print("Run with --list to see valid names.", file=sys.stderr)

@@ -95,9 +95,9 @@ class FunctionConservationTests(unittest.TestCase):
         self.assertIn("不是语义理解", protocol)
         self.assertIn("不是服务器实际收到请求的证明", protocol)
 
-    def test_production_router_triages_without_owning_downstream_work(self) -> None:
-        entry = text("skills/film-production-router/SKILL.md")
-        cases = text("skills/film-production-router/references/routing-cases.md")
+    def test_production_orchestrator_preserves_triage_and_specialist_ownership(self) -> None:
+        entry = text("skills/film-production-orchestrator/SKILL.md")
+        cases = text("skills/film-production-orchestrator/references/routing-cases.md")
         for required in ("Earliest responsible layer", "Routing table", "Blocked or unknown items",
                          "Not routed", "does not guarantee that the host can switch skills",
                          "never route \"regenerate\" as a fix"):

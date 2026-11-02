@@ -40,7 +40,7 @@ Production-control orchestration and gap auditing for existing decisions, includ
 <!-- contract:workflow -->
 ## 5. Workflow
 
-1. Obtain current director and beat decisions; do not recreate them with a generic formula.
+1. Preserve current decisions; develop season/episode function and performance only where missing. Replay complete recorded episodes for incremental checks, pin history, reject conflicting replacements and premature thread events, and declare returns without treating flashbacks as live-state changes.
 2. Preserve approved assets; label unresolved assets as candidates for text design, and require the applicable asset review before actual generation.
 3. Create blocking, lighting, action, and sketch-to-shot control contracts only where needed.
 4. Compile the requested control contract, readable storyboard or six-module prompt; provide both storyboard and prompt only when requested, preserving all locks.
@@ -57,7 +57,7 @@ Production-control orchestration and gap auditing for existing decisions, includ
 <!-- contract:review -->
 ## 7. Review gates
 
-- [ ] Hook, objective, obstacle, information gap, power turn, cost, and end hook are visible rather than adjective labels.
+- [ ] Hook, objective, obstacle, information gap, power turn, cost and the appropriate cliffhanger or resolution are observable. Check listening, performance continuity, editable coverage and versioned picture-lock/change handoffs, not just registered states.
 - [ ] Approved and candidate assets remain distinct; blocking explains world space and each camera projection; light has a physical source and action has start, path, end and reaction.
 - [ ] Cuts or continuous takes are explicit, locked structure is preserved, dialogue fits its time window, and the final prompt retains selected camera design and end-state continuity.
 
@@ -78,6 +78,7 @@ Production-control orchestration and gap auditing for existing decisions, includ
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - It can organize approved decisions or audit missing controls by itself; it does not copy every directing, asset, genre, generation, or QC capability into one module.
 - The standalone handoff follows the current delivery stage: storyboard or prompt, both only when requested. It retains its own production controls without importing another package's state engine.
 - Offer creative shot ideas as separate text choices with story purpose, visible process, handoff and tradeoffs. Adoption changes only the selected design and never authorizes generation by itself.
@@ -104,6 +105,7 @@ Production-control orchestration and gap auditing for existing decisions, includ
 - [`references/independent-production-core.md`](../../../skills/ai-short-drama-production/references/independent-production-core.md)
 - [`references/production-handoff.md`](../../../skills/ai-short-drama-production/references/production-handoff.md)
 - [`references/series-bible.md`](../../../skills/ai-short-drama-production/references/series-bible.md)
+- [`references/series-development.md`](../../../skills/ai-short-drama-production/references/series-development.md)
 - [`references/SOURCE-LEDGER.md`](../../../skills/ai-short-drama-production/references/SOURCE-LEDGER.md)
 
 **Deterministic helpers**

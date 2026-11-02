@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import copy
 from pathlib import Path
 import unittest
 
@@ -119,6 +120,69 @@ class SeriesCheckTest(unittest.TestCase):
         report = checker.audit(bible(), [outline(1), outline(
             3, entry_state=[{"entity": "C01", "key": "status", "value": "injured"}])])
         self.assertIn("SERIES_EPISODE_GAP", codes(report))
+
+    def test_incremental_check_replays_history_without_mutating_inputs(self):
+        saved = bible(episodes=[outline()])
+        before = copy.deepcopy(saved)
+        current = outline(2, entry_state=[{"entity": "C01", "key": "status", "value": "injured"}])
+        report = checker.audit(saved, [current])
+        self.assertEqual(report["findings"], [])
+        self.assertEqual(report["history_episodes_replayed"], 1)
+        self.assertEqual(len(report["history_sha256"]), 64)
+        self.assertEqual(saved, before)
+
+    def test_incremental_reset_to_initial_state_blocks(self):
+        report = checker.audit(bible(episodes=[outline()]), [outline(2)])
+        self.assertIn("SERIES_ENTRY_STATE_MISMATCH", codes(report))
+
+    def test_changed_history_cannot_be_silently_replaced(self):
+        report = checker.audit(bible(episodes=[outline()]), [outline(title="replacement")])
+        self.assertIn("SERIES_HISTORY_CONFLICT", codes(report))
+
+    def test_identical_overlap_is_checked_once(self):
+        report = checker.audit(bible(episodes=[outline()]), [outline()])
+        self.assertEqual(report["findings"], [])
+        self.assertEqual(report["episodes_checked"], 1)
+
+    def test_missing_history_and_changed_history_pin_block(self):
+        self.assertIn("SERIES_HISTORY_INCOMPLETE", codes(checker.audit(bible(), [outline(2)])))
+        report = checker.audit(bible(), [outline()], expected_history_sha256="0" * 64)
+        self.assertIn("SERIES_HISTORY_HASH_MISMATCH", codes(report))
+
+    def test_future_thread_cannot_close_or_open_early(self):
+        future = [{"id": "T9", "opened_in": 5, "closed_in": None}]
+        for threads in ({"opens": [], "closes": ["T9"]},
+                        {"opens": [{"id": "T9"}], "closes": []}):
+            with self.subTest(threads=threads):
+                report = checker.audit(bible(threads=future), [outline(threads=threads)])
+                self.assertEqual(report["status"], "BLOCK")
+
+    def test_thread_closed_in_history_is_not_reopened_by_registry(self):
+        saved = outline(threads={"opens": [], "closes": ["T1"]})
+        current = outline(2, entry_state=[{"entity": "C01", "key": "status", "value": "injured"}],
+                          threads={"opens": [], "closes": ["T1"]})
+        report = checker.audit(bible(episodes=[saved]), [current])
+        self.assertIn("SERIES_THREAD_CLOSE_UNOPENED", codes(report))
+
+    def test_explicit_return_clears_departure(self):
+        first = outline(entity_deltas={"introduces": [], "departs": ["P01"]})
+        second = outline(2, entry_state=[{"entity": "C01", "key": "status", "value": "injured"}],
+                         entity_deltas={"introduces": [], "departs": [], "returns": ["P01"]})
+        report = checker.audit(bible(), [first, second])
+        self.assertNotIn("SERIES_DEPARTED_USED", codes(report))
+        bad = checker.audit(bible(), [outline(entity_deltas={"returns": ["C99"]})])
+        self.assertIn("SERIES_RETURN_INVALID", codes(bad))
+
+    def test_resolved_episode_need_not_have_a_cliffhanger(self):
+        report = checker.audit(bible(), [outline(cliffhanger="", resolution="The ring is returned.")])
+        self.assertNotIn("EPISODE_OUTLINE_INCOMPLETE", codes(report))
+
+    def test_invalid_history_and_thread_dates_are_findings(self):
+        self.assertEqual(checker.audit(bible(episodes=["invalid"]), [outline()])["status"], "BLOCK")
+        for opened, closed in (("five", 3), (True, None), (1, "later")):
+            report = checker.audit(bible(threads=[{"id": "T1", "opened_in": opened,
+                                                   "closed_in": closed}]), [outline()])
+            self.assertEqual(report["status"], "BLOCK")
 
 
 if __name__ == "__main__":

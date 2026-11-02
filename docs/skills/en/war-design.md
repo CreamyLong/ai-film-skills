@@ -75,6 +75,7 @@ Genre parameters, military visual advice, complete image prompts, actual images,
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - Do not rewrite locked stories, take over full screenplay/shot-list production, or override approved assets and directing.
 - Do not provide real weapon construction or attack-operation tutorials; still images do not certify engineering, tactics or motion.
 - The standalone package contains its runtime knowledge; model tools, accounts and extra permissions are not provided by the Skill.

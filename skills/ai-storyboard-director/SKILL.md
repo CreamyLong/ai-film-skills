@@ -5,6 +5,13 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 
 # AI Storyboard Director
 
+## 提示词逐项创作硬规则
+
+- 禁止编写或运行批量生成提示词的脚本，包括 Python/Shell/JS、循环套模板、变量替换、片段拼接、批量调用模型或其他自动化流程。图片、资产、分镜、视频的正向与负向提示词均适用；用户要求多条或全片提示词也不构成例外。
+- 必须依据当前剧本、已定设计与每个资产/镜头的具体关系，逐项理解、逐项撰写、逐项复核完整正文。模板仅供组织表达；“编译”指逐项转写已定决定，不授权程序代写。
+- 脚本仅可校验、编号、索引、计算哈希、原样保存或封装已经逐项完成并复核的完整正文；不得生成、补写、改写或拼装提示词正文。已授权的图片/视频批量执行仍须使用这些完成稿并通过相应质量门。
+- 不能以逐条循环、拆成多个单次脚本、改称编译器或先批量生成再人工润色绕过。发现脚本批量产出的提示词时，不得交付或提交生成，须回到源材料逐项重新撰写和复核。
+
 ## 项目风格与图片返工入口
 
 进入项目视觉模板、人物/场景/道具设计或图像参考生产前，读取本包[统一视觉风格与图片重生成](references/project-visual-style.md)。先交统一风格母提示词；用户未明确通过对应模板，不得向下设计资产，文字候选也不能绕过。已批准且版本匹配的基准直接复用。下文默认媒介与预设只可用于风格提案，不能替代批准。
@@ -28,7 +35,7 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 | 当前工作 | 所需资料 |
 |---|---|
 | 新设计分镜、重设计尚未锁定的拍法 | `references/shot-design-engine.md`；该文件包含普通设计所需核心 |
-| Scene shot-size rhythm, visual distribution, all-close-up sequences | `references/shot-size-rhythm.md`; working shot size method: open one stop wider, settle, one-stop alternation, wide and extreme close-up as marked departures |
+| Scene shot-size rhythm, visual distribution, all-close-up sequences | `references/shot-size-rhythm.md`; optional working-size heuristic, never a required opening, alternation pattern or shot-size quota |
 | 创意镜头思路、另给拍法或转场方案 | `references/creative-shot-ideas.md`；只为所选位置提供思路与取舍，不默认生成 |
 | 寻找更有力的视点、光学、复杂路径或注意力接力；明确要求院线/好莱坞摄影完成度 | `references/cinematography-design-engine.md`；按实际设计问题使用 |
 | 选择具体镜组、微距/探针/潜望、分焦、移轴或变焦等光学方案 | `references/optical-shot-selection.md`；按画面需要主动选型，保留专业名称及可见作用 |

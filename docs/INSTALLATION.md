@@ -2,6 +2,8 @@
 
 Choose the source or archive snapshot first, then install one complete Skill folder. The [catalog](../SKILL_CATALOG.md) and [workflow](WORKFLOW.md) explain which module owns the requested outcome.
 
+If you do not know which Skill to choose, install `film-production-orchestrator` (影视创作总控) as the unified entry. State the goal and requested endpoint in natural language; actual downstream execution still requires available specialist roles, tools and authorization. Installing the entry alone does not install the other Skills or provide models/credits.
+
 ## Choose a snapshot
 
 Current source and the [ai-storyboard-director-v5.8.6 release](https://github.com/62656456/ai-film-skills/releases/tag/ai-storyboard-director-v5.8.6) contain **Storyboard Director 5.8.6**, including task-driven optics and the revised six-module prompt. The video/short-drama prompt handoffs use the same order. Install that release or current source; frozen v1.4.0 archives still contain 5.7.2.
@@ -24,6 +26,7 @@ git clone https://github.com/62656456/ai-film-skills.git
 cd ai-film-skills
 git log -1 --oneline
 python scripts/install_skill.py --list
+python scripts/install_skill.py film-production-orchestrator --platform codex
 python scripts/install_skill.py ai-storyboard-director --platform codex
 ```
 
@@ -36,6 +39,12 @@ python scripts/install_skill.py ai-storyboard-director --target /path/to/project
 ```
 
 The installer refuses to overwrite an existing installation unless `--force` is explicitly supplied. Keep the prior known version before replacing it. A complete Skill folder includes all its referenced files; copying `SKILL.md` alone is insufficient.
+
+### Renamed production entry
+
+`film-production-router` is now `film-production-orchestrator`, with creation orchestration and problem-triage modes. The local installer accepts the old name as an alias but always installs the new canonical directory; `--list` and new ZIP builds contain only the canonical package. This alias does not create a second Skill or redirect old source URLs, old release ZIPs or third-party installers.
+
+Existing host installations are not modified automatically. If the target still contains the old directory (including a symlink), the installer stops even with `--force`: review and back up/move that copy outside the host discovery directory first, then install the new package and refresh host discovery. Do not leave both entrypoints active or assume that historical installations already have the new workflow.
 
 ## Experimental packages
 

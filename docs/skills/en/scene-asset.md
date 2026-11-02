@@ -82,6 +82,7 @@ A main reference plus a separate reverse view by default; expand to multi-camera
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - Do not invent missing source facts, overwrite approved features, or put video action and dialogue into a static asset identity.
 - Without an image tool and visual review, this module delivers a generation task and contract, not finished reference images.
 - Interaction descriptions do not add an image task; text stays text and image quantity follows the user's scope.

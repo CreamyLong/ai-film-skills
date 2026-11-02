@@ -65,7 +65,7 @@ Creative shot ideas, a readable storyboard or copy-ready prompts, according to t
 <!-- contract:review -->
 ## 7. Review gates
 
-- [ ] The shots preserve script facts, character purpose, action results, dialogue, and user-locked order.
+- [ ] Preserve script facts, playable performance, listening, action results, dialogue and user-locked order. Check editable coverage; working shot size is optional, with no mandatory wide opening, alternation ladder or transition quota.
 - [ ] Camera, blocking, depth, focus, movement, and editing form shot sentences rather than rotate terminology.
 - [ ] Duration closes exactly; dialogue timing, world projection, off-frame subjects, light direction, props, and end states remain continuous.
 - [ ] Judge visible dominant color, light/shadow form, differentiated materials and coherent imaging. Purposeful IMAX, camera, film and lens references are allowed; their names and static checks do not prove media quality.
@@ -89,6 +89,7 @@ Creative shot ideas, a readable storyboard or copy-ready prompts, according to t
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - Do not rewrite locked story facts or dialogue and do not invent platform capability or generation success.
 - Storyboard completion is not a finished video or user-approved visual result.
 - The 5.6 helper checks recorded state, timing and explicit geometry; it does not judge aesthetics, prove image/video semantics, or force every chat entry to use it. A text-only question without a project does not invent persistence.

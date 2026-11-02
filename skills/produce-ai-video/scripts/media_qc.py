@@ -58,7 +58,9 @@ def probe(path, runner=_run):
     if code != 0:
         return None
     try:
-        return json.loads(out)
+        data = json.loads(out)
+        return data if isinstance(data, dict) and isinstance(data.get("streams"), list) \
+            and all(isinstance(stream, dict) for stream in data["streams"]) else None
     except ValueError:
         return None
 
@@ -134,10 +136,29 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
           runner=_run):
     """Return the QC report. ``runner`` is injectable for tests."""
     findings = []
+    checks = {name: {"status": "not_applicable"} for name in
+              ("probe", "black_frames", "frozen_frames", "audio_volume", "loudness",
+               "subtitles", "contact_sheet")}
 
     def add(code, severity, location, advice):
         findings.append({"code": code, "severity": severity,
                          "location": location, "repair_direction": advice})
+
+    def run_check(name, command):
+        try:
+            code, out, err = runner(command)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            code, out, err = 1, "", type(exc).__name__
+        checks[name] = {"status": "completed" if code == 0 else "failed"}
+        if code != 0:
+            add("QC_CHECK_FAILED", "block", name,
+                "The required detector did not complete; repair the tool and rerun QC.")
+        return code, out, err
+
+    def missing(name):
+        checks[name] = {"status": "unverified"}
+        add("QC_MEASUREMENT_MISSING", "block", name,
+            "A required measurement is unavailable; verify the input and rerun QC.")
 
     if runner is _run and shutil.which("ffprobe") is None:
         return {"status": "INVALID_INPUT", "error": "ffprobe unavailable",
@@ -146,11 +167,12 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
         return {"status": "INVALID_INPUT", "error": "media file unreadable",
                 "scope": "media_mechanical_qc_only", "findings": []}
 
-    data = probe(path, runner)
+    data = probe(path, lambda command: run_check("probe", command))
     if data is None:
         add("CONTAINER_UNREADABLE", "block", str(path),
             "Repair or regenerate; the file cannot be probed.")
-        return report(findings, {})
+        checks["probe"] = {"status": "failed"}
+        return report(findings, {}, checks=checks)
 
     measurements = {}
     vs = video_stream(data)
@@ -167,9 +189,13 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
         if expect_fps and fps and abs(fps - expect_fps) > FPS_TOLERANCE:
             add("FPS_MISMATCH", "review", f"{fps:.2f}",
                 "Confirm the intended frame rate before assembly.")
+        if expect_fps and (fps is None or fps <= 0):
+            missing("frame_rate")
 
     duration = stream_duration(vs or {}, data)
     measurements["duration_seconds"] = duration
+    if expect_duration is not None and duration is None:
+        missing("duration")
     if expect_duration is not None and duration is not None:
         if abs(duration - expect_duration) > DURATION_TOLERANCE_S:
             add("DURATION_MISMATCH", "block",
@@ -184,10 +210,11 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
             "This shot expects audible content; verify the audio route.")
 
     if vs is not None:
-        code, _, stderr = runner([x.format(**{"in": path, "out": ""})
-                                  for x in BLACKDETECT])
+        code, _, stderr = run_check("black_frames", [x.format(**{"in": path, "out": ""})
+                                                     for x in BLACKDETECT])
         black = parse_intervals(stderr, _BLACK_RE) if code == 0 else []
-        measurements["black_intervals"] = black
+        if code == 0:
+            measurements["black_intervals"] = black
         black_total = sum(b - a for a, b in black)
         if duration and black_total / duration > BLACK_FRACTION_BLOCK:
             add("BLACK_FRAMES", "block", f"{black_total:.2f}s black",
@@ -196,40 +223,50 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
             add("BLACK_FRAMES", "review", str(black[:3]),
                 "Confirm these black intervals are intentional.")
 
-        code, _, stderr = runner([x.format(**{"in": path, "out": ""})
-                                  for x in FREEZEDETECT])
+        code, _, stderr = run_check("frozen_frames", [x.format(**{"in": path, "out": ""})
+                                                      for x in FREEZEDETECT])
         frozen = parse_intervals(stderr, _FREEZE_START_RE, _FREEZE_END_RE) \
             if code == 0 else []
-        measurements["frozen_intervals"] = frozen
+        if code == 0:
+            starts, ends = _FREEZE_START_RE.findall(stderr), _FREEZE_END_RE.findall(stderr)
+            if len(starts) == len(ends) + 1 and duration is not None:
+                frozen.append((float(starts[-1]), duration))
+            elif len(starts) != len(ends):
+                missing("frozen_frames")
+            measurements["frozen_intervals"] = frozen
         frozen_total = sum(b - a for a, b in frozen)
         if duration and frozen_total / duration > FREEZE_FRACTION_REVIEW:
             add("FROZEN_FRAMES", "review", f"{frozen_total:.2f}s frozen",
                 "Long frozen spans look like a still image; verify actual motion.")
 
     if audio is not None:
-        code, _, stderr = runner([x.format(**{"in": path, "out": ""})
-                                  for x in VOLUME])
+        code, _, stderr = run_check("audio_volume", [x.format(**{"in": path, "out": ""})
+                                                     for x in VOLUME])
         mean = _MEAN_VOL_RE.search(stderr)
         maxv = _MAX_VOL_RE.search(stderr)
-        if mean:
+        if code == 0 and mean and maxv:
             measurements["mean_volume_db"] = float(mean.group(1))
             if expect_dialogue and float(mean.group(1)) < SILENCE_MEAN_DB:
                 add("AUDIO_SILENT", "block", f"{mean.group(1)} dB",
                     "The track is effectively silent while dialogue is expected.")
-        if maxv:
             measurements["max_volume_db"] = float(maxv.group(1))
-        code, _, stderr = runner([x.format(**{"in": path, "out": ""})
-                                  for x in EBUR128])
+        elif code == 0:
+            missing("audio_volume")
+        code, _, stderr = run_check("loudness", [x.format(**{"in": path, "out": ""})
+                                                for x in EBUR128])
         lufs = _LUFS_RE.findall(stderr)
-        if lufs:
+        if code == 0 and lufs:
             integrated = float(lufs[-1])
             measurements["integrated_lufs"] = integrated
             low, high = loudness_range
             if integrated < low or integrated > high:
                 add("LOUDNESS_OUT_OF_RANGE", "review", f"{integrated:.1f} LUFS",
                     "Verify the loudness target for the delivery route.")
+        elif code == 0:
+            missing("loudness")
 
     if srt_text is not None:
+        checks["subtitles"] = {"status": "completed"}
         cues = parse_srt(srt_text)
         measurements["subtitle_cues"] = len(cues)
         for cue in cues:
@@ -251,7 +288,7 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
     artifacts = {}
     if contact_sheet:
         out_path = str(contact_sheet)
-        code, _, stderr = runner(
+        code, _, stderr = run_check("contact_sheet",
             [x.format(**{"in": path, "out": out_path}) for x in CONTACT_SHEET])
         if code == 0 and os.path.exists(out_path):
             artifacts["contact_sheet"] = out_path
@@ -259,15 +296,16 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
             add("CONTACT_SHEET_FAILED", "review", out_path,
                 "Generate the review sheet another way; it is evidence, not approval.")
 
-    return report(findings, measurements, artifacts)
+    return report(findings, measurements, artifacts, checks)
 
 
-def report(findings, measurements, artifacts=None):
+def report(findings, measurements, artifacts=None, checks=None):
     return {"status": "BLOCK" if any(f["severity"] == "block" for f in findings)
             else "REVIEW_REQUIRED",
             "scope": "media_mechanical_qc_only",
             "semantic_review": "not_performed",
             "visual_review": "not_performed",
+            "checks": checks or {},
             "measurements": measurements,
             "artifacts": artifacts or {},
             "findings": findings}

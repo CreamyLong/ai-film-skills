@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import subprocess
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -116,6 +117,51 @@ class MediaQcTests(unittest.TestCase):
                         srt_text=srt.replace("00:00:09,900", "00:00:07,000"),
                         dialogue=dialogue[:1], runner=fake_runner(**CLEAN))
         self.assertEqual(good["findings"], [])
+
+    def test_failed_detectors_block_instead_of_looking_clean(self):
+        for detector, check in (("blackdetect", "black_frames"), ("freezedetect", "frozen_frames"),
+                                ("volumedetect", "audio_volume"), ("ebur128", "loudness")):
+            with self.subTest(detector=detector):
+                outputs = dict(CLEAN)
+                outputs[detector] = (1, "", "detector failed")
+                report = qc.audit(str(self.media), runner=fake_runner(**outputs))
+                self.assertEqual(report["status"], "BLOCK")
+                self.assertIn("QC_CHECK_FAILED", codes(report))
+                self.assertEqual(report["checks"][check]["status"], "failed")
+
+    def test_empty_successful_audio_measurements_are_unverified(self):
+        outputs = dict(CLEAN)
+        outputs["ebur128"] = (0, "", "")
+        report = qc.audit(str(self.media), runner=fake_runner(**outputs))
+        self.assertEqual(report["status"], "BLOCK")
+        self.assertIn("QC_MEASUREMENT_MISSING", codes(report))
+        self.assertEqual(report["checks"]["loudness"]["status"], "unverified")
+
+    def test_missing_binary_and_timeout_are_reported(self):
+        for error in (FileNotFoundError("ffmpeg"), subprocess.TimeoutExpired("ffmpeg", 120)):
+            def runner(command, timeout=120):
+                if "-show_streams" in command:
+                    return CLEAN["-show_streams"]
+                raise error
+            with self.subTest(error=type(error).__name__):
+                report = qc.audit(str(self.media), runner=runner)
+                self.assertEqual(report["status"], "BLOCK")
+                self.assertIn("QC_CHECK_FAILED", codes(report))
+
+    def test_clean_checks_and_inapplicable_audio_are_explicit(self):
+        report = qc.audit(str(self.media), runner=fake_runner(**CLEAN))
+        for name in ("probe", "black_frames", "frozen_frames", "audio_volume", "loudness"):
+            self.assertEqual(report["checks"][name]["status"], "completed")
+        outputs = {**CLEAN, "-show_streams": (0, probe_json(audio=False), "")}
+        report = qc.audit(str(self.media), runner=fake_runner(**outputs))
+        self.assertEqual(report["checks"]["loudness"]["status"], "not_applicable")
+
+    def test_unknown_required_fps_and_duration_block(self):
+        outputs = {**CLEAN, "-show_streams": (0, probe_json(duration="N/A", fps="0/0"), "")}
+        report = qc.audit(str(self.media), expect_duration=8, expect_fps=24,
+                          runner=fake_runner(**outputs))
+        self.assertEqual(report["status"], "BLOCK")
+        self.assertIn("QC_MEASUREMENT_MISSING", codes(report))
 
 
 if __name__ == "__main__":

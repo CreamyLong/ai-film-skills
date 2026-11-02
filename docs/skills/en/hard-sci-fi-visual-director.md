@@ -79,6 +79,7 @@ Research-driven visual diagnosis, derivation, bible, directing plan, and copy-re
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - Do not copy protected IP, imitate named living artists, provide actionable weapons construction, or generate without authorization.
 - Experimental describes repository distribution, not the absence of accepted images. Physical and production claims require their own evidence beyond visual appeal.
 

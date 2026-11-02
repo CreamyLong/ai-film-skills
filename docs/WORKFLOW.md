@@ -2,6 +2,8 @@
 
 这里把每一步的输入、交付和返回关系放在一张图中。可以从已有剧本、参考图、导演方案或镜头继续，不必每次从头运行；只有当前交付需要时才进入下一层。
 
+不知道调用哪个时，使用 [影视创作总控](skills/zh-CN/film-production-orchestrator.md)：直接给出目标和现有材料，按短剧、参考视频广告/宣传片、音乐MV、产品片或问题修复路径推进。只要方案/剧本就停在该终点；宿主缺角色、媒体工具或权限时明确受阻，不假装已完成执行。
+
 <details>
 <summary>查看历史概览原图（当前职责和版本以下文为准）</summary>
 
@@ -17,8 +19,11 @@
 
 ```mermaid
 flowchart TB
-    U["用户输入<br/>点子·小说·大纲·剧本·参考图·已有镜头"] --> T["确定本次目标与已有材料<br/>交付物·时长·画幅·平台·制作限制"]
-    T --> W["剧本创作与编辑<br/>director-agent"]
+    U["用户输入<br/>点子·小说·剧本·参考视频·音乐·产品·已有镜头"] --> O["影视创作总控<br/>film-production-orchestrator<br/>目标·能力·前置需求·交接与进度"]
+    O --> T["确定本次目标与已有材料<br/>交付物·时长·画幅·平台·制作限制"]
+    T -->|"需要故事/剧本"| W["剧本创作与编辑<br/>director-agent"]
+    T -. "音乐/参考/产品方案不强编剧情" .-> D
+    T -. "已有批准方案直接续接" .-> B
     T -. "需要市场判断时" .-> M["市场研究<br/>d-official-market-analysis"]
     M -. "选题与改稿参考" .-> W
     M -. "用户明确批准写入后" .-> K["市场知识审核与沉淀<br/>d-data-analysis-semantic-layer"]
@@ -86,6 +91,7 @@ flowchart TB
 | 18 | [ai-short-drama-production](skills/zh-CN/ai-short-drama-production.md) | 短剧节拍、资产、调度、光线、动作与QC控制合同 | 独立合同按请求交分镜或提示词；实片效果待验，宿主启用需实际安装确认 |
 | 19 | [d-official-market-analysis](skills/zh-CN/d-official-market-analysis.md) | 选题与平台研究、来源、数据、结论与独立待批准记录 | 按需研究；报告不授权知识写入 |
 | 20 | [d-data-analysis-semantic-layer](skills/zh-CN/d-data-analysis-semantic-layer.md) | 用户批准后校验、版本化写入与回读 | 目标和批准来自当前任务；已存知识仍检查时效 |
+| 21 | [film-production-orchestrator](skills/zh-CN/film-production-orchestrator.md) | 统一创作入口、任务路径、前置资产、专业交接与问题分诊，跟踪当前终点 | 可独立规划；实际调度依赖宿主与可用角色/工具，不内置模型或生成授权 |
 | 22 | [guofeng-visual-director](skills/zh-CN/guofeng-visual-director.md) | 古风文化、空间、人物器物、构图光色与完整图像提示词 | 候选实验包；不自动视为历史准确还原 |
 | 辅助 | [web-design-director](skills/zh-CN/web-design-director.md) | 作品站、资产库、工作台和网页展示 | 只用于明确网页或应用界面任务；仓库README维护不触发建站 |
 

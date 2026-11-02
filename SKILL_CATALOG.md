@@ -58,7 +58,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 
 | 技能 / 职责 | 逐项用途 | 当前源码版本 | 分发 | 入口 |
 |---|---|---|---|---|
-| `film-production-router`<br/>问题分诊与角色分派 | 判断问题属于哪个生产层，按责任顺序分派给对应角色并给出复核标准 | — | 常规 | [运行正文](skills/film-production-router/SKILL.md) · [中文说明](docs/skills/zh-CN/film-production-router.md) · [EN](docs/skills/en/film-production-router.md) · 源码安装 |
+| `film-production-orchestrator`<br/>影视创作总控 | 默认入口；按短剧、参考广告、MV、产品片或修复目标安排前置需求、专业交接与验收，跟踪到本次终点 | — | 常规；真实宿主调度与实片待验 | [运行正文](skills/film-production-orchestrator/SKILL.md) · [中文说明](docs/skills/zh-CN/film-production-orchestrator.md) · [EN](docs/skills/en/film-production-orchestrator.md) · 源码安装 |
 | `produce-ai-video`<br/>实际视频生产 | 统筹实际生成、选片、剪辑、对白音效、完整播放审查与修复 | — | 常规 | [运行正文](skills/produce-ai-video/SKILL.md) · [中文说明](docs/skills/zh-CN/produce-ai-video.md) · [EN](docs/skills/en/produce-ai-video.md) · [5.8.6同步发布 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/produce-ai-video.zip) |
 | `ai-short-drama-production`<br/>短剧控制 | 五列分镜＋一条六模块母提示词；现行六模块已对齐，文本验证通过，实片待验 | — | 常规；未部署 | [运行正文](skills/ai-short-drama-production/SKILL.md) · [中文说明](docs/skills/zh-CN/ai-short-drama-production.md) · [EN](docs/skills/en/ai-short-drama-production.md) · [5.8.6同步发布 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/ai-short-drama-production.zip) |
 | `web-design-director`<br/>网页辅助 | 明确网页或应用界面任务时设计与审核；仓库README维护不触发建站 | 1.3.0 | 常规 | [运行正文](skills/web-design-director/SKILL.md) · [中文说明](docs/skills/zh-CN/web-design-director.md) · [EN](docs/skills/en/web-design-director.md) · [v1.4.0 ZIP](https://github.com/62656456/ai-film-skills/releases/download/v1.4.0/web-design-director.zip) |

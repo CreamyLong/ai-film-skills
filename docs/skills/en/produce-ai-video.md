@@ -40,7 +40,7 @@ A full production and validation contract; with the required host tools and perm
 <!-- contract:workflow -->
 ## 5. Workflow
 
-1. Enter only for an actual video request. Reuse the current director plan, storyboard and approvals; fill only missing execution decisions.
+1. Enter only for actual video work. Preserve approved decisions; check spend, rights and change scope, editable coverage, performance-based take selection, picture lock, sound turnovers, real color management and target-specific mastering. Load only applicable contracts.
 2. Preserve the selected shot design and use this package's own compiler; no companion Skill is required.
 3. Choose a generation route, create genuine motion, edit, build sound, and render the real final file.
 4. Watch the whole render at least twice: once for story/emotion, once for technical and continuity defects.
@@ -65,7 +65,7 @@ A full production and validation contract; with the required host tools and perm
 <!-- contract:review -->
 ## 7. Review gates
 
-- [ ] Story, shot design, spatial and asset continuity, generation quality, edit, sound, and delivery all pass their applicable hard gates.
+- [ ] Check applicable story, shot, asset, edit, sound and delivery gates. Required detector failures or missing measurements block delivery; the 100-point pre-generation rubric has frozen regression/control thresholds. Structural checks never prove full playback, rights or user acceptance.
 - [ ] The actual final file opens and has been watched from beginning to end; no hidden replacement file is reviewed instead.
 - [ ] Rights, costs, permissions, and unresolved limitations are explicit.
 - [ ] Ledger reviews record explicit user or delegated authority with evidence hashes; registration, hash and gateway checks are structural only and never replace semantic, visual, audio or continuity review.
@@ -88,6 +88,7 @@ A full production and validation contract; with the required host tools and perm
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - Installing this method does not grant video models, paid credits, music rights, voice rights, or publishing authority.
 - Never describe a storyboard, prompt, generated clip, edit timeline, or unreviewed render as the finished film.
 - Creative ideas, workflow tests and requests to see text-stage results do not authorize generation; a single-shot video test stays within its explicit scope.
@@ -113,10 +114,14 @@ A full production and validation contract; with the required host tools and perm
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
+- [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
+- [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
+- [`references/production-controls.md`](../../../skills/produce-ai-video/references/production-controls.md)
 - [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
+- [`references/production-validation.md`](../../../skills/produce-ai-video/references/production-validation.md)
 - [`references/prompt-compilation-preflight.md`](../../../skills/produce-ai-video/references/prompt-compilation-preflight.md)
 - [`references/provider-shells.md`](../../../skills/produce-ai-video/references/provider-shells.md)
 - [`references/qualified-video-acceptance.md`](../../../skills/produce-ai-video/references/qualified-video-acceptance.md)
@@ -134,6 +139,7 @@ A full production and validation contract; with the required host tools and perm
 - [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
+- [`scripts/quality_gate_check.py`](../../../skills/produce-ai-video/scripts/quality_gate_check.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
 - [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
 

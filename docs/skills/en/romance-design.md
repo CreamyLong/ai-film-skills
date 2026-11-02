@@ -79,6 +79,7 @@ A romance `style_route`, intimacy and light parameters, negative constraints, an
 <!-- contract:boundaries -->
 ## 10. Boundaries, dependencies, and permissions
 
+- Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.
 - Do not write the screenplay, replace director judgment, or modify approved asset appearance.
 - Do not claim universal genre color laws, living-artist imitation, or generation success.
 - The new image-relationship reference is an authored synthesis of supplied-image analysis. The 21 accepted showcase outputs do not establish the source methods of another Skill, a stable success rate, cross-device usability, or an old/new same-prompt A/B improvement.

@@ -7,12 +7,20 @@ description: Create, revise, or diagnose screenplays and develop director treatm
 
 Write readable screenplays and make director decisions about story, performance, audience experience, image, sound and time. The requested artifact comes first. An approved director plan is an input to preserve; shot expansion from that plan belongs to the storyboard stage.
 
+## 提示词逐项创作硬规则
+
+- 禁止编写或运行批量生成提示词的脚本，包括 Python/Shell/JS、循环套模板、变量替换、片段拼接、批量调用模型或其他自动化流程。图片、资产、分镜、视频的正向与负向提示词均适用；用户要求多条或全片提示词也不构成例外。
+- 必须依据当前剧本、已定设计与每个资产/镜头的具体关系，逐项理解、逐项撰写、逐项复核完整正文。模板仅供组织表达；“编译”指逐项转写已定决定，不授权程序代写。
+- 脚本仅可校验、编号、索引、计算哈希、原样保存或封装已经逐项完成并复核的完整正文；不得生成、补写、改写或拼装提示词正文。已授权的图片/视频批量执行仍须使用这些完成稿并通过相应质量门。
+- 不能以逐条循环、拆成多个单次脚本、改称编译器或先批量生成再人工润色绕过。发现脚本批量产出的提示词时，不得交付或提交生成，须回到源材料逐项重新撰写和复核。
+
 ## Choose the work and load only its guidance
 
 Read the user's material, current scope, locked facts and relevant preceding state. Reuse unchanged references already read in this context.
 
 | Work | Required guidance |
 |---|---|
+| 长片/整季开发、分集作用、多线/人物关系弧、选角/试声或跨场表演 | `references/series-and-performance.md`; distinguish season development from state bookkeeping, preserve locked material, and mark unperformed reading/media tests honestly |
 | 写剧本、创作完整故事、substantial 改剧本 | `references/screenplay-writing-core.md`; after the readable draft, `references/screenplay-state-engine.md` for causality and inheritance |
 | 局部对白、one-scene repair | Relevant sections of `references/screenplay-writing-core.md` plus the affected source and adjoining state; load the state engine only if the repair changes knowledge, causality, a setup or payoff |
 | Dialogue craft: writing or revising lines, subtext, exposition, distinct character voices | `references/dialogue-writing-techniques.md`; line-level techniques that run only after structural gates pass — when a line carries no choice or reaction, repair the scene action first |

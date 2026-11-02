@@ -40,7 +40,7 @@
 <!-- contract:workflow -->
 ## 5. 流程逻辑
 
-1. 只有实际视频请求才进入；继承现行导演方案、分镜与批准，只补执行缺口。
+1. 只有实际视频任务才进入；继承批准决定，核费用/权利/改稿范围、可剪覆盖、表演选条、锁画、声音交接、真实色彩管理与目标母版，只加载适用合同。
 2. 保留已选镜头设计，用本包编译器执行，不要求配套技能。
 3. 选择生成路线，产生真实运动，完成剪辑、声音和最终文件渲染。
 4. 至少完整观看两遍：一遍看故事与情绪，一遍看技术与连续性。
@@ -65,7 +65,7 @@
 <!-- contract:review -->
 ## 7. 审核门
 
-- [ ] 故事、镜头、空间与资产连续性、生成质量、剪辑、声音和交付通过适用硬门。
+- [ ] 核适用的故事、镜头、资产、剪辑、声音与交付门。必需检测失败或缺测量阻断交付；生成前100分rubric冻结回归/对照阈值。结构检查不证明完整播放、权利或用户接受。
 - [ ] 真实最终文件可打开并已从头看到尾，没有用其他文件代替审核。
 - [ ] 版权、费用、权限和未解决边界明确。
 - [ ] 台账审核须记录明确的用户或委托权限及证据哈希；登记、哈希和网关检查只是结构检查，不能替代语义、画面、声音或连续性审核。
@@ -88,6 +88,7 @@
 <!-- contract:boundaries -->
 ## 10. 边界、依赖与权限
 
+- 禁止编写或运行批量生成提示词的脚本，不得循环套模板、替换变量、拼接正文或批量调用模型代写。完整提示词须逐项撰写复核，脚本只可校验或原样保存已完成正文；编译、事后润色和多条请求均不构成例外。
 - 安装本方法不会自动获得视频模型、付费额度、音乐权、声音权或发布权。
 - 不把分镜、提示词、生成片段、剪辑时间线或未审渲染冒充成片。
 - 创意思路、工作流测试或查看文字阶段成果不授权生成；明确的单镜视频测试只执行点名范围。
@@ -113,10 +114,14 @@
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
+- [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
+- [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
+- [`references/production-controls.md`](../../../skills/produce-ai-video/references/production-controls.md)
 - [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
+- [`references/production-validation.md`](../../../skills/produce-ai-video/references/production-validation.md)
 - [`references/prompt-compilation-preflight.md`](../../../skills/produce-ai-video/references/prompt-compilation-preflight.md)
 - [`references/provider-shells.md`](../../../skills/produce-ai-video/references/provider-shells.md)
 - [`references/qualified-video-acceptance.md`](../../../skills/produce-ai-video/references/qualified-video-acceptance.md)
@@ -134,6 +139,7 @@
 - [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
+- [`scripts/quality_gate_check.py`](../../../skills/produce-ai-video/scripts/quality_gate_check.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
 - [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
 

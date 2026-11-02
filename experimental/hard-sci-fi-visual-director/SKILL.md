@@ -7,6 +7,13 @@ description: Script-first visual design for original hard-science-fiction worlds
 
 Preserve the current story and approved identity while making the selected science, world, behavior, camera and light visible. There is no cross-project palette, era, weather, protagonist, lens, body plan or industrial silhouette. Engineering explains the selected form; it does not replace visual authorship.
 
+## 提示词逐项创作硬规则
+
+- 禁止编写或运行批量生成提示词的脚本，包括 Python/Shell/JS、循环套模板、变量替换、片段拼接、批量调用模型或其他自动化流程。图片、资产、分镜、视频的正向与负向提示词均适用；用户要求多条或全片提示词也不构成例外。
+- 必须依据当前剧本、已定设计与每个资产/镜头的具体关系，逐项理解、逐项撰写、逐项复核完整正文。模板仅供组织表达；“编译”指逐项转写已定决定，不授权程序代写。
+- 脚本仅可校验、编号、索引、计算哈希、原样保存或封装已经逐项完成并复核的完整正文；不得生成、补写、改写或拼装提示词正文。已授权的图片/视频批量执行仍须使用这些完成稿并通过相应质量门。
+- 不能以逐条循环、拆成多个单次脚本、改称编译器或先批量生成再人工润色绕过。发现脚本批量产出的提示词时，不得交付或提交生成，须回到源材料逐项重新撰写和复核。
+
 ## Choose the actual task before loading
 
 | Task | Read and deliver |

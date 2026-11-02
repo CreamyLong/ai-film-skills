@@ -94,6 +94,8 @@ Fields:
 
 Purpose: first tell a complete story through believable behavior and character-specific dialogue, then verify that it is playable and shootable.
 
+For features, seasons, multi-episode arcs, casting/voice-test plans or performance continuity, use [series-and-performance.md](series-and-performance.md). Retain the season promise, episode function, relationship/reveal changes and listening/performance decisions in the existing project record; a registry or completed field is not evidence that the story works.
+
 Creation layer, in this order:
 
 - Read `screenplay-writing-core.md` and the exact local sections routed for the task.
