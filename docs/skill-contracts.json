@@ -1736,6 +1736,10 @@
         {
           "en": "Face, body, hairline, clothing, age, limb count, expressions, and all required views remain the same identity.",
           "zh-CN": "五官、体型、发际线、服装、年龄、肢体数量、表情和所需视图保持同一身份。"
+        },
+        {
+          "en": "The minimum asset carries front, three-quarter, 90-degree side and back full-body views plus a medium shot; every identity mark visible in planned shots has its own detail plate recorded by the character's own side and a body landmark, and lead or close-shot speaking characters have an expression set drawn from their script beats.",
+          "zh-CN": "最低资产含正面、3/4、90度侧面、背面全身加中景；计划镜头中可见的每个身份标记都有单独特写，按人物自身左右与身体参照记录；主角和近景有台词的角色有取自剧本节点的表情母版。"
         }
       ],
       "download": {

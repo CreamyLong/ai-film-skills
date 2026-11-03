@@ -64,6 +64,7 @@ A character reference-image task, view plan, locked-feature checklist, negative 
 - [ ] Proportion, perspective, geometry, materials, contact, weight, shadows, and readable key faces are physically coherent.
 - [ ] No extra limbs, objects, text, watermark, drift, or background competition compromises the reference.
 - [ ] Face, body, hairline, clothing, age, limb count, expressions, and all required views remain the same identity.
+- [ ] The minimum asset carries front, three-quarter, 90-degree side and back full-body views plus a medium shot; every identity mark visible in planned shots has its own detail plate recorded by the character's own side and a body landmark, and lead or close-shot speaking characters have an expression set drawn from their script beats.
 
 <!-- contract:pass -->
 ## 8. Pass standard and states
