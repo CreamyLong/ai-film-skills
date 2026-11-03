@@ -51,9 +51,10 @@
 9. 目标运行时接受官方 H3 Context-IR 格式时，按六段结构编译，使用语义化 Subject 标签、关系标记、镜头时间与台词标签，在提交记录中声明 prompt_format 并运行结构校验；结构通过不证明语义、素材或连续性合格。
 10. 目标运行时走 H3 基础模式（t2va/i2va/fl2va/l2va）时，按官方三字段结构编译，带该模式的对齐指令、镜头时间与台词标签，在提交记录中声明 prompt_format "h3_base" 与 h3_mode 并运行结构校验；结构通过不证明语义、素材或连续性合格。
 11. 面向其他提供商时，把同一批导演决定转写为该节点已核实的提示词方言——一条提示词只用一种外壳，未核实的方言保持标记 unverified——并在提交记录中登记 prompt_format 与 provider 标识。
-12. 对每个生成片段与合成成片做机械质检（流、时长、分辨率、帧率、黑帧与冻结帧、音量与响度、字幕 cue 覆盖、联系表证据）；测量值只是证据，不是通过结论。
-13. 按推导的 EDL、接缝核验、字幕对台词覆盖、响度与规格检查及导出清单组装交付；任一项失败都回最早责任层。
-14. 每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。
+12. 运行时为 ComfyUI + MiniMax H3 TimelineDirector 插件时，按运行时适配文档选择节点路径、任务配方、视频用途、音频路由、分段重叠与画质参数，并对实际 timeline_data 运行时间线计划检查；它离线给出逐段标签、Guide 与最终音轨路由，拦截插件会静默丢弃、改号、锁定或静音的输入。
+13. 对每个生成片段与合成成片做机械质检（流、时长、分辨率、帧率、黑帧与冻结帧、音量与响度、字幕 cue 覆盖、联系表证据）；测量值只是证据，不是通过结论。
+14. 按推导的 EDL、接缝核验、字幕对台词覆盖、响度与规格检查及导出清单组装交付；任一项失败都回最早责任层。
+15. 每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。
 
 <!-- contract:returns -->
 ## 6. 退回、重做与版本回滚
@@ -117,6 +118,7 @@
 - [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
 - [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
+- [`references/h3-timeline-director.md`](../../../skills/produce-ai-video/references/h3-timeline-director.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
 - [`references/production-controls.md`](../../../skills/produce-ai-video/references/production-controls.md)
@@ -142,6 +144,7 @@
 - [`scripts/quality_gate_check.py`](../../../skills/produce-ai-video/scripts/quality_gate_check.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
 - [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
+- [`scripts/timeline_plan_check.py`](../../../skills/produce-ai-video/scripts/timeline_plan_check.py)
 
 **新构建 ZIP 的分发许可文件**
 

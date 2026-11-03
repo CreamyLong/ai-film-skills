@@ -14,6 +14,14 @@
 | `context_ir` | H3 Ref2VA 全参考六段 | `<Subject>/<Picture>/<Video>/<Audio N>` 标签绑附件 | `context_ir_check.py` |
 | `h3_base` + `h3_mode` | H3 基础模式（t2va/i2va/fl2va/l2va） | `<Picture N>` 帧锚点；声音只在正文描述 | `h3_base_check.py` |
 
+## 已核实运行时适配
+
+方言管提示词怎么写；运行时适配管素材、分段、音频与参数怎么交给具体节点。同一方言可以有多个运行时。
+
+| 运行时 | 承载方言 | 适配文档 | 结构校验 |
+|---|---|---|---|
+| ComfyUI + MiniMax H3 TimelineDirector 插件 | `context_ir` | [h3-timeline-director.md](h3-timeline-director.md) | `timeline_plan_check.py` |
+
 ## 新增一种方言的条件
 
 把一种模型方言登记为"已核实"前必须记录：供应商与节点标识、提示词形状（字段/顺序/首行指令）、附件绑定机制（标签、槽位或隐式顺序）、每种媒体的容量上限、任务类型映射、时长与画幅能力，以及该信息的实际来源（官方文档或实测）。任何一项只是"差不多像 H3"而未核实的，方言保持 `unverified`：可以用它出提示词，但提交记录里绑定方案记 `opaque` 并在预检报未验证项，不能当作已核实通过。

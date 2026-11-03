@@ -2268,6 +2268,10 @@
           "zh-CN": "面向其他提供商时，把同一批导演决定转写为该节点已核实的提示词方言——一条提示词只用一种外壳，未核实的方言保持标记 unverified——并在提交记录中登记 prompt_format 与 provider 标识。"
         },
         {
+          "en": "When the runtime is ComfyUI with the MiniMax H3 TimelineDirector plugin, choose its node path, task recipe, video reference mode, audio route, segment overlaps and quality parameters from the runtime adapter, and run the timeline plan checker on the actual timeline_data; it mirrors per-segment labels, guides and the final soundtrack route and blocks inputs the plugin would silently drop, renumber, lock or mute.",
+          "zh-CN": "运行时为 ComfyUI + MiniMax H3 TimelineDirector 插件时，按运行时适配文档选择节点路径、任务配方、视频用途、音频路由、分段重叠与画质参数，并对实际 timeline_data 运行时间线计划检查；它离线给出逐段标签、Guide 与最终音轨路由，拦截插件会静默丢弃、改号、锁定或静音的输入。"
+        },
+        {
           "en": "Run mechanical media QC (streams, duration, resolution, frame rate, black and frozen frames, audio level and loudness, subtitle cue coverage, contact-sheet evidence) on every generated segment and the assembled cut; measurements are evidence, not approval.",
           "zh-CN": "对每个生成片段与合成成片做机械质检（流、时长、分辨率、帧率、黑帧与冻结帧、音量与响度、字幕 cue 覆盖、联系表证据）；测量值只是证据，不是通过结论。"
         },
