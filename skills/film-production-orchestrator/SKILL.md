@@ -38,6 +38,10 @@ Do not treat "which Skill?", maintenance, an example film, accepting a creative 
 6. Inspect returned artifacts, versions, scope and review evidence; use an authorized reviewer with real playback/inspection when required. Mark unverified content honestly. Send defects to their earliest owner, recheck affected dependencies and continue until the endpoint or a concrete blocker/stop limit.
 7. Deliver the requested artifact first, then actual validation state, residual issues and next decision if blocked. A finished-film request requires the actual assembled media; task packages, prompts and QC reports cannot substitute.
 
+### Sound asset gate
+
+Before dispatching video generation tasks, verify a sound asset contract exists and every speaking character has a voice design in place. Before formal dubbing or dialogue-enabled video generation, each speaking character's audition samples must be user-approved (`assets_approved`) by the role that owns voice design. If the gate fails, run that asset task first; do not silently defer voices to post-production.
+
 ## Role map
 
 These are responsibilities, not claims that an implementation is installed. The host resolves each code to an available capability; one installed role may cover several tasks. Do not require sibling package paths or private runtime files. Keep specialist craft in its owning role, not a duplicate rulebook here.
