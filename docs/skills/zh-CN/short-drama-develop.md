@@ -120,6 +120,7 @@
 - [`references/genre-cards/身份错位.md`](../../../skills/short-drama-develop/references/genre-cards/身份错位.md)
 - [`references/genre-cards/逆袭.md`](../../../skills/short-drama-develop/references/genre-cards/逆袭.md)
 - [`references/genre-cards/重生穿越.md`](../../../skills/short-drama-develop/references/genre-cards/重生穿越.md)
+- [`references/long-series-delivery.md`](../../../skills/short-drama-develop/references/long-series-delivery.md)
 - [`references/mechanism-loop.md`](../../../skills/short-drama-develop/references/mechanism-loop.md)
 - [`references/multi-episode-intake.md`](../../../skills/short-drama-develop/references/multi-episode-intake.md)
 - [`references/premise-devices.md`](../../../skills/short-drama-develop/references/premise-devices.md)

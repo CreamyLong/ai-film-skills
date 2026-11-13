@@ -36,11 +36,14 @@ python3 {技能目录}/scripts/episode_intake.py index <多集整稿> --out <epi
 
 读取创作者输入和已接受文件，区分：不可改的事实/主题/角色/结局承诺、可探索的空白、形式与制作边界、目标观众反复获得的回报。新项目复制 [creative-brief.md](assets/creative-brief.md)；若改动已接受事实，先展示语义差异与下游影响，不直接覆盖。创作者只给一句话设定时，可按简报的「项目设定」逐项给出推定值并标明推定来源，经确认后转为已接受；推定不等于创作者原话。
 
+有平台投稿目标时，先把交付档记进 `项目开发/project.json` 的 `platform_profile`：集数下限、总字数下限、每集字数、平台模板与连载方式，注明来源与日期。数字随平台文档更新，只作交付门槛，不当作叙事法则。
+
 ### 2. 探索真正不同的方向
 
 方向未定时，提出少量**机制不同**的候选（改变主角策略、对抗来源、代价或冲突持续方式，而非只换标题或职业）；方向明确时直接深化。每个候选说明戏剧承诺、主角追求、对抗机制、反复回报、可升级状态、终止条件与制作负担，交创作者选择或组合并记录理由（未选方案不进入既定事实）。
 
 - 深化承诺与冲突机制：读 [story-craft.md](references/story-craft.md)。
+- 选题顺序先定目标人群，再取题材卡，最后只加一个新变量；换个题材名也成立的方案说明人群没定，不要用热门元素拼盘代替人群判断。方法与常见方向见 [长篇交付档与三段门槛](references/long-series-delivery.md#3-先人群再题材后爽点)。
 - 题材已确定时：从 [genre-cards.md](references/genre-cards.md) 按索引取**一张**题材卡校准压力来源、场面细节与制作负担（仅作内部参考，不进入交付物）。
 - 主角带已知经历或外部授权能力开局时：另读 [premise-devices.md](references/premise-devices.md) 为装置设定边界与代价。
 
@@ -57,6 +60,10 @@ python3 {技能目录}/scripts/episode_intake.py index <多集整稿> --out <epi
 - 每集必须先落地一个当集戏剧结果，相邻集精确交接，再安排外部压力与情感负荷双轨节奏。
 - 第 1 集入口先比较时序入口、收益入口与冷开；改编项目按原著分析爽点表把高光排到观众尽早拿到的位置。
 - 按制作形态从分集设计默认值提出项目节奏档案，写入创作简报交创作者接受或改写后，由本阶段把已接受档案连同语速等配套配置写入 `项目开发/project.json` 的 `creator_authority.rhythm_profile`（状态 `accepted`）。
+
+### 4.1 过三段门槛
+
+按首集、前 3 集、全剧分别自检：首集能否留人、前 3 集能否追更、全剧能否追完并续得动。判据、常见不过原因与修法见 [长篇交付档与三段门槛](references/long-series-delivery.md#2-三段门槛)。不过门槛时先修当集结果与集间交接，不用加旁白解释或强行升级掩盖。
 
 ### 5. 做所有者检查并交接
 
@@ -80,7 +87,7 @@ python3 {技能目录}/scripts/episode_intake.py index <多集整稿> --out <epi
 - `项目开发/series-arc.json`（按需）
 - `项目开发/episode-intake-index.json`（多集整稿接入时的可重建机械索引）
 - `项目开发/episode-map.jsonl`
-- `项目开发/project.json`（创作者接受后的节奏档案、语速与目标时长等项目配置）
+- `项目开发/project.json`（创作者接受后的节奏档案、语速与目标时长等项目配置；有投稿目标时另记 `platform_profile` 交付档）
 
 不写场景动作与台词（归剧本写作阶段），不拆资产，不写提示词，不生成媒体，也不签发终审结论。
 
@@ -94,6 +101,8 @@ python3 {技能目录}/scripts/episode_intake.py index <多集整稿> --out <epi
   [serial-character-and-memory.md](references/serial-character-and-memory.md)
 - **有原材料、需要按爽点压缩、提前或冷开后文、合并人物场景、把信息视觉化**：
   [adaptation-craft.md](references/adaptation-craft.md)
+- **长篇投稿的集数/字数门槛、首集与前3集与全剧三段验收、人群优先选题、改编拒稿反模式**：
+  [long-series-delivery.md](references/long-series-delivery.md)
 - **创作者提供对标作品、样例剧本或提示词，希望学习机制而非仿写表达**：
   [creative-reference-intake.md](references/creative-reference-intake.md)
 - **单元故事里同一套机制被反复运行，或中段开始重复、越写越薄**：

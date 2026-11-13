@@ -107,6 +107,7 @@ Episode screenwriting package with deterministic index and duration-estimate scr
 - [`references/script-craft.md`](../../../skills/short-drama-write/references/script-craft.md)
 - [`references/stage-contract.md`](../../../skills/short-drama-write/references/stage-contract.md)
 - [`references/substitutable-realization.md`](../../../skills/short-drama-write/references/substitutable-realization.md)
+- [`references/text-defect-checklist.md`](../../../skills/short-drama-write/references/text-defect-checklist.md)
 
 **Deterministic helpers**
 

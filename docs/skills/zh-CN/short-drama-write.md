@@ -107,6 +107,7 @@
 - [`references/script-craft.md`](../../../skills/short-drama-write/references/script-craft.md)
 - [`references/stage-contract.md`](../../../skills/short-drama-write/references/stage-contract.md)
 - [`references/substitutable-realization.md`](../../../skills/short-drama-write/references/substitutable-realization.md)
+- [`references/text-defect-checklist.md`](../../../skills/short-drama-write/references/text-defect-checklist.md)
 
 **确定性辅助脚本**
 
