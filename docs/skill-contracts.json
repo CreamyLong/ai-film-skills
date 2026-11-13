@@ -419,6 +419,152 @@
         "zh-CN": "任何能读取文件夹的宿主都可输出文本合同；真实参考图还需要生图工具、文件能力和人类视觉审核。"
       }
     },
+    "sound": {
+      "principles": [
+        {
+          "en": "Establish an auditable, versioned sound identity before dubbing, native audio-video generation, or mixing.",
+          "zh-CN": "先建立可审核、可版本化的声音身份，再进入配音、原生音视频生成或混音。"
+        },
+        {
+          "en": "A voice asset answers who is speaking; line-by-line performance answers how a line is spoken. Emotion is never a new voice.",
+          "zh-CN": "音色资产回答“谁在说”，逐句演绎回答“这一句怎么说”；情绪不是新音色。"
+        },
+        {
+          "en": "One speaker has one reviewed voice source per work, and every alias in the script maps to it. Changing the source is recasting.",
+          "zh-CN": "一个说话人在一部作品里只有一个已审音色源，剧本中的全部别名都映射到它；换源等于换人。"
+        },
+        {
+          "en": "Reference use, cloning, upload, paid generation and commercial delivery are separate authorizations recorded with rights evidence.",
+          "zh-CN": "真人参考、克隆、上传、付费生成与商业交付是各自独立的授权，并随权利证据记录。"
+        },
+        {
+          "en": "Only sounds reused across shots or scenes become assets; a one-off foley hit or a single scene's music edit stays in that scene's sound design.",
+          "zh-CN": "只有跨镜头或跨场次复用的声音才做成资产；一次性拟音和单场配乐剪辑留在该场声音设计里。"
+        },
+        {
+          "en": "Reuse unchanged source context for local revisions. Asset identifiers remain internal; unreviewed samples block formal dubbing, not candidate text design.",
+          "zh-CN": "局部修订复用未变原文与相关上下文；资产编号留内部，未审样音限制正式配音，不阻断候选文字设计。"
+        }
+      ],
+      "inputs": [
+        {
+          "en": "The script or description that establishes each speaker's age, origin, body state, relationships and timeline, plus the reading scope actually covered.",
+          "zh-CN": "确立每个说话人年龄、地域、身体状态、关系与时间线的剧本或描述，以及实际阅读范围。"
+        },
+        {
+          "en": "The asset category (voice, ambience bed, signature effect, music theme), a unique ID, version, purpose and fields that remain unknown.",
+          "zh-CN": "资产类别（角色音色、环境声底、标志音效、音乐主题）、唯一编号、版本、用途和仍未知字段。"
+        },
+        {
+          "en": "The chosen or candidate voice route, available tools, any approved reference audio, and the rights and authorization state for each consequential action.",
+          "zh-CN": "已选或候选的音色路线、可用工具、已批准的参考音频，以及各项重要动作的权利与授权状态。"
+        }
+      ],
+      "workflow": [
+        {
+          "en": "Choose design-text, actual-sample or scoped-diagnosis delivery and the asset category before using a template.",
+          "zh-CN": "先选择设计文本、实际样音或局部诊断交付以及资产类别，再使用模板。"
+        },
+        {
+          "en": "Derive audible traits from character or space facts; separate script facts, design assumptions and critical unknowns.",
+          "zh-CN": "从人物或空间事实推导可听特征；区分剧本事实、设计推定与关键未知。"
+        },
+        {
+          "en": "Check that speakers sharing scenes can be told apart by ear, and normalize every alias to one speaker.",
+          "zh-CN": "核对同场说话人只凭听觉可以分开，并把全部别名归一到一个说话人。"
+        },
+        {
+          "en": "Plan the reference sample set (neutral baseline, upper and lower intensity, long line) or the bed, effect or theme sample, and write each audition text individually.",
+          "zh-CN": "规划参考样音组（中性基准、力度上限与下限、长句连读）或声底、音效、主题样音，逐条撰写试音文本。"
+        },
+        {
+          "en": "Record the voice route, source identifier or reference hash, reproduction settings, rights and authorizations; create the machine-readable asset contract.",
+          "zh-CN": "记录音色路线、声源标识或参考哈希、复现设置、权利与授权，生成机读资产合同。"
+        },
+        {
+          "en": "For text-only delivery, audible checks remain not_evaluated. Actual sample failures are rework; only explicit user listening can approve an asset.",
+          "zh-CN": "仅文本交付时可听检查保持not_evaluated；实际样音失败才标rework，资产需用户明确审听才能批准。"
+        }
+      ],
+      "returns": [
+        {
+          "en": "Wrong age, gender impression or accent returns to the design basis; speakers that cannot be told apart return to casting.",
+          "zh-CN": "年龄感、性别感或口音不符退回设计依据；角色之间分不开退回选角。"
+        },
+        {
+          "en": "A character sounding like a different person across clips returns to the route and binding: was the source actually attached, or was a speaker silently skipped?",
+          "zh-CN": "同一角色跨片段像换了人，退回路线与绑定：声源是否真的挂入请求，是否有说话人被静默跳过。"
+        },
+        {
+          "en": "Missing lines return to alias mapping and source identifiers; spoken stage directions return to separating instructions from dialogue.",
+          "zh-CN": "台词缺声退回别名映射与声源标识；念出指导语退回指令与台词的分离。"
+        },
+        {
+          "en": "A failed review remains `rework`; structural completion cannot auto-promote it.",
+          "zh-CN": "审核失败保持 `rework`，结构完成不能自动晋级。"
+        }
+      ],
+      "review": [
+        {
+          "en": "ID, version, category, purpose, speaker aliases, locked features, voice source, rights and unknowns are explicit.",
+          "zh-CN": "编号、版本、类别、用途、说话人别名、锁定特征、音色源、权利和未知项明确。"
+        },
+        {
+          "en": "Samples in one set sound like one person, repeat synthesis stays stable, and the audition text is spoken verbatim without stage directions.",
+          "zh-CN": "同组样音听起来是同一个人，重复合成稳定，试音文本逐字念出且不含指导语。"
+        },
+        {
+          "en": "Voice samples are dry and single-speaker; beds loop without story events; effects are single clean events; themes are recognizable and do not imitate a named work or artist.",
+          "zh-CN": "语音样音为单人干声；声底可循环且无剧情事件；音效为单一干净事件；主题可辨认且不指名模仿作品或音乐人。"
+        },
+        {
+          "en": "File duration, sample rate, channels and hashes come from measurement; ASR read-back and speaker similarity are evidence, not approval, and are marked unverified when the tool is absent.",
+          "zh-CN": "文件时长、采样率、声道与哈希来自实测；语音识别回读与说话人相似度是证据而非批准，缺工具时标未验证。"
+        }
+      ],
+      "pass": [
+        {
+          "en": "The sample task and JSON contract pass the module checklist with no unresolved blocking field or unauthorized action.",
+          "zh-CN": "样音任务和 JSON 合同通过模块检查，没有未解决阻塞字段或未授权动作。"
+        },
+        {
+          "en": "`assets_approved` requires the user to listen to the actual samples, identified by path and hash; a text contract alone remains pending review.",
+          "zh-CN": "`assets_approved` 必须由用户审听按路径与哈希标识的实际样音；只有文本合同仍是待审状态。"
+        }
+      ],
+      "outputs": [
+        {
+          "en": "A voice design with audition texts and a performance baseline, or an ambience, signature-effect or music-theme sample task, at the requested scope.",
+          "zh-CN": "按请求范围交付带试音文本与演绎基线的音色设计，或环境声底、标志音效、音乐主题的样音任务。"
+        },
+        {
+          "en": "A versioned JSON sound-asset contract with source, rights, listening-review and state fields for dubbing, prompts, mixing and QC.",
+          "zh-CN": "供配音、提示词、混音和质检使用的版本化 JSON 声音资产合同，含声源、权利、审听与状态字段。"
+        }
+      ],
+      "boundaries": [
+        {
+          "en": "Do not write or run scripts to batch-generate prompts through template loops, substitution, concatenation or model calls. Author and review each complete prompt individually; scripts may only validate or preserve completed text unchanged. Compilation, later polishing and batch requests grant no exception.",
+          "zh-CN": "禁止编写或运行批量生成提示词的脚本，不得循环套模板、替换变量、拼接正文或批量调用模型代写。完整提示词须逐项撰写复核，脚本只可校验或原样保存已完成正文；编译、事后润色和多条请求均不构成例外。"
+        },
+        {
+          "en": "Do not invent missing source facts, overwrite approved features, or put a specific shot's dialogue timing, lip sync or mix levels into the asset identity.",
+          "zh-CN": "不臆造缺失事实、不覆盖批准特征，也不把具体镜头的台词时间窗、口型或混音电平写进资产身份。"
+        },
+        {
+          "en": "Without an audio tool, authorization and listening review, this module delivers a sample task and contract, not finished or approved audio.",
+          "zh-CN": "没有音频工具、授权和审听时，本模块交付样音任务与合同，不能声称完成或批准音频。"
+        },
+        {
+          "en": "Installing or running this module grants no voice rights, cloning permission, upload permission, paid credits or music rights.",
+          "zh-CN": "安装或运行本模块不授予声音权、克隆许可、上传许可、付费额度或音乐权利。"
+        }
+      ],
+      "requires": {
+        "en": "Text contracts work in any host that can read the folder. Producing and approving actual samples additionally requires a speech, sound-effect or music tool, file access, the relevant rights and authorizations, and human listening review.",
+        "zh-CN": "任何能读取文件夹的宿主都可输出文本合同；真实样音还需要语音、音效或音乐工具、文件能力、相应权利与授权，以及人类审听。"
+      }
+    },
     "genre": {
       "principles": [
         {
@@ -853,6 +999,108 @@
       "requires": {
         "en": "Text design uses this package's own rules and handoff. Actual generation, playback review and editing require the host's media capabilities, applicable approvals and checked platform limits.",
         "zh-CN": "文本设计使用本包规则及交付合同；实际生成、播放审核与剪辑需要宿主媒体能力、相应授权与已核实平台限制。"
+      }
+    },
+    "screenplay": {
+      "principles": [
+        {
+          "en": "Build series story from causality, character state, and precise handoff facts before any production contract; a premise, outline, or episode map is not a substitute for the requested full script.",
+          "zh-CN": "先用因果、人物状态和精确交接事实建立系列故事，再谈生产合同；设定、大纲或分集地图不能替代用户点名的完整剧本。"
+        },
+        {
+          "en": "Separate creator-proposed values from creator-accepted facts; inferred settings are marked as inferred and confirmed before they harden into canon.",
+          "zh-CN": "区分创作者提出值与已接受事实；推定设定须标明推定并经确认后才成为既定事实。"
+        },
+        {
+          "en": "Genre cards, hook patterns, and rhythm profiles are optional calibrated aids, never mandatory templates or quality proof.",
+          "zh-CN": "题材卡、钩子模式与节奏档案是可选的校准辅助，不是强制模板，也不构成质量证明。"
+        }
+      ],
+      "inputs": [
+        {
+          "en": "A premise, idea, genre, audience, world/era, core hook, visual form, episode count, language, or existing notes/novel/materials, plus the requested deliverable.",
+          "zh-CN": "一句话设定、题材、受众、世界/时代、核心看点、视觉形态、集数、语言，或已有笔记/小说/材料，以及点名的交付物。"
+        },
+        {
+          "en": "Accepted creative decisions pass downstream unchanged; missing values stay pending, inferred values stay marked.",
+          "zh-CN": "已接受的创作决定原样传下游；缺失值保持 pending，推定值保持标注。"
+        },
+        {
+          "en": "Long multi-episode source material enters through the exact-byte intake index, never whole-file context dumps.",
+          "zh-CN": "多集长材料经精确字节索引接入，不整稿塞入上下文。"
+        }
+      ],
+      "workflow": [
+        {
+          "en": "Lock the creator contract, explore mechanism-different directions when undecided, build the story engine, then land the full series arc into an episode map before any scene is written.",
+          "zh-CN": "先锁定创作者契约；方向未定时探索机制不同的候选，建立故事引擎，再把全剧脉络落成分集地图，然后才写场景。"
+        },
+        {
+          "en": "Write each episode from its map record plus the previous episode's exit state; persist every episode as its own screenplay file and keep the map as completion truth.",
+          "zh-CN": "每集依据分集地图记录与上一集退出状态写作；每集落盘为独立剧本文件，分集地图是完成真相。"
+        },
+        {
+          "en": "Review structure and continuity mechanically where tools exist; narrative quality and user acceptance remain separate evidence states.",
+          "zh-CN": "有工具处做结构与连续性机械核对；叙事质量与用户接受仍是独立证据状态。"
+        }
+      ],
+      "returns": [
+        {
+          "en": "If causality, character knowledge, or episode handoff fails, return to the earliest broken map record or scene before polishing prose.",
+          "zh-CN": "因果、人物知识或集间交接失败时，先退回最早断裂的地图记录或场景，不先润色文字。"
+        },
+        {
+          "en": "If the episode map conflicts with written episodes, the accepted map is revised explicitly or the conflict is escalated to the creator; episodes are not silently rewritten to match.",
+          "zh-CN": "分集地图与已写剧集冲突时，要么显式修订地图，要么上报创作者；不静默改写剧集去迁就。"
+        }
+      ],
+      "review": [
+        {
+          "en": "Every episode produces a local dramatic result before its outgoing hook, and adjacent episodes hand off precise entry/exit states.",
+          "zh-CN": "每集在集尾钩子前先产出当集戏剧结果，相邻集精确交接进出状态。"
+        },
+        {
+          "en": "Reveals, reversals, and payoffs trace to established facts; information releases match what their visible carriers support.",
+          "zh-CN": "揭示、反转与回报可追溯到已建立事实；信息释放与可见载体支持的范围一致。"
+        },
+        {
+          "en": "An accepted rhythm profile is checked arithmetically only; a missing or proposed profile disables those checks honestly.",
+          "zh-CN": "已接受节奏档案只做算术核对；缺失或未接受档案如实停用对应检查。"
+        }
+      ],
+      "pass": [
+        {
+          "en": "The requested scope is written to disk: every planned episode has its own screenplay file, or the delivered excerpt is explicitly labeled as such.",
+          "zh-CN": "点名范围已落盘：规划内每集都有独立剧本文件，或交付节选被明确标注为节选。"
+        },
+        {
+          "en": "Continuation resumes from disk state without resetting episode numbering or accepted decisions.",
+          "zh-CN": "续写从磁盘状态恢复，不重置集号与已接受决定。"
+        }
+      ],
+      "outputs": [
+        {
+          "en": "项目开发/ creative brief, story engine, episode map, optional director brief, adaptation map, and project.json rhythm/pacing config.",
+          "zh-CN": "项目开发/ 下的创作简报、故事引擎、分集地图、按需导演阐述、改编映射与 project.json 节奏/语速配置。"
+        },
+        {
+          "en": "剧集/<EP>/剧本.md single-episode Markdown screenplays with scene headings, dialogue, and production tags.",
+          "zh-CN": "剧集/<EP>/剧本.md 单集 Markdown 剧本，含场景标题、对白与生产标签。"
+        }
+      ],
+      "boundaries": [
+        {
+          "en": "These packages do not generate images, video, audio, or prompts, and do not perform asset splitting, storyboarding, or final review; downstream stages consume the written artifacts.",
+          "zh-CN": "本组包不生成图像、视频、音频或提示词，不做资产拆分、分镜或终审；下游环节消费已写产物。"
+        },
+        {
+          "en": "They are adapted from the MIT-licensed drama-skills suite; upstream attribution is kept in each package LICENSE file.",
+          "zh-CN": "本组包改编自 MIT 许可的 drama-skills 套件；上游署名保留在各包 LICENSE 文件中。"
+        }
+      ],
+      "requires": {
+        "en": "Text-only work in any host that can read the complete folder; the bundled Python scripts need Python 3.9+ and are optional helpers, not creative judges.",
+        "zh-CN": "任何能读取完整文件夹的宿主均可做文本工作；自带 Python 脚本需要 3.9+，是可选辅助而非创作裁判。"
       }
     },
     "web": {
@@ -1738,8 +1986,8 @@
           "zh-CN": "五官、体型、发际线、服装、年龄、肢体数量、表情和所需视图保持同一身份。"
         },
         {
-          "en": "The minimum asset carries front, three-quarter, 90-degree side and back full-body views plus a medium shot; every identity mark visible in planned shots has its own detail plate recorded by the character's own side and a body landmark, and lead or close-shot speaking characters have an expression set drawn from their script beats.",
-          "zh-CN": "最低资产含正面、3/4、90度侧面、背面全身加中景；计划镜头中可见的每个身份标记都有单独特写，按人物自身左右与身体参照记录；主角和近景有台词的角色有取自剧本节点的表情母版。"
+          "en": "The minimum asset is four images on a pure white seamless background with no text: a full-body hero image, a face close-up, a 3x3 expression grid starting from neutral, and a turnaround sheet with front, 90-degree side and back full-body views plus six head angles; every identity mark visible in planned shots has its own detail plate recorded by the character's own side and a body landmark, and expression cells come from script beats first, with supplements labelled.",
+          "zh-CN": "最低资产是四张纯白无缝背景、无文字的图：全身主图、面部特写、以中性为首格的3×3表情九宫格，以及含正面、90度侧面、背面全身和六格头部多角度的角色表；计划镜头中可见的每个身份标记都有单独特写，按人物自身左右与身体参照记录；表情格优先取自剧本节点，补足项单独标明。"
         }
       ],
       "download": {
@@ -1841,6 +2089,51 @@
         "note": {
           "en": "Fixed v1.4.0 release snapshot. Check the archive manifest and Skill version; experimental status is unchanged.",
           "zh-CN": "v1.4.0固定发布快照。请核对归档清单与技能版本；实验状态保持。"
+        }
+      }
+    },
+    {
+      "name": "sound-asset",
+      "family": "sound",
+      "status": "packaged",
+      "status_label": {
+        "en": "New source package; structural checks only. No generated-sample listening review, real-task evidence or user acceptance yet.",
+        "zh-CN": "新增源码包；仅完成结构检查。尚无实际样音审听、实战证据或用户接受。"
+      },
+      "title": {
+        "en": "sound-asset — voice and sound identity contract",
+        "zh-CN": "sound-asset｜音色与声音身份合同"
+      },
+      "purpose": {
+        "en": "Define reusable sound identities: a character's voice (casting, source, audible traits, sample set, performance baseline), an ambience bed, a signature effect, or a music theme, with rights and state.",
+        "zh-CN": "定义可复用的声音身份：角色音色（选角、声源、可听特征、样音组、演绎基线）、环境声底、标志音效或音乐主题，并记录权利与状态。"
+      },
+      "standalone": {
+        "en": "A sound design, individually written audition or sample tasks, and a contract that later dubbing or generation can read; actual samples only when requested, possible and authorized.",
+        "zh-CN": "声音设计、逐条撰写的试音或样音任务，以及后续配音或生成可读取的合同；仅在有请求、有能力且已授权时产出实际样音。"
+      },
+      "cannot": {
+        "en": "It does not dub the film, time lines to shots, mix, or prove voice consistency in the finished video; those require the actual production audio to be heard.",
+        "zh-CN": "不负责全片配音、逐镜对时或混音，也不能证明成片中的音色一致；这些需要实听实际制作音频。"
+      },
+      "extra_principles": [
+        {
+          "en": "A voice is tracked by source, audible traits, aliases, rights and story-time state—not by a preset name alone.",
+          "zh-CN": "音色通过声源、可听特征、别名、权利和故事时间状态追踪，不能只靠预设名。"
+        }
+      ],
+      "extra_review": [
+        {
+          "en": "Each speaking character has exactly one voice source; age and accent fit the character; scene partners are distinguishable; rights and each authorization are unambiguous.",
+          "zh-CN": "每个有台词的角色有且仅有一个音色源；年龄感与口音符合人物；同场角色可区分；权利与各项授权无歧义。"
+        }
+      ],
+      "download": {
+        "state": "source_only",
+        "source_install": "docs/INSTALLATION.md",
+        "note": {
+          "en": "No release snapshot yet; install from the current source tree.",
+          "zh-CN": "尚无发布快照；从当前源码树安装。"
         }
       }
     },
@@ -2347,6 +2640,112 @@
           "zh-CN": "分诊只是假设，直到负责角色核对实际材料；会改变剧情、成本或权限的未知项须返回用户决定。"
         }
       ]
+    },
+    {
+      "name": "short-drama-develop",
+      "family": "screenplay",
+      "status": "packaged",
+      "status_label": {
+        "en": "Adapted from the MIT drama-skills suite; structural checks and self-tests only, no real-task or user-acceptance evidence yet.",
+        "zh-CN": "改编自 MIT 许可的 drama-skills 套件；仅完成结构检查与自测，无实战或用户接受证据。"
+      },
+      "title": {
+        "en": "short-drama-develop — series development and episode map",
+        "zh-CN": "short-drama-develop｜系列开发与分集地图"
+      },
+      "purpose": {
+        "en": "Develop a short-drama or comic-drama idea, novel, or notes into a traceable creative brief, story engine, optional director brief, adaptation map, and full episode map with per-episode entry/exit states.",
+        "zh-CN": "把短剧/漫剧想法、小说或笔记发展成可追溯的创作简报、故事引擎、按需导演阐述、改编映射与含逐集进出状态的完整分集地图。"
+      },
+      "standalone": {
+        "en": "Series-level development package producing the 项目开发/ contract set; pairs naturally with the episode-writing package but runs alone for planning-only requests.",
+        "zh-CN": "系列级开发包，产出 项目开发/ 合同集；与剧本写作包配套使用，纯规划请求也可独立运行。"
+      },
+      "cannot": {
+        "en": "It does not write scene action or dialogue, split assets, write prompts, generate media, or issue final review verdicts.",
+        "zh-CN": "不写场景动作与台词，不拆资产，不写提示词，不生成媒体，不签发终审结论。"
+      },
+      "extra_principles": [
+        {
+          "en": "Genre cards calibrate internally only and never appear in deliverables; episode count and hook placement follow the creator's contract, not fixed formulas.",
+          "zh-CN": "题材卡仅内部校准、不进交付物；集数与钩子位置服从创作者契约，不套固定配方。"
+        },
+        {
+          "en": "Premise devices separate the creator-accepted contract from in-fiction disclosure; an ability without a contract clause is retroactive widening.",
+          "zh-CN": "前提装置把创作者已接受契约与剧中披露分开；无契约条款的能力属于事后扩权。"
+        }
+      ],
+      "extra_review": [
+        {
+          "en": "Episode-map references resolve, every episode lands a local result before its hook, and adjacent episodes hand off precise states.",
+          "zh-CN": "分集地图引用可解析，每集在钩子前落地当集结果，相邻集精确交接状态。"
+        },
+        {
+          "en": "Adaptation mappings preserve core character stances, relationships, and main line unless the creator accepted the change.",
+          "zh-CN": "改编映射保留核心人物立场、核心关系与主线，除非创作者已接受该改动。"
+        }
+      ],
+      "download": {
+        "state": "source_only",
+        "source_install": "docs/INSTALLATION.md",
+        "note": {
+          "en": "No release snapshot yet; install from the current source tree. MIT license retained in package LICENSE.",
+          "zh-CN": "尚无发布快照；从当前源码树安装。MIT 许可保留在包内 LICENSE。"
+        }
+      }
+    },
+    {
+      "name": "short-drama-write",
+      "family": "screenplay",
+      "status": "packaged",
+      "status_label": {
+        "en": "Adapted from the MIT drama-skills suite; structural checks and self-tests only, no real-task or user-acceptance evidence yet.",
+        "zh-CN": "改编自 MIT 许可的 drama-skills 套件；仅完成结构检查与自测，无实战或用户接受证据。"
+      },
+      "title": {
+        "en": "short-drama-write — single-episode screenplay",
+        "zh-CN": "short-drama-write｜单集剧本写作"
+      },
+      "purpose": {
+        "en": "Write or revise shootable Chinese short-drama/comic-drama episode Markdown screenplays, one episode at a time or as a series batch, preserving author text and normalizing production tags.",
+        "zh-CN": "写或修订可拍摄的中文短剧/漫剧单集 Markdown 剧本，支持逐集或整季批量推进，保留作者原文并规范化生产标签。"
+      },
+      "standalone": {
+        "en": "Episode screenwriting package with deterministic index and duration-estimate scripts; reads the development package's accepted artifacts when present but also works from a bare outline.",
+        "zh-CN": "单集剧本写作包，自带确定性索引与时长估算脚本；有开发包已接受产物时读取，没有时也可凭大纲直接写。"
+      },
+      "cannot": {
+        "en": "It does not split assets, write storyboards or media prompts, generate media, set the project rhythm profile, or issue final review verdicts.",
+        "zh-CN": "不拆资产，不写分镜或媒体提示词，不生成媒体，不设定项目节奏档案，不签发终审结论。"
+      },
+      "extra_principles": [
+        {
+          "en": "Every scene must change information, power, relationship, emotion, physical state, or risk; scenes without change are cut or merged.",
+          "zh-CN": "每场必须改变信息、权力、关系、情绪、物理状态或风险；无变化的场删掉或合并。"
+        },
+        {
+          "en": "Dialogue carries agenda and subtext rather than explanation; creator-supplied text is preserved and never trimmed under style rules.",
+          "zh-CN": "对白承载意图与潜台词而非解释；创作者原文保留，不按风格规则删减。"
+        }
+      ],
+      "extra_review": [
+        {
+          "en": "Exit state hands off the six facts: who is where doing what, who knows what, key props, relationship/power shifts, and irreversible actions.",
+          "zh-CN": "退出状态交接六项事实：谁在哪里做什么、谁知道什么、关键持物、关系/权力变化与不可撤回动作。"
+        },
+        {
+          "en": "The first beat stands alone as a hook; an accepted rhythm profile is checked arithmetically, never enforced as a beat template.",
+          "zh-CN": "第一拍独立成立为钩子；已接受节奏档案只做算术核对，不当节拍模板强制。"
+        }
+      ],
+      "download": {
+        "state": "source_only",
+        "source_install": "docs/INSTALLATION.md",
+        "note": {
+          "en": "No release snapshot yet; install from the current source tree. MIT license retained in package LICENSE.",
+          "zh-CN": "尚无发布快照；从当前源码树安装。MIT 许可保留在包内 LICENSE。"
+        }
+      }
     },
     {
       "name": "ai-short-drama-production",

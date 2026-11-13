@@ -102,7 +102,7 @@ class FunctionConservationTests(unittest.TestCase):
                          "Not routed", "does not guarantee that the host can switch skills",
                          "never route \"regenerate\" as a fix"):
             self.assertIn(required, entry)
-        for role in ("DIRECTOR", "STORYBOARD", "CHARACTER_ASSET", "SCENE_ASSET", "PROP_ASSET",
+        for role in ("DIRECTOR", "STORYBOARD", "CHARACTER_ASSET", "SCENE_ASSET", "PROP_ASSET", "SOUND_ASSET",
                      "VIDEO_PRODUCTION", "PRODUCTION_CONTROL"):
             self.assertIn(role, entry)
         for case in ("Voice changes between clips", "Background changes between angles",
@@ -118,7 +118,8 @@ class FunctionConservationTests(unittest.TestCase):
         for required in (
             "不是自动拦截模型调用的程序",
             "不因此启动生图、上传或付费",
-            "正面、3/4、精确90度侧面、背面全身及中景",
+            "正面、精确90度侧面、背面全身及六格头部多角度",
+            "全身主图、面部特写、表情九宫格",
             "身份标记都有已批准特写",
             "表情母版",
             "同一空间主图和反打图",

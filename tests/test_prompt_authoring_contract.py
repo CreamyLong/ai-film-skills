@@ -11,7 +11,7 @@ from generate_skill_guides import merge_contract
 
 
 PROMPT_FAMILIES = {
-    "director", "storyboard", "asset", "genre", "video-production", "orchestration",
+    "director", "storyboard", "asset", "sound", "genre", "video-production", "orchestration",
     "short-drama", "hard-scifi", "war_visual", "guofeng",
 }
 AUTHORING_REFERENCES = (

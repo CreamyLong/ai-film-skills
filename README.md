@@ -6,15 +6,15 @@
 
 为 AI 影视、短片与剧情视频创作者准备的独立 Agent Skills。不知道选哪个时，从 **影视创作总控 `film-production-orchestrator`** 开始，直接说目标；也可单独使用专业技能，沿流程交接已确认的决定。
 
-**22 个独立源码包 · 19 项常规 + 3 项实验 · 44 份中英说明**
+**25 个独立源码包 · 22 项常规 + 3 项实验 · 50 份中英说明**
 
 [全部技能](#skills) · [完整工作流程](#workflow) · [功能与作品](#features) · [安装与调用](#install) · [证据与边界](#evidence) · [版本更新](#updates)
 
 **简体中文** · [English](#english-overview) · [日本語](docs/i18n/ja/README.md) · [한국어](docs/i18n/ko/README.md)
 
-![Regular packages](https://img.shields.io/badge/regular_packages-19-FF6B35?style=flat-square)
+![Regular packages](https://img.shields.io/badge/regular_packages-22-FF6B35?style=flat-square)
 ![Experimental packages](https://img.shields.io/badge/experimental_packages-3-D6A756?style=flat-square)
-![Bilingual guides](https://img.shields.io/badge/bilingual_guides-44-7ED6A5?style=flat-square)
+![Bilingual guides](https://img.shields.io/badge/bilingual_guides-50-7ED6A5?style=flat-square)
 [![Validate Skills](https://github.com/62656456/ai-film-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/62656456/ai-film-skills/actions/workflows/validate.yml)
 [![skills.sh](https://skills.sh/b/62656456/ai-film-skills)](https://skills.sh/62656456/ai-film-skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-5B8CFF?style=flat-square)](LICENSE)
@@ -28,7 +28,7 @@
 你可以拿着点子、小说、剧本、参考图或已经确定的镜头开始。这里把创作工作分成可以单独使用、也能相互交接的职责：
 
 - **故事与导演**：把人物目的、行动、对白和场景因果写成可读剧本，再确定表演、视觉、声音与剪辑方向。
-- **视觉与资产**：选择与故事相称的视觉语言，设计能反复使用的人物、场景和道具，保住身份、空间与状态。
+- **视觉与资产**：选择与故事相称的视觉语言，设计能反复使用的人物、场景、道具和声音，保住身份、空间、音色与状态。
 - **分镜与摄影**：决定观众先看什么、从哪里看、看多近，安排调度、机位、光色、运镜、节奏与切点。
 - **提示词与制作**：保留已选镜头，编译生成提示词；明确进入实际制作后，组织生成、选片、剪辑、声音与完整看片修复。
 - **研究与辅助**：按需研究市场、审核知识写入、检查 3D 机位与走位，或设计创作工具的界面。
@@ -39,24 +39,27 @@
 
 <a id="skills"></a>
 
-## 全部 22 个技能：什么时候用，拿到什么
+## 全部 25 个技能：什么时候用，拿到什么
 
-下列 19 项常规包和 3 项实验包都在仓库中。每一项均可单独选择，链接直接打开对应中文说明；[完整源码与版本目录](SKILL_CATALOG.md)和[英文说明](docs/skills/INDEX.md)另列。
+下列 22 项常规包和 3 项实验包都在仓库中。每一项均可单独选择，链接直接打开对应中文说明；[完整源码与版本目录](SKILL_CATALOG.md)和[英文说明](docs/skills/INDEX.md)另列。
 
-### 编剧与导演 · 2 项
+### 编剧、导演与剧本 · 4 项
 
 | 技能 | 什么时候用 | 直接交付什么 |
 |---|---|---|
 | [编剧与导演](docs/skills/zh-CN/director-agent.md)<br/>`director-agent` | 从点子或小说写剧本，修改场景与对白，诊断人物行动和因果；分镜前需要导演判断 | 可读剧本、替换段落、诊断或导演方案；明确需要时另编译 AI 执行剧本 |
 | [分镜与摄影](docs/skills/zh-CN/ai-storyboard-director.md)<br/>`ai-storyboard-director` | 已有故事或导演方案，需要决定观看顺序、人物调度、摄影、时间和连续性 | 创意拍法备选、可读分镜或一条六模块视频母提示词；按需查询 FCML，并保存恢复已选镜头决定 |
+| [短剧开发](docs/skills/zh-CN/short-drama-develop.md)<br/>`short-drama-develop` | 从一句话点子、小说、粗纲或多集草稿出发，需要题材、受众、看点和集数落成结构化设定 | 创作简报、故事引擎、系列弧、分集地图；题材卡只做内部校准，多集输入逐字节索引续跑；新增源码包，实战待验 |
+| [短剧剧本](docs/skills/zh-CN/short-drama-write.md)<br/>`short-drama-write` | 故事引擎和分集地图已定，需要把单集写成可拍摄的 Markdown 剧本 | 完整单集剧本：场景因果、对白、声音事实、节拍与时长预算；按集批量续写不丢已接受决定；新增源码包，实战待验 |
 
-### 人物、场景与道具资产 · 3 项
+### 人物、场景、道具与声音资产 · 4 项
 
 | 技能 | 什么时候用 | 直接交付什么 |
 |---|---|---|
-| [人物资产](docs/skills/zh-CN/character-asset.md)<br/>`character-asset` | 确定人物身份、外形、服装及允许变化，让后续镜头有一致的人物依据 | 正面、90°侧面、背面全身加中景的参考任务或提示词，以及身份、视图与状态合同；按请求和工具条件生成参考图，普通肖像按点名范围处理 |
+| [人物资产](docs/skills/zh-CN/character-asset.md)<br/>`character-asset` | 确定人物身份、外形、服装及允许变化，让后续镜头有一致的人物依据 | 四张纯白背景图（全身主图、面部特写、表情九宫格、含三面全身与六格头部多角度的角色表）的参考任务或提示词，以及身份、视图与状态合同；按请求和工具条件生成参考图，普通肖像按点名范围处理 |
 | [场景资产](docs/skills/zh-CN/scene-asset.md)<br/>`scene-asset` | 设计空间布局、出入口、地标、光源与材质，建立能承载镜头的环境 | 默认主图 + 独立反打图的设计或提示词与空间合同；按请求交实际图，或扩展同空间多机位、九宫格 |
 | [道具资产](docs/skills/zh-CN/prop-asset.md)<br/>`prop-asset` | 设计道具整体形制、比例、结构、材质、持用和变化状态 | 整体与必要结构细节的参考任务、提示词及道具合同；按请求和工具条件生成参考图，视图由实际设计问题决定 |
+| [声音资产](docs/skills/zh-CN/sound-asset.md)<br/>`sound-asset` | 为有台词的角色选角并锁定音色，或建立跨场复用的环境声底、标志音效和音乐主题 | 音色设计、逐条撰写的试音任务、演绎基线，以及含声源、权利和审听状态的声音合同；按请求、工具条件和授权生成样音，用户审听后锁定 |
 
 ### 类型视觉与美术 · 8 项
 
@@ -104,7 +107,7 @@
 | [3D 白模预演](docs/skills/zh-CN/whitebox-previs-executor.md)<br/>`whitebox-previs-executor` | 已有镜头，要检查真实 3D 机位、视差、基础走位或已支持的短动作 | 运行条件齐全时交可播放 MP4、编译与验证记录，可选工程；打斗限定已实现代理和已通过动作门的规格 |
 | [古风视觉](docs/skills/zh-CN/guofeng-visual-director.md)<br/>`guofeng-visual-director` | 设计古风人物服饰、建筑器物、生活空间和光色 | 完整视觉方案、图像提示词、受控变体或诊断；区分历史还原、架空和风格化，当前为 0.1.1 实验候选 |
 
-**外部仙侠入口**：[xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director)用于仙侠世界、天宫巨构与写实摄影。本仓库只链接上游，不分发它的源码或 ZIP。它不计入上述 22 个包和 44 份指南；仓库本身是 **21 项影视相关技能 + 1 项网页辅助技能**。
+**外部仙侠入口**：[xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director)用于仙侠世界、天宫巨构与写实摄影。本仓库只链接上游，不分发它的源码或 ZIP。它不计入上述 25 个包和 50 份指南；仓库本身是 **24 项影视相关技能 + 1 项网页辅助技能**。
 
 <a id="workflow"></a>
 <a id="从输入到成片完整工作流"></a>
@@ -442,7 +445,7 @@ npx --yes skills@latest add 62656456/ai-film-skills --list
 npx --yes skills@latest add 62656456/ai-film-skills --skill ai-storyboard-director --agent codex --copy --yes
 ```
 
-[完整安装说明](docs/INSTALLATION.md) · [宿主兼容与实际验证范围](docs/COMPATIBILITY.md) · [44份中英指南](docs/skills/INDEX.md)
+[完整安装说明](docs/INSTALLATION.md) · [宿主兼容与实际验证范围](docs/COMPATIBILITY.md) · [50份中英指南](docs/skills/INDEX.md)
 
 ### 三种常见起点
 
@@ -496,9 +499,9 @@ npx --yes skills@latest add 62656456/ai-film-skills --skill ai-storyboard-direct
 
 ## English overview
 
-Open Film Skills is a repository of **22 independent Agent Skills: 19 regular and 3 experimental**, with 44 English/Simplified Chinese guides. It covers screenplay writing and directing, reusable character/scene/prop assets, eight genre visual routes, cinematography and prompts, actual video production, short-drama control, market research, approved knowledge updates, web interfaces, hard science fiction, guofeng and bounded 3D previs.
+Open Film Skills is a repository of **25 independent Agent Skills: 22 regular and 3 experimental**, with 50 English/Simplified Chinese guides. It covers screenplay writing and directing, reusable character/scene/prop/sound assets, eight genre visual routes, cinematography and prompts, actual video production, short-drama control, market research, approved knowledge updates, web interfaces, hard science fiction, guofeng and bounded 3D previs.
 
-Choose a Skill by the task and deliverable listed above. Existing approved decisions pass to the next stage. Current Storyboard Director source and the new release are **5.8.6**; the frozen **v1.4.0** archive still contains **5.7.2**. Native host support, actual media execution and user acceptance are verified separately. External xianxia is linked upstream and is not part of the 22 redistributed packages.
+Choose a Skill by the task and deliverable listed above. Existing approved decisions pass to the next stage. Current Storyboard Director source and the new release are **5.8.6**; the frozen **v1.4.0** archive still contains **5.7.2**. Native host support, actual media execution and user acceptance are verified separately. External xianxia is linked upstream and is not part of the 24 redistributed packages.
 
 [English guides](docs/skills/INDEX.md) · [Installation](docs/INSTALLATION.md) · [Source catalog](SKILL_CATALOG.md)
 

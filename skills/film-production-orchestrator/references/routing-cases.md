@@ -33,7 +33,9 @@ Worked examples of symptom-to-role assignment. Each case names the observable sy
 
 | Symptom | Earliest layer | Route | Recheck |
 |---|---|---|---|
-| Voice changes between clips of the same character | Sound route | VIDEO_PRODUCTION | Voice reference actually attached, then actual audio |
+| Voice changes between clips of the same character | Sound asset or sound route | SOUND_ASSET, then VIDEO_PRODUCTION | One reviewed voice source per speaker and alias mapping; voice reference actually attached, then actual audio |
+| Speaking character has no prepared or approved voice | Asset inventory | SOUND_ASSET | Every speaker has one listened-to voice source with recorded rights |
+| Two characters cannot be told apart by ear | Sound asset | SOUND_ASSET | Blind comparison on the same neutral line |
 | Background changes between angles of one room | Scene asset or generation | SCENE_ASSET, then VIDEO_PRODUCTION | Spatial ledger against actual frames |
 | Previous clip tail does not match the next opening | Editing or generation | VIDEO_PRODUCTION | Actual tail and head frames, not redrawn stills |
 | Generated clip is a still slideshow | Generation | VIDEO_PRODUCTION | Real motion in the actual clip |

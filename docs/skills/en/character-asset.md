@@ -64,7 +64,7 @@ A character reference-image task, view plan, locked-feature checklist, negative 
 - [ ] Proportion, perspective, geometry, materials, contact, weight, shadows, and readable key faces are physically coherent.
 - [ ] No extra limbs, objects, text, watermark, drift, or background competition compromises the reference.
 - [ ] Face, body, hairline, clothing, age, limb count, expressions, and all required views remain the same identity.
-- [ ] The minimum asset carries front, three-quarter, 90-degree side and back full-body views plus a medium shot; every identity mark visible in planned shots has its own detail plate recorded by the character's own side and a body landmark, and lead or close-shot speaking characters have an expression set drawn from their script beats.
+- [ ] The minimum asset is four images on a pure white seamless background with no text: a full-body hero image, a face close-up, a 3x3 expression grid starting from neutral, and a turnaround sheet with front, 90-degree side and back full-body views plus six head angles; every identity mark visible in planned shots has its own detail plate recorded by the character's own side and a body landmark, and expression cells come from script beats first, with supplements labelled.
 
 <!-- contract:pass -->
 ## 8. Pass standard and states

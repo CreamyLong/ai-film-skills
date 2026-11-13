@@ -11,7 +11,7 @@ flowchart TB
     S --> D["导演方案<br/>director-agent<br/>表演·视觉概念·声音·剪辑"]
     S -. "明确需要时" .-> X["AI执行剧本编译<br/>director-agent 的条件模式"]
     D --> V["按需选择视觉风格<br/>赛博朋克·史诗·奇幻·恐怖·黑色<br/>爱情·战争·武侠·仙侠·硬科幻·古风"]
-    V --> A["人物／场景／道具资产<br/>character-asset · scene-asset · prop-asset<br/>按请求交设计／提示词或参考图<br/>图片经用户审阅后锁定"]
+    V --> A["人物／场景／道具／声音资产<br/>character-asset · scene-asset · prop-asset · sound-asset<br/>按请求交设计／提示词、参考图或样音<br/>图片与样音经用户审阅后锁定"]
     A -. "需要调整时" .-> V
     V --> B["分镜与摄影设计<br/>ai-storyboard-director 5.7.1"]
     A --> B

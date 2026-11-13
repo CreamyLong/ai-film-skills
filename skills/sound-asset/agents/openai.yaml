@@ -1,0 +1,4 @@
+interface:
+  display_name: "声音资产设计"
+  short_description: "生成可用于连续叙事的角色音色、环境声底、标志音效与音乐主题的试音任务和资产合同。"
+  default_prompt: "Use $sound-asset to define a continuity-safe voice or sound reference asset."

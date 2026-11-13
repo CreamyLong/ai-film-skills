@@ -12,7 +12,7 @@
 
 这套技能把影视创作分成能直接使用的结果：剧本与对白、导演方案、人物场景道具、视觉方向、分镜摄影、提示词、按需预演、实际生成与完整看片。点子、小说、剧本、图片和已定镜头都能作为输入；已有成果从对应阶段继续。
 
-当前源码包含 **19项常规＋3项实验＝22个独立模块**，配有44份中英指南。工作流另列外部仙侠，合计22项影视职责＋1项网页辅助；外部入口不增加源码包数量。
+当前源码包含 **22项常规＋3项实验＝25个独立模块**，配有50份中英指南。工作流另列外部仙侠，合计25项影视职责＋1项网页辅助；外部入口不增加源码包数量。
 
 ![A方案完整技能工作流程：入口、职责、交接物和返回路径](../../research/skill-overhaul/workflows/active-a.svg)
 
@@ -25,14 +25,14 @@
 | 要完成的事 | 直接入口 |
 |---|---|
 | 写剧本、改对白、梳理人物行动和导演方案 | [director-agent](../../skills/zh-CN/director-agent.md) |
-| 设计人物、场景、道具与可复用状态 | [人物](../../skills/zh-CN/character-asset.md) · [场景](../../skills/zh-CN/scene-asset.md) · [道具](../../skills/zh-CN/prop-asset.md) |
+| 设计人物、场景、道具、声音与可复用状态 | [人物](../../skills/zh-CN/character-asset.md) · [场景](../../skills/zh-CN/scene-asset.md) · [道具](../../skills/zh-CN/prop-asset.md) · [声音](../../skills/zh-CN/sound-asset.md) |
 | 设计观看顺序、摄影调度和完整提示词 | [分镜与摄影](../../skills/zh-CN/ai-storyboard-director.md) |
 | 按题材设计光色、材料、尺度与构图 | [全部类型](../../../SKILL_CATALOG.md#genre-visual-language) · [硬科幻实验](../../skills/zh-CN/hard-sci-fi-visual-director.md) · [外部仙侠](https://github.com/liyue-aigc/xianxia-visual-director) |
 | 生成前查看3D机位、视差与基础走位 | [白模实验包](../../skills/zh-CN/whitebox-previs-executor.md) |
 | 组织真实生成、剪辑、声音与看片返修 | [produce-ai-video](../../skills/zh-CN/produce-ai-video.md) |
 | 市场研究、批准后知识写入、网页创作工具 | [完整21技能目录](../../../SKILL_CATALOG.md) |
 
-[查看全部22个独立技能及用途](../../../README.md#全部22个独立技能) · [44份中英指南](../../skills/INDEX.md)
+[查看全部25个独立技能及用途](../../../README.md#全部25个独立技能) · [50份中英指南](../../skills/INDEX.md)
 
 ### 七题材三版：21张首轮分镜测试图
 

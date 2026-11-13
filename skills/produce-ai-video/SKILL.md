@@ -72,7 +72,7 @@ Use this mode when the user supplies or has repeatedly adjusted a storyboard, ti
 
 ## Enforce hard rules
 
-- Every character in the task requires its locked multi-view character asset (front, three-quarter, 90-degree side and back full-body views plus a medium shot), a detail plate for every identity mark visible in the planned shots, and an expression set when the character carries dialogue or emotional turns in close shots, before keyframe generation. A missing character asset stops the batch; do not improvise a character's identity from a single portrait or one good keyframe.
+- Every character in the task requires its locked four-image character asset on a white background (full-body hero image, face close-up, 3x3 expression grid, and a turnaround sheet with front, 90-degree side and back full-body views plus six head angles) and a detail plate for every identity mark visible in the planned shots, before keyframe generation. A missing character asset stops the batch; do not improvise a character's identity from a single portrait or one good keyframe.
 - Every actual video-model call, including a retry, requires a ready ledger record of its exact request. An `unknown` prior attempt must be reconciled before any resubmission; a `failed` one may be retried only as a newly reserved attempt. See [production-ledger.md](references/production-ledger.md).
 - Every actual video-model call, including a retry, requires a fresh preflight of its exact payload and affected dependencies. Neither a text-only request nor a preflight pass authorizes generation, spending, uploads, voice cloning or publication.
 - Do not start from prompt formatting. Start from what the audience must see.

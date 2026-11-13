@@ -1,5 +1,14 @@
 # Release notes
 
+## Source update — 2026-11-13 / sound assets and character sheet
+
+- Add `sound-asset` as the fourth asset package: character voice casting, voice source, a reference sample set and performance baseline, plus reusable ambience beds, signature effects and music themes. Reference use, cloning, upload, paid generation and commercial delivery are separate authorizations; only user listening approves a sample.
+- Give the orchestrator a `SOUND_ASSET` role with routing cases for unprepared voices, voice drift between clips and speakers that cannot be told apart.
+- Replace the character minimum with four images on a pure white seamless background, without text or labels: a 3:4 full-body hero image, a 3:4 face close-up, a 3:4 expression grid of 3x3 cells starting from neutral, and a 16:9 turnaround sheet with front, 90-degree side and back full-body views plus six head angles (front, both three-quarters, both profiles, back). The hero image is approved first and the other three derive from it. The expression grid is now part of every full character asset rather than conditional on screen time; the three-quarter full-body view and the medium shot are retired; identity-mark plates are unchanged. Contracts written to the previous five-view minimum remain readable.
+- Add `short-drama-develop` and `short-drama-write`, adapted from the MIT-licensed zenstory-ai/drama-skills `short-drama-develop` and `short-drama-write` packages: idea/novel/outline input becomes a creative brief, story engine, optional series arc and episode map, then per-episode shootable Markdown screenplays with scene causality, dialogue, sound facts and beat/duration budgets. Adaptations for this repository: project settings now carry subject, audience, era, hook, visual style and episode count into `项目开发/project.json`; `short-drama.json` paths were renamed accordingly; cross-package references were removed so each package stays standalone. Both install from source only.
+- The source tree now holds 22 regular and 3 experimental packages, 25 modules, with 50 bilingual guides. `sound-asset`, `short-drama-develop` and `short-drama-write` install from source; no release archive contains them.
+- Evidence: repository tests, validators, package build and a smoke install passed. No voice sample or character sheet was generated or reviewed with these rules, and no real-task or user-acceptance evidence exists for either change.
+
 ## Storyboard 5.8.6 — 2026-10-18
 
 - Make concrete cinematic imaging and task-driven professional optics the default for storyboard and video-prompt requests across genres.

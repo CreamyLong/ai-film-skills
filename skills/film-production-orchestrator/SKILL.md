@@ -49,9 +49,10 @@ These are responsibilities, not claims that an implementation is installed. The 
 | CHARACTER_ASSET | character identity, appearance, wardrobe and state references |
 | SCENE_ASSET | location layout, entrances, landmarks, light sources and materials |
 | PROP_ASSET | prop form, structure, material, handling and state |
+| SOUND_ASSET | character voice casting, voice source, reference samples and rights; reusable ambience beds, signature effects and music themes |
 | GENRE_VISUAL | genre-specific visual language applied to existing story, assets and shots |
 | PRODUCTION_CONTROL | task-specific brief and acceptance, source/asset inventory, continuity, versions, budget/rights/change records |
-| VIDEO_PRODUCTION | actual generation, selection, editing, sound, playback review and repair |
+| VIDEO_PRODUCTION | actual generation, selection, editing, dubbing and mix using approved sound assets, playback review and repair |
 | MARKET_RESEARCH | market questions answered from verifiable official sources |
 | KNOWLEDGE_REVIEW | review and versioned writing of approved knowledge |
 | WEB_INTERFACE | website or application interface design and implementation |

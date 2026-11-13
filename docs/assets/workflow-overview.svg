@@ -50,7 +50,7 @@
   <text x="56" y="569" class="tag">专项分支 / 按需</text><text x="56" y="596" class="label">短剧生产控制合同</text><text x="56" y="619" class="code">ai-short-drama-production</text><text x="56" y="640" class="code">分阶段交付；实片待验</text>
 
   <rect x="394" y="610" width="420" height="88" rx="6" class="node"/>
-  <text x="416" y="641" class="label">人物 / 场景 / 道具资产</text><text x="416" y="666" class="small">按请求交设计、提示词或参考图</text><text x="416" y="688" class="code">character-asset · scene-asset · prop-asset</text>
+  <text x="416" y="641" class="label">人物 / 场景 / 道具 / 声音资产</text><text x="416" y="666" class="small">按请求交设计、提示词、参考图或样音</text><text x="416" y="688" class="code">character- · scene- · prop- · sound-asset</text>
   <path d="M394 654H369V520H394" class="optional"/>
   <path d="M814 520H836V747H814" class="optional"/>
   <text x="849" y="600" class="code">不需新资产时</text><text x="849" y="620" class="code">可直接进入分镜</text>
