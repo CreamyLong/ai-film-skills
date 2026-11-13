@@ -67,7 +67,7 @@ flowchart TB
 
 ## 25项影视职责与1项网页辅助
 
-计数口径：本仓库分发 **22项常规＋3项实验＝25个模块**，其中24项用于影视、1项用于网页。工作流另列外部仙侠技能，因此是 **25项影视职责＋1项网页辅助**；外部仙侠不计入本仓库25个模块、50份双语指南或ZIP。
+计数口径：本仓库分发 **23项常规＋3项实验＝26个模块**，其中24项用于影视、1项用于网页。工作流另列外部仙侠技能，因此是 **25项影视职责＋1项网页辅助**；外部仙侠不计入本仓库26个模块、52份双语指南或ZIP。
 
 | # | Skill | 职责与交付 | 分发/使用边界 |
 |---|---|---|---|
@@ -96,6 +96,7 @@ flowchart TB
 | 23 | [d-data-analysis-semantic-layer](skills/zh-CN/d-data-analysis-semantic-layer.md) | 用户批准后校验、版本化写入与回读 | 目标和批准来自当前任务；已存知识仍检查时效 |
 | 24 | [film-production-orchestrator](skills/zh-CN/film-production-orchestrator.md) | 统一创作入口、任务路径、前置资产、专业交接与问题分诊，跟踪当前终点 | 可独立规划；实际调度依赖宿主与可用角色/工具，不内置模型或生成授权 |
 | 25 | [guofeng-visual-director](skills/zh-CN/guofeng-visual-director.md) | 古风文化、空间、人物器物、构图光色与完整图像提示词 | 候选实验包；不自动视为历史准确还原 |
+| 26 | [model-select](skills/zh-CN/model-select.md) | 按产物选生成模型、参数与回退顺序，写明不要用的情况与一致性红线 | 新增源码包；清单随环境变化，未实测能力按不可用 |
 | 辅助 | [web-design-director](skills/zh-CN/web-design-director.md) | 作品站、资产库、工作台和网页展示 | 只用于明确网页或应用界面任务；仓库README维护不触发建站 |
 
 十一种视觉路线＝八项常规类型＋实验硬科幻＋外部仙侠＋古风候选。选择取决于作品，不要求一次加载十一项，也不把风格名变成统一色表或固定镜头。

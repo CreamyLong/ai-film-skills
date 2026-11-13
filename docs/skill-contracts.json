@@ -1848,6 +1848,100 @@
         "en": "The visual parameter and QC package is text-only and host-neutral. Actual image or video output requires the host's media tools, model access, permissions, and visual review.",
         "zh-CN": "视觉参数与质检包是宿主无关的文本合同；真实图片或视频另需媒体工具、模型权限和视觉审核。"
       }
+    },
+    "model": {
+      "principles": [
+        {
+          "en": "Choose from the deliverable and its acceptance criteria, not from model reputation.",
+          "zh-CN": "选型从产物与验收标准出发，不从模型名气出发。"
+        },
+        {
+          "en": "Capability limits matter more than settings: name the cases where a route must not be used before tuning parameters.",
+          "zh-CN": "能力边界比参数更重要：先写清不要用的情况，再调参数。"
+        },
+        {
+          "en": "Consistency comes from a single source: one generation route per scene, one voice source per character.",
+          "zh-CN": "一致性来自单一来源：同场不混源，同角色不混声。"
+        }
+      ],
+      "inputs": [
+        {
+          "en": "The deliverable to produce, its target aspect ratio, duration and sample rate, and the acceptance criteria.",
+          "zh-CN": "本次要交付的产物、目标画幅/时长/采样率，以及验收标准。"
+        },
+        {
+          "en": "The actually available model inventory and deployment state, plus authorization and cost limits for local or cloud execution.",
+          "zh-CN": "实际可用模型清单与部署状态，以及本地或云端执行的授权与费用边界。"
+        }
+      ],
+      "workflow": [
+        {
+          "en": "Route by deliverable and state a primary route, a fallback route and the cases where neither should be used.",
+          "zh-CN": "按产物分流，给出首选、备选，以及两者都不该使用的情况。"
+        },
+        {
+          "en": "Check deployment state; treat unverified or undeployed capability as unavailable and run a single-variable smoke test before production.",
+          "zh-CN": "核对部署状态；未实测或未部署的能力按不可用处理，进生产前先做单变量小样。"
+        },
+        {
+          "en": "Record a reproducible selection: model identifier, adapter, steps, cfg, canvas, frame count and seed.",
+          "zh-CN": "记录可复现的选型：模型标识、适配器、步数、cfg、画布、帧数与种子。"
+        }
+      ],
+      "returns": [
+        {
+          "en": "When output fails, return to the selection layer first: wrong route, parameters outside the model contract, or insufficient reference material.",
+          "zh-CN": "输出失败先退回选型层：路线选错、参数超出模型契约、或参考素材不足。"
+        },
+        {
+          "en": "Do not treat swapping models as a universal repair; locate the earliest wrong layer before changing the route.",
+          "zh-CN": "不把换模型当成万能修复；先定位最早错误层再换路线。"
+        }
+      ],
+      "review": [
+        {
+          "en": "Change one variable per comparison and keep the control result.",
+          "zh-CN": "每次对照只改一个变量，并保留对照结果。"
+        },
+        {
+          "en": "Before delivery confirm one source per scene and one voice source per character.",
+          "zh-CN": "交付前确认同场同源、同角色同声。"
+        }
+      ],
+      "pass": [
+        {
+          "en": "The deliverable meets its acceptance criteria and the recorded selection can be reproduced.",
+          "zh-CN": "产物达到验收标准，且选型记录可复现。"
+        },
+        {
+          "en": "A fallback route exists and unverified capability has not entered production.",
+          "zh-CN": "存在回退路线，且未验证能力没有进入生产。"
+        }
+      ],
+      "outputs": [
+        {
+          "en": "A selection: route, model identifiers, parameters, forbidden cases and fallback order.",
+          "zh-CN": "选型结论：路线、模型标识、参数、禁止项与回退顺序。"
+        },
+        {
+          "en": "Optional single-variable smoke tests with their comparison result.",
+          "zh-CN": "必要时附单变量小样与对照结论。"
+        }
+      ],
+      "boundaries": [
+        {
+          "en": "It does not supply models, accounts, credits or deployment; the inventory is whatever the target environment actually provides.",
+          "zh-CN": "不提供模型、账号、额度或部署能力；清单以目标环境实际提供的为准。"
+        },
+        {
+          "en": "It does not replace directing, asset or dubbing decisions, and it does not certify the finished film.",
+          "zh-CN": "不替代导演、资产或配音决定，也不认证成片质量。"
+        }
+      ],
+      "requires": {
+        "en": "Any host that can read files can produce a text selection. Running the chosen route additionally needs the model, media tooling and authorization that the target environment actually has.",
+        "zh-CN": "任何能读文件的宿主都能输出文字选型；真正执行所选路线还需要目标环境实际具备的模型、媒体工具与授权。"
+      }
     }
   },
   "skills": [
@@ -2992,6 +3086,45 @@
           "zh-CN": "v1.4.0固定发布快照。请核对归档清单与技能版本；实验状态保持。"
         }
       }
+    },
+    {
+      "name": "model-select",
+      "family": "model",
+      "status": "packaged",
+      "title": {
+        "en": "model-select — generation model selection and routing",
+        "zh-CN": "model-select｜生成模型选型与回退"
+      },
+      "purpose": {
+        "en": "Choose the generation model, parameters and fallback order for the deliverable at hand: stills and keyframes, single-shot video, multi-reference identity, segmented long takes, character voice and music.",
+        "zh-CN": "按当前产物选择生成模型、参数与回退顺序：静帧与关键帧、单镜视频、多参考身份、长镜分段、角色配音与音乐。"
+      },
+      "standalone": {
+        "en": "A reproducible selection: route, model identifiers, parameters, forbidden cases and fallback order. No media is produced.",
+        "zh-CN": "可复现的选型结论：路线、模型标识、参数、禁止项与回退顺序；不产出媒体。"
+      },
+      "cannot": {
+        "en": "It does not supply models, accounts, credits or deployment, cannot guarantee a model exists in the target environment, and does not certify the finished film.",
+        "zh-CN": "不提供模型、账号、额度或部署，不保证目标环境存在某个型号，也不认证成片质量。"
+      },
+      "download": {
+        "state": "source_only",
+        "source_install": "docs/INSTALLATION.md",
+        "note": {
+          "en": "No release snapshot yet; install from the current source tree.",
+          "zh-CN": "尚无发布快照；从当前源码树安装。"
+        }
+      },
+      "status_label": {
+        "en": "New source package; structural checks only. The selection rules have not been validated on a real production task yet.",
+        "zh-CN": "新增源码包；仅完成结构检查。选型规则尚未在真实生产任务上验证。"
+      },
+      "extra_review": [
+        {
+          "en": "A selection that names a model but cannot be reproduced from the recorded identifiers and parameters is incomplete.",
+          "zh-CN": "只写模型名、却无法按记录的标识与参数复现的选型不算完成。"
+        }
+      ]
     }
   ],
   "distribution": {

@@ -44,7 +44,7 @@ https://github.com/62656456/ai-film-skills
 
 ## Directory submission entry
 
-**Open Film Skills** — 25 standalone Agent Skills for script-to-screen AI filmmaking, including directing, reusable character/scene/prop assets, cinematic storyboards, generation prompts, production, and evidence-aware review across compatible Agent hosts. Current distribution: v1.4.0 with Storyboard Director A5.7.2.
+**Open Film Skills** — 26 standalone Agent Skills for script-to-screen AI filmmaking, including directing, reusable character/scene/prop assets, cinematic storyboards, generation prompts, production, and evidence-aware review across compatible Agent hosts. Current distribution: v1.4.0 with Storyboard Director A5.7.2.
 
 ## Evidence links
 

@@ -6,9 +6,9 @@ This update publishes the current Storyboard Director and its six-module/optical
 
 ## Current source inventory
 
-The source tree contains **22 regular packages and 3 opt-in experimental packages: 25 modules, with 50 generated English / Simplified Chinese guides**. The regular complete-studio distribution includes the 22 packages under `skills/`; the three `experimental/` packages retain their explicit opt-in boundary.
+The source tree contains **23 regular packages and 3 opt-in experimental packages: 26 modules, with 52 generated English / Simplified Chinese guides**. The regular complete-studio distribution includes the 23 packages under `skills/`; the three `experimental/` packages retain their explicit opt-in boundary.
 
-The 25 repository modules comprise 24 filmmaking modules and one web-interface helper. The [complete workflow](docs/WORKFLOW.md) also links the external `xianxia-visual-director`, giving 25 filmmaking responsibilities plus one web helper without adding its source to this repository.
+The 26 repository modules comprise 25 filmmaking modules and one web-interface helper. The [complete workflow](docs/WORKFLOW.md) also links the external `xianxia-visual-director`, giving 26 filmmaking responsibilities plus one web helper without adding its source to this repository.
 
 Included material consists of authored Skill instructions and package-local resources, public documentation and diagrams, build/install/validation tooling, and authorized original demonstration media. Human guides explain each module; runtime authority remains its `SKILL.md` and package-local references. Storyboard, prompt, creative-idea and actual-media requests retain separate delivery stages according to the current task.
 
@@ -55,7 +55,7 @@ The former separate storyboard motion-lab entry remains retired. Its useful came
 
 ## Languages and evidence
 
-Repository entry pages exist in English, Simplified Chinese, Japanese and Korean. All 25 per-module guides are available in English and Simplified Chinese, 50 pages total; Japanese and Korean are overview pages only.
+Repository entry pages exist in English, Simplified Chinese, Japanese and Korean. All 26 per-module guides are available in English and Simplified Chinese, 52 pages total; Japanese and Korean are overview pages only.
 
 Structural validity, successful loading, actual task results, media review and explicit user acceptance are separate evidence. Three different accepted real tasks are needed before the maintainer labels a Skill practice-validated. Packaging, CI, publication and internal review do not manufacture that state. Previously accepted images remain accepted examples without proving stable output across all models or hosts.
 

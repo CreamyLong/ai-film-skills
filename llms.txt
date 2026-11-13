@@ -5,7 +5,7 @@ Repository: https://github.com/62656456/ai-film-skills
 Purpose: reusable, standalone Skills for AI film writing, directing, asset definition, visual language, storyboard design, production, web design, and source-backed research.
 
 Human-readable GitHub entry points:
-- docs/skills/INDEX.md — all 25 modules, 25 English guides, 25 Simplified Chinese guides, and direct runtime links
+- docs/skills/INDEX.md — all 26 modules, 26 English guides, 26 Simplified Chinese guides, and direct runtime links
 - docs/SKILL_DESIGN_SYSTEM.md — shared purpose/input/workflow/return/review/pass/output/boundary model
 - SKILL_CATALOG.md — task selection, human design guide, runtime SKILL.md, standalone ZIP, and evidence state
 - docs/ARCHITECTURE.md — runtime package and generated reading-layer architecture
