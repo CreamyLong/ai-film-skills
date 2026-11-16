@@ -2673,6 +2673,10 @@
         {
           "en": "Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.",
           "zh-CN": "每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。"
+        },
+        {
+          "en": "Before any H3 prompt containing dialogue, run the dialogue preflight on the exact prompt text: require <d>[language] exact line</d>, speaker IDs, a speech verb, no ellipses, performance notes outside the tag, and review multi-speaker shots. Any BLOCK stops submission; a format pass does not prove the generated speech contains the intended words.",
+          "zh-CN": "任何含对白的 H3 提示词提交前，对实际文本运行台词预检：要求 <d>[语言] 逐字原文</d>、说话人 ID、发声动词、无省略号、表演说明在标签外，并复核同镜多人；任一 BLOCK 停止提交，格式通过不证明生成语音真的念出目标台词。"
         }
       ],
       "extra_review": [
@@ -2683,6 +2687,10 @@
         {
           "en": "Character multi-view, matching location views, applicable props and voice rights are prepared; continuity and prompt evidence are checked for the current scope, with missing evidence marked unverified.",
           "zh-CN": "人物多视图、同空间多角度场景、适用道具及声音权利已准备；按当前范围核对连续性与提示词证据，缺证据标为待验证。"
+        },
+        {
+          "en": "A dialogue-bearing H3 prompt is not submission-ready until its dialogue format preflight is clean and the generated audio has actually been heard or ASR-checked; neither a valid tag nor a generated file proves the spoken line.",
+          "zh-CN": "含对白的 H3 提示词只有在台词格式预检无阻断、且实际生成音频已听审或 ASR 回读后才可提交/验收；合法标签或已生成文件都不证明台词被正确念出。"
         }
       ]
     },

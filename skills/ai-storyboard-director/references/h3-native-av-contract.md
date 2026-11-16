@@ -35,8 +35,9 @@
 
 - I2VA/FL2VA/L2VA 开头必须先写对应的图像对齐行（官方模板固定句），再接正文；T2VA 直接进字段。
 - `[Shot 1]` 从 0.00s 起；后续镜头以单一时间点开头（`At 00:03.500, the camera cuts to`），不用区间 `[5s-8s]`。
-- 说话人 ID `(S1)(S2)` 覆盖所有出声者（含画外、哼唱）；台词写法：ID 与表演方式在 `<d>` 外，语言标签与逐字原文在 `<d>` 内（`says in an off-screen voiceover: <d zh>…</d>`, 唇部保持闭合的写法随后声明）。
+- 说话人 ID `(S1)(S2)` 覆盖所有出声者（含画外、哼唱）；台词写法：ID 与表演方式在 `<d>` 外，语言标签与逐字原文在 `<d>` 内（`says in an off-screen voiceover: <d>[中文] …</d>`, 唇部保持闭合的写法随后声明）。
 - `<d>` 内保留 `, . ? !`，句末以 `.` `?` `!` 收尾；省略号伤清晰度，删；不确定处用 `[unclear]`。
+- 提交前逐句检查实际文本：语言标签、说话人 ID、`says`、逐字台词、省略号和表演说明位置；格式不合格不得提交。
 - 画面内文字：英文双引号包原文逐字（`A red neon sign reading "营业中"`）。
 - R2V：参考图给独立 `<Picture N>` 并描述分栏，镜头点名指向分栏；保留强度用 `fully_copy/partially_reference/weak_reference` 类标记与 `fully_preserved` 等保留字段表达。
 

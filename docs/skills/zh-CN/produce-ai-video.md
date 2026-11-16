@@ -55,6 +55,7 @@
 13. 对每个生成片段与合成成片做机械质检（流、时长、分辨率、帧率、黑帧与冻结帧、音量与响度、字幕 cue 覆盖、联系表证据）；测量值只是证据，不是通过结论。
 14. 按推导的 EDL、接缝核验、字幕对台词覆盖、响度与规格检查及导出清单组装交付；任一项失败都回最早责任层。
 15. 每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。
+16. 任何含对白的 H3 提示词提交前，对实际文本运行台词预检：要求 <d>[语言] 逐字原文</d>、说话人 ID、发声动词、无省略号、表演说明在标签外，并复核同镜多人；任一 BLOCK 停止提交，格式通过不证明生成语音真的念出目标台词。
 
 <!-- contract:returns -->
 ## 6. 退回、重做与版本回滚
@@ -71,6 +72,7 @@
 - [ ] 版权、费用、权限和未解决边界明确。
 - [ ] 台账审核须记录明确的用户或委托权限及证据哈希；登记、哈希和网关检查只是结构检查，不能替代语义、画面、声音或连续性审核。
 - [ ] 人物多视图、同空间多角度场景、适用道具及声音权利已准备；按当前范围核对连续性与提示词证据，缺证据标为待验证。
+- [ ] 含对白的 H3 提示词只有在台词格式预检无阻断、且实际生成音频已听审或 ASR 回读后才可提交/验收；合法标签或已生成文件都不证明台词被正确念出。
 
 <!-- contract:pass -->
 ## 8. 过关标准与状态
@@ -118,6 +120,7 @@
 - [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
 - [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
+- [`references/h3-dialogue-preflight.md`](../../../skills/produce-ai-video/references/h3-dialogue-preflight.md)
 - [`references/h3-timeline-director.md`](../../../skills/produce-ai-video/references/h3-timeline-director.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
@@ -137,6 +140,7 @@
 **确定性辅助脚本**
 
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
+- [`scripts/dialogue_preflight.py`](../../../skills/produce-ai-video/scripts/dialogue_preflight.py)
 - [`scripts/h3_base_check.py`](../../../skills/produce-ai-video/scripts/h3_base_check.py)
 - [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)

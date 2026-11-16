@@ -55,6 +55,7 @@ A full production and validation contract; with the required host tools and perm
 13. Run mechanical media QC (streams, duration, resolution, frame rate, black and frozen frames, audio level and loudness, subtitle cue coverage, contact-sheet evidence) on every generated segment and the assembled cut; measurements are evidence, not approval.
 14. Assemble and deliver through a derived EDL, seam verification, subtitle-to-dialogue coverage, loudness and spec checks, and a delivery manifest; every failure returns to the earliest owning layer.
 15. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
+16. Before any H3 prompt containing dialogue, run the dialogue preflight on the exact prompt text: require <d>[language] exact line</d>, speaker IDs, a speech verb, no ellipses, performance notes outside the tag, and review multi-speaker shots. Any BLOCK stops submission; a format pass does not prove the generated speech contains the intended words.
 
 <!-- contract:returns -->
 ## 6. Return, rework, and rollback
@@ -71,6 +72,7 @@ A full production and validation contract; with the required host tools and perm
 - [ ] Rights, costs, permissions, and unresolved limitations are explicit.
 - [ ] Ledger reviews record explicit user or delegated authority with evidence hashes; registration, hash and gateway checks are structural only and never replace semantic, visual, audio or continuity review.
 - [ ] Character multi-view, matching location views, applicable props and voice rights are prepared; continuity and prompt evidence are checked for the current scope, with missing evidence marked unverified.
+- [ ] A dialogue-bearing H3 prompt is not submission-ready until its dialogue format preflight is clean and the generated audio has actually been heard or ASR-checked; neither a valid tag nor a generated file proves the spoken line.
 
 <!-- contract:pass -->
 ## 8. Pass standard and states
@@ -118,6 +120,7 @@ A full production and validation contract; with the required host tools and perm
 - [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
 - [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
+- [`references/h3-dialogue-preflight.md`](../../../skills/produce-ai-video/references/h3-dialogue-preflight.md)
 - [`references/h3-timeline-director.md`](../../../skills/produce-ai-video/references/h3-timeline-director.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
@@ -137,6 +140,7 @@ A full production and validation contract; with the required host tools and perm
 **Deterministic helpers**
 
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
+- [`scripts/dialogue_preflight.py`](../../../skills/produce-ai-video/scripts/dialogue_preflight.py)
 - [`scripts/h3_base_check.py`](../../../skills/produce-ai-video/scripts/h3_base_check.py)
 - [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)

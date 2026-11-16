@@ -69,6 +69,7 @@
 - `asset_inventory.coverage` 为 `complete`、`incomplete` 或 `unverified`；先从剧本、分镜与实际提示词分别清点匿名人物、场景、道具和声音，再逐项记录。`assets` 的类型为 `character`、`scene`、`prop`、`voice` 或 `other`，状态为 `approved`、`missing`、`unverified` 或 `rejected`；批准必须有版本及可追溯证据。空清单或 `complete` 只是录入声明，不证明人物提取完整或资产真实合格。
 - `binding.scheme` 仅在真实运行节点采用逐文件 `<Picture N>`、`<Video N>`、`<Audio N>` 且附件顺序已知时填 `h3_explicit`，否则填 `opaque` 并人工核对模型适配器。附件按该运行时每种媒体的实际编号顺序填写；不得假定首尾帧、配对音频和参考素材在所有 H3 节点中的接法相同。
 - `prompt_format` 为可选字段：缺省或 `narrative` 表示自然语言格式（如六模块编译结果）；`context_ir` 表示实际提示词采用 [context-ir-format.md](context-ir-format.md) 的官方六段结构；`h3_base` 表示实际提示词采用 [h3-base-format.md](h3-base-format.md) 的官方基础模式三字段结构。填 `context_ir` 或 `h3_base` 时脚本对 `prompt` 运行对应结构校验并把结果并入 findings；`h3_base` 还必须填 `h3_mode`（`t2va`/`i2va`/`fl2va`/`l2va`），缺省或非法值即阻断。`<Subject N>` 是语义标签不是附件，附件绑定仍只核对 `<Picture>`、`<Video>`、`<Audio>`。结构通过不证明语义或画面合格。
+- 含对白的 H3 提示词还要运行 `scripts/dialogue_preflight.py --input <实际提示词.txt>`，按 [H3 台词修正门](h3-dialogue-preflight.md) 检查 `<d>[语言] 原文</d>`、说话人 ID、`says`、省略号、表演说明位置和多人同镜。台词格式 `BLOCK` 与提示词结构 `BLOCK` 同等处理，必须先修后提交。
 - `max_by_kind` 是当前模型、模式和运行节点已核实的上限，不是全平台默认值；可对 `image`、`video`、`audio`、`other` 填非负整数或 `null`。未知上限必须保持未验证，超限不能默默截断。`capacity_evidence` 记录依据。
 - 附件 `path` 为真实本地文件的绝对路径，不可读取时填 `null`。`sha256` 是预期投送版本，`review.sha256` 是批准记录绑定的版本，两者须对应实际文件字节；`review.status` 为 `approved`、`unverified` 或 `rejected`，`evidence` 指向实际审核记录。声明“已审核”不代替查看记录和图片；一张关键帧内包含多个人，也不自动证明各人物资产齐全。
 
