@@ -1,5 +1,11 @@
 # Release notes
 
+## Source update — 2026-11-16 / dialogue-design
+
+- Add `dialogue-design` as a screenplay-family package for scene/line-scope dialogue design: dialogue as action, subtext with observable clues, character voice differentiation, on-the-nose/expository-line repair, short-drama line economy, platform-risk replacements, and per-line delivery fields for downstream dubbing handoff. It preserves author text, does not own episode structure or director diagnosis, does not lock voice assets, and generates no media.
+- The source tree now holds 24 regular and 3 experimental packages, 27 modules, with 54 bilingual guides. `dialogue-design` installs from source only; no release archive contains it.
+- Evidence: repository tests, validators, package build and smoke install are required for this change. No real-task screenplay revision, dubbing handoff or user-acceptance evidence exists yet.
+
 ## Source update — 2026-11-13 / sound assets and character sheet
 
 - Add `sound-asset` as the fourth asset package: character voice casting, voice source, a reference sample set and performance baseline, plus reusable ambience beds, signature effects and music themes. Reference use, cloning, upload, paid generation and commercial delivery are separate authorizations; only user listening approves a sample.
@@ -9,7 +15,7 @@
 - Add `model-select` as the model-selection package: route by deliverable (stills, single-shot video, multi-reference identity, segmented long takes, character voice, music), name the cases where a route must not be used, keep one generation source per scene and one voice source per character, and record a reproducible choice (model identifier, adapter, steps, cfg, canvas, frame count, seed). It supplies no model, account, credit or deployment, and treats unverified capability as unavailable. Renamed from the earlier local `model-routing`; the published package is machine-neutral and carries no project cast mapping.
 - Add a long-series delivery contract to `short-drama-develop`: platform scale is recorded as `platform_profile` parameters (episode and word minimums, per-episode budget, template, serialization mode) rather than a creative rule; the first-episode, first-three-episodes and whole-series gates get observable criteria and repair routes; audience comes before genre and payoff; and twelve rejection patterns from returned drafts are listed as checks. Numbers are defaults that follow the current platform document, not fixed law.
 - Add a pre-submission text checklist to `short-drama-write`: an AI-assistance boundary table (what may be delegated, what stays with the author), the name-removal dialogue test, one-information-once, placeholder and repeated-line cleanup, cross-episode text accidents, and delivery completeness.
-- The source tree now holds 23 regular and 3 experimental packages, 26 modules, with 52 bilingual guides. `sound-asset`, `short-drama-develop`, `short-drama-write` and `model-select` install from source; no release archive contains them.
+- The source tree now holds 24 regular and 3 experimental packages, 27 modules, with 54 bilingual guides. `sound-asset`, `short-drama-develop`, `short-drama-write` and `model-select` install from source; no release archive contains them.
 - Evidence: repository tests, validators, package build and a smoke install passed. No voice sample, character sheet or long-series screenplay was produced and reviewed with these rules, and no real-task or user-acceptance evidence exists for these changes.
 
 ## Storyboard 5.8.6 — 2026-10-18

@@ -2842,6 +2842,59 @@
       }
     },
     {
+      "name": "dialogue-design",
+      "family": "screenplay",
+      "status": "packaged",
+      "status_label": {
+        "en": "New source package; structural checks and self-tests only. No real-task evidence or user acceptance yet.",
+        "zh-CN": "新增源码包；仅完成结构检查与自测，尚无实战证据或用户接受。"
+      },
+      "title": {
+        "en": "dialogue-design — line text and delivery contract",
+        "zh-CN": "dialogue-design｜台词文本与演绎交接"
+      },
+      "purpose": {
+        "en": "Design or revise shootable, dub-ready, reviewable dialogue lines and per-line delivery fields while preserving author text and neighboring package boundaries.",
+        "zh-CN": "设计或改写可拍摄、可配音、可审核的台词与逐句演绎字段，保留作者原文与相邻包边界。"
+      },
+      "standalone": {
+        "en": "A dialogue-only rewrite, diagnosis, line table, delivery handoff, or risk-replacement note for the named scene or line range; it can run from a bare scene brief without the full episode package.",
+        "zh-CN": "对点名场景或句段的纯台词改写、诊断、逐句表、演绎交接或风险替换说明；可凭单场简报独立运行，不依赖整集包。"
+      },
+      "cannot": {
+        "en": "It does not own episode structure, director diagnosis, storyboards or media prompts, voice casting/listening approval, actual dubbing, mixing, media generation, or final acceptance.",
+        "zh-CN": "不拥有整集结构、导演诊断、分镜或媒体提示词，不做音色选角/审听批准、实际配音、混音、媒体生成或最终接受。"
+      },
+      "extra_principles": [
+        {
+          "en": "Dialogue is character action under pressure: write the literal action, target, strategy, objection, and subtext risk before polishing wording.",
+          "zh-CN": "台词是压力下的人物行动：先写字面行动、对象、策略、受阻与潜文本风险，再润色措辞。"
+        },
+        {
+          "en": "Short-drama lines stay short, land emotion on objects and actions, and mark hooks or paid-card points as suggestions without changing accepted story facts.",
+          "zh-CN": "短剧台词保持短，把情绪落在物件与动作上；钩子或付费卡点只标建议，不改已接受剧情事实。"
+        }
+      ],
+      "extra_review": [
+        {
+          "en": "Every line names who speaks to whom, what action it attempts, how it is blocked, and what observable clue lets the audience infer subtext.",
+          "zh-CN": "每句台词都写明谁对谁说、试图造成什么行动、如何受阻，以及观众可观察的潜台词线索。"
+        },
+        {
+          "en": "The speaker-cover test and speaker-swap test pass; no line explains action already played, leaks required information through interruption, or locks a voice asset.",
+          "zh-CN": "遮名测试与交换说话者测试通过；无句复述已演动作、借打断泄漏必需信息，或锁定音色资产。"
+        }
+      ],
+      "download": {
+        "state": "source_only",
+        "source_install": "docs/INSTALLATION.md",
+        "note": {
+          "en": "No release snapshot yet; install from the current source tree. Apache-2.0 license retained in package LICENSE.",
+          "zh-CN": "尚无发布快照；从当前源码树安装。Apache-2.0 许可保留在包内 LICENSE。"
+        }
+      }
+    },
+    {
       "name": "ai-short-drama-production",
       "family": "short-drama",
       "status": "packaged",

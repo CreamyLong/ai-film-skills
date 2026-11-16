@@ -1,0 +1,4 @@
+interface:
+  display_name: "台词设计"
+  short_description: "设计或改写可表演、可配音、可审核的中文台词，输出逐句演绎交接字段。"
+  default_prompt: "使用 $dialogue-design 设计或定点改写这段对白，输出替换正文、逐句表、演绎交接与风险说明。"

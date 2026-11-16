@@ -2,7 +2,7 @@
 
 当前分镜源码为 **5.8.6**：以5.7.7为基础，保留摄影、光色、打戏和空间规则，加入FCML离线机制与起中终画框比较。当前版本通过仓库源码安装；v1.4.0归档仍冻结为5.7.2，不能用旧归档代表现行源码。
 
-**本仓库26个源码包：23项常规＋3项实验；52份英文/简体中文指南。** 此页列出每包实际用途、源码版本和直接文件入口，GitHub仓库首页是[README](README.md)。
+**本仓库27个源码包：24项常规＋3项实验；54份英文/简体中文指南。** 此页列出每包实际用途、源码版本和直接文件入口，GitHub仓库首页是[README](README.md)。
 
 [完整工作流](docs/WORKFLOW.md) · [全部双语指南](docs/skills/INDEX.md) · [安装](docs/INSTALLATION.md) · [原创版权与商用](COMMERCIAL_USE.md)
 
@@ -25,6 +25,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 | 技能 / 职责 | 逐项用途 | 当前源码版本 | 分发 | 入口 |
 |---|---|---|---|---|
 | `director-agent`<br/>编剧与导演 | 写作、改稿、对白与人物因果诊断；导演方案和条件式AI执行剧本 | — | 常规 | [运行正文](skills/director-agent/SKILL.md) · [中文说明](docs/skills/zh-CN/director-agent.md) · [EN](docs/skills/en/director-agent.md) · [v1.4.0历史 ZIP](https://github.com/62656456/ai-film-skills/releases/download/v1.4.0/director-agent.zip) |
+| `dialogue-design`<br/>台词设计 | 场景/句段级台词改写、潜台词诊断、人物腔调、去 AI 味、平台风险替换与逐句演绎交接 | — | 常规；新增源码包，实战待验 | [运行正文](skills/dialogue-design/SKILL.md) · [中文说明](docs/skills/zh-CN/dialogue-design.md) · [EN](docs/skills/en/dialogue-design.md) · 源码安装 |
 | `ai-storyboard-director`<br/>分镜与摄影 | 设计起中终观看画框、摄影和六模块提示词；按需查询FCML并保存恢复选中决定 | 5.8.6 | 常规 | [运行正文](skills/ai-storyboard-director/SKILL.md) · [中文说明](docs/skills/zh-CN/ai-storyboard-director.md) · [EN](docs/skills/en/ai-storyboard-director.md) · [5.8.6 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/ai-storyboard-director.zip) |
 | `short-drama-develop`<br/>短剧开发 | 点子、小说、粗纲或多集草稿→创作简报、故事引擎、系列弧与分集地图 | — | 常规；新增源码包，实战待验 | [运行正文](skills/short-drama-develop/SKILL.md) · [中文说明](docs/skills/zh-CN/short-drama-develop.md) · [EN](docs/skills/en/short-drama-develop.md) · 源码安装 |
 | `short-drama-write`<br/>短剧剧本 | 按已定故事引擎与分集地图写完整单集 Markdown 剧本，含场景因果、对白、声音事实与节拍时长 | — | 常规；新增源码包，实战待验 | [运行正文](skills/short-drama-write/SKILL.md) · [中文说明](docs/skills/zh-CN/short-drama-write.md) · [EN](docs/skills/en/short-drama-write.md) · 源码安装 |
@@ -111,7 +112,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 
 [xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director)只提供上游链接，不再分发其源码或ZIP；上游尚无已核实再分发许可。十种视觉路线为八项常规类型、实验硬科幻和外部仙侠。
 
-本仓库26包＝25项影视＋1项网页辅助；另计外部仙侠后，完整工作流是26项影视职责＋1项网页辅助。外部项不计入26包或52份指南。
+本仓库27包＝25项影视＋1项网页辅助；另计外部仙侠后，完整工作流是26项影视职责＋1项网页辅助。外部项不计入26包或54份指南。
 
 ## 实际证据与返修
 

@@ -65,9 +65,9 @@ flowchart TB
 
 分镜入口在明确作品目录内保存导演意图、已选镜头、进入/退出状态和来源哈希，并恢复当前场所需知识。保存与恢复、明确几何检查、设计语义审阅、用户审美和真实视频效果分别验证。程序不自动评判好不好看，也不能强制所有聊天入口执行。
 
-## 25项影视职责与1项网页辅助
+## 26项影视职责与1项网页辅助
 
-计数口径：本仓库分发 **23项常规＋3项实验＝26个模块**，其中24项用于影视、1项用于网页。工作流另列外部仙侠技能，因此是 **25项影视职责＋1项网页辅助**；外部仙侠不计入本仓库26个模块、52份双语指南或ZIP。
+计数口径：本仓库分发 **24项常规＋3项实验＝27个模块**，其中25项用于影视、1项用于网页。工作流另列外部仙侠技能，因此是 **26项影视职责＋1项网页辅助**；外部仙侠不计入本仓库27个模块、54份双语指南或ZIP。
 
 | # | Skill | 职责与交付 | 分发/使用边界 |
 |---|---|---|---|
@@ -75,28 +75,29 @@ flowchart TB
 | 2 | [ai-storyboard-director](skills/zh-CN/ai-storyboard-director.md) | 5.8.6分镜、观看画框与摄影、FCML按需检索、分阶段提示词、作品内保存与恢复 | 当前源码5.8.6；媒体与用户审美状态另列，[5.8.6发布](https://github.com/62656456/ai-film-skills/releases/tag/ai-storyboard-director-v5.8.6)与当前分镜源码一致；v1.4.0仍冻结为5.7.2 |
 | 3 | [short-drama-develop](skills/zh-CN/short-drama-develop.md) | 点子、小说或多集草稿→创作简报、故事引擎、系列弧与分集地图 | 新增源码包；题材卡只做内部校准；多集逐字节索引续跑；实战待验 |
 | 4 | [short-drama-write](skills/zh-CN/short-drama-write.md) | 按故事引擎与分集地图写完整单集剧本：场景因果、对白、声音事实、节拍与时长 | 新增源码包；按集批量续写；实战待验 |
-| 5 | [character-asset](skills/zh-CN/character-asset.md) | 人物主参考、必要视图、身份和状态合同 | 按请求交提示词或实际图；用户审阅后锁定 |
-| 6 | [scene-asset](skills/zh-CN/scene-asset.md) | 场景结构、空间锚点、光源与必要参考图 | 不因换机位重建场景 |
-| 7 | [prop-asset](skills/zh-CN/prop-asset.md) | 道具结构、材质、比例和状态参考 | 单图不自动扩成多格；保留真实塑料、新物和设计发光 |
-| 8 | [sound-asset](skills/zh-CN/sound-asset.md) | 角色音色、环境声底、标志音效与音乐主题的设计、样音任务和声音合同 | 按请求交设计或实际样音；克隆、上传与付费各自授权；用户审听后锁定 |
-| 9 | [cyberpunk-design](skills/zh-CN/cyberpunk-design.md) | 技术与人的关系、功能光、空间层级 | 不强制雨夜、霓虹或湿地 |
-| 10 | [epic-design](skills/zh-CN/epic-design.md) | 群体、地形、建筑和人物代价形成尺度 | 不只靠巨物和广角 |
-| 11 | [fantasy-design](skills/zh-CN/fantasy-design.md) | 世界规则、魔法目标与环境反馈 | 奇幻效果仍有具体作用 |
-| 12 | [horror-design](skills/zh-CN/horror-design.md) | 威胁、异常证据、显露与空间不安 | 不依靠死黑或血腥 |
-| 13 | [noir-design](skills/zh-CN/noir-design.md) | 秘密、犯罪、关系压力和明暗信息 | 不等于黑白滤镜 |
-| 14 | [romance-design](skills/zh-CN/romance-design.md) | 距离、视线、动作与关系变化 | 不强制粉色、暖光或拥抱 |
-| 15 | [war-design](skills/zh-CN/war-design.md) | 战争光色空间、军事人物装备、场景道具、战斗与小队画面、图像提示词及实际审查 | 完整剧本与逐镜编排仍按相应阶段处理 |
-| 16 | [wuxia-design](skills/zh-CN/wuxia-design.md) | 兵器、步法、支撑、接触与东方空间 | 静态交叉不证明动态攻防通过 |
-| 17 | [hard-sci-fi-visual-director](skills/zh-CN/hard-sci-fi-visual-director.md) | 物理、功能、制造、环境及原创硬科幻视觉 | 本仓库实验包；有用户接受图例，未证明所有任务稳定 |
-| 18 | [xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director) | 东方仙侠世界、天宫巨构与写实摄影 | 外部上游；无已核实再分发许可，不复制源码或打包 |
-| 19 | [whitebox-previs-executor](skills/zh-CN/whitebox-previs-executor.md) | 提示词到可播放3D基础预演 | 实验包；人形和已实现代理，打斗必须逐动作过门 |
-| 20 | [produce-ai-video](skills/zh-CN/produce-ai-video.md) | 统筹实际生成、选片、剪辑、声音、完整看片与修复 | 需要实际工具、模型与相应权限；不内置免费模型 |
-| 21 | [ai-short-drama-production](skills/zh-CN/ai-short-drama-production.md) | 短剧节拍、资产、调度、光线、动作与QC控制合同 | 独立合同按请求交分镜或提示词；实片效果待验，宿主启用需实际安装确认 |
-| 22 | [d-official-market-analysis](skills/zh-CN/d-official-market-analysis.md) | 选题与平台研究、来源、数据、结论与独立待批准记录 | 按需研究；报告不授权知识写入 |
-| 23 | [d-data-analysis-semantic-layer](skills/zh-CN/d-data-analysis-semantic-layer.md) | 用户批准后校验、版本化写入与回读 | 目标和批准来自当前任务；已存知识仍检查时效 |
-| 24 | [film-production-orchestrator](skills/zh-CN/film-production-orchestrator.md) | 统一创作入口、任务路径、前置资产、专业交接与问题分诊，跟踪当前终点 | 可独立规划；实际调度依赖宿主与可用角色/工具，不内置模型或生成授权 |
-| 25 | [guofeng-visual-director](skills/zh-CN/guofeng-visual-director.md) | 古风文化、空间、人物器物、构图光色与完整图像提示词 | 候选实验包；不自动视为历史准确还原 |
-| 26 | [model-select](skills/zh-CN/model-select.md) | 按产物选生成模型、参数与回退顺序，写明不要用的情况与一致性红线 | 新增源码包；清单随环境变化，未实测能力按不可用 |
+| 5 | [dialogue-design](skills/zh-CN/dialogue-design.md) | 场景/句段级台词改写、潜台词诊断、人物腔调、去 AI 味、平台风险替换与逐句演绎交接 | 新增源码包；不改剧情结构，不锁定音色；实战待验 |
+| 6 | [character-asset](skills/zh-CN/character-asset.md) | 人物主参考、必要视图、身份和状态合同 | 按请求交提示词或实际图；用户审阅后锁定 |
+| 7 | [scene-asset](skills/zh-CN/scene-asset.md) | 场景结构、空间锚点、光源与必要参考图 | 不因换机位重建场景 |
+| 8 | [prop-asset](skills/zh-CN/prop-asset.md) | 道具结构、材质、比例和状态参考 | 单图不自动扩成多格；保留真实塑料、新物和设计发光 |
+| 9 | [sound-asset](skills/zh-CN/sound-asset.md) | 角色音色、环境声底、标志音效与音乐主题的设计、样音任务和声音合同 | 按请求交设计或实际样音；克隆、上传与付费各自授权；用户审听后锁定 |
+| 10 | [cyberpunk-design](skills/zh-CN/cyberpunk-design.md) | 技术与人的关系、功能光、空间层级 | 不强制雨夜、霓虹或湿地 |
+| 11 | [epic-design](skills/zh-CN/epic-design.md) | 群体、地形、建筑和人物代价形成尺度 | 不只靠巨物和广角 |
+| 12 | [fantasy-design](skills/zh-CN/fantasy-design.md) | 世界规则、魔法目标与环境反馈 | 奇幻效果仍有具体作用 |
+| 13 | [horror-design](skills/zh-CN/horror-design.md) | 威胁、异常证据、显露与空间不安 | 不依靠死黑或血腥 |
+| 14 | [noir-design](skills/zh-CN/noir-design.md) | 秘密、犯罪、关系压力和明暗信息 | 不等于黑白滤镜 |
+| 15 | [romance-design](skills/zh-CN/romance-design.md) | 距离、视线、动作与关系变化 | 不强制粉色、暖光或拥抱 |
+| 16 | [war-design](skills/zh-CN/war-design.md) | 战争光色空间、军事人物装备、场景道具、战斗与小队画面、图像提示词及实际审查 | 完整剧本与逐镜编排仍按相应阶段处理 |
+| 17 | [wuxia-design](skills/zh-CN/wuxia-design.md) | 兵器、步法、支撑、接触与东方空间 | 静态交叉不证明动态攻防通过 |
+| 18 | [hard-sci-fi-visual-director](skills/zh-CN/hard-sci-fi-visual-director.md) | 物理、功能、制造、环境及原创硬科幻视觉 | 本仓库实验包；有用户接受图例，未证明所有任务稳定 |
+| 19 | [xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director) | 东方仙侠世界、天宫巨构与写实摄影 | 外部上游；无已核实再分发许可，不复制源码或打包 |
+| 20 | [whitebox-previs-executor](skills/zh-CN/whitebox-previs-executor.md) | 提示词到可播放3D基础预演 | 实验包；人形和已实现代理，打斗必须逐动作过门 |
+| 21 | [produce-ai-video](skills/zh-CN/produce-ai-video.md) | 统筹实际生成、选片、剪辑、声音、完整看片与修复 | 需要实际工具、模型与相应权限；不内置免费模型 |
+| 22 | [ai-short-drama-production](skills/zh-CN/ai-short-drama-production.md) | 短剧节拍、资产、调度、光线、动作与QC控制合同 | 独立合同按请求交分镜或提示词；实片效果待验，宿主启用需实际安装确认 |
+| 23 | [d-official-market-analysis](skills/zh-CN/d-official-market-analysis.md) | 选题与平台研究、来源、数据、结论与独立待批准记录 | 按需研究；报告不授权知识写入 |
+| 24 | [d-data-analysis-semantic-layer](skills/zh-CN/d-data-analysis-semantic-layer.md) | 用户批准后校验、版本化写入与回读 | 目标和批准来自当前任务；已存知识仍检查时效 |
+| 25 | [film-production-orchestrator](skills/zh-CN/film-production-orchestrator.md) | 统一创作入口、任务路径、前置资产、专业交接与问题分诊，跟踪当前终点 | 可独立规划；实际调度依赖宿主与可用角色/工具，不内置模型或生成授权 |
+| 26 | [guofeng-visual-director](skills/zh-CN/guofeng-visual-director.md) | 古风文化、空间、人物器物、构图光色与完整图像提示词 | 候选实验包；不自动视为历史准确还原 |
+| 27 | [model-select](skills/zh-CN/model-select.md) | 按产物选生成模型、参数与回退顺序，写明不要用的情况与一致性红线 | 新增源码包；清单随环境变化，未实测能力按不可用 |
 | 辅助 | [web-design-director](skills/zh-CN/web-design-director.md) | 作品站、资产库、工作台和网页展示 | 只用于明确网页或应用界面任务；仓库README维护不触发建站 |
 
 十一种视觉路线＝八项常规类型＋实验硬科幻＋外部仙侠＋古风候选。选择取决于作品，不要求一次加载十一项，也不把风格名变成统一色表或固定镜头。
