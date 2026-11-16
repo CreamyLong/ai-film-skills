@@ -2673,6 +2673,10 @@
         {
           "en": "Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.",
           "zh-CN": "每次视频模型提交的内容、依赖、审核与结果均登记到生产台账；发送前预留，未知结果先核对再决定是否重提，上游文件或审核变化时使下游失效。"
+        },
+        {
+          "en": "Activate the MiniMax H3 TimelineDirector path whenever the requested duration exceeds one 4-15 second generation, the sequence has multiple shots or multiple locked characters, reference/locked audio is used, or a long-form episode needs segment overlap or merge. Use the planner-to-finite-sampler pair, per-segment prompts/images/audio, contiguous frames and timeline_plan_check; do not compile the whole sequence as one base prompt.",
+          "zh-CN": "目标时长超过单次 4–15 秒生成、含多镜或多角色身份锁定、使用参考/锁定音频、或长视频需要分段重叠与合并时，必须启用 MiniMax H3 TimelineDirector 路径：规划台到有限分段采样、逐段提示词/图片/音频、连续帧并运行 timeline_plan_check；不得把整段任务写成一条基础提示词。"
         }
       ],
       "extra_review": [

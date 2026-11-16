@@ -55,6 +55,7 @@ A full production and validation contract; with the required host tools and perm
 13. Run mechanical media QC (streams, duration, resolution, frame rate, black and frozen frames, audio level and loudness, subtitle cue coverage, contact-sheet evidence) on every generated segment and the assembled cut; measurements are evidence, not approval.
 14. Assemble and deliver through a derived EDL, seam verification, subtitle-to-dialogue coverage, loudness and spec checks, and a delivery manifest; every failure returns to the earliest owning layer.
 15. Register every video-model submission, its dependencies, reviews and outcome in the production ledger; reserve before sending, reconcile unknown outcomes before any resubmission, and invalidate downstream items when an upstream file or review changes.
+16. Activate the MiniMax H3 TimelineDirector path whenever the requested duration exceeds one 4-15 second generation, the sequence has multiple shots or multiple locked characters, reference/locked audio is used, or a long-form episode needs segment overlap or merge. Use the planner-to-finite-sampler pair, per-segment prompts/images/audio, contiguous frames and timeline_plan_check; do not compile the whole sequence as one base prompt.
 
 <!-- contract:returns -->
 ## 6. Return, rework, and rollback
