@@ -41,6 +41,7 @@
 2. 从实际宿主能力解析角色，在权限内启动就绪任务，核返回产物和证据，失败回最早责任层并恢复受影响下游；缺调度能力时明确交阻断任务包，不模拟执行。
 3. 创作模式选择任务型路径并主动发现资产和工具前置；分诊模式复述证据并定位最早缺陷层；直接阶段请求跳过无关规划。
 4. 在现有项目记录保存任务依赖和审核状态，只恢复已核输入；费用边界、缺权限、未知提交或无法审阅的交付物使相关动作停止。
+5. 任何图片、视频、音频或配音分派前读取项目 production-gate.json；缺文件或未通过即阻断媒体执行，纯文本工作可在 ready_for_text 下继续。
 
 <!-- contract:returns -->
 ## 6. 退回、重做与版本回滚
@@ -52,6 +53,7 @@
 
 - [ ] 每次交接核真实输入、版本、所需审核、费用与返回证据；媒体结论需实际观看/试听，输入变化使相关任务失效，未知提交先对账再重试。
 - [ ] 分诊只是假设，直到负责角色核对实际材料；会改变剧情、成本或权限的未知项须返回用户决定。
+- [ ] 项目门只有真实证据路径与所需批准才能通过；任务接受或已生成文件不能覆盖 blocked 项目门。
 
 <!-- contract:pass -->
 ## 8. 过关标准与状态
@@ -90,7 +92,12 @@
 
 - [`references/creation-workflows.md`](../../../skills/film-production-orchestrator/references/creation-workflows.md)
 - [`references/orchestration-loop.md`](../../../skills/film-production-orchestrator/references/orchestration-loop.md)
+- [`references/production-readiness-gate.md`](../../../skills/film-production-orchestrator/references/production-readiness-gate.md)
 - [`references/routing-cases.md`](../../../skills/film-production-orchestrator/references/routing-cases.md)
+
+**其他随包文件**
+
+- [`assets/production-gate.json`](../../../skills/film-production-orchestrator/assets/production-gate.json)
 
 **新构建 ZIP 的分发许可文件**
 

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "project": "<project-id>",
+  "episode_id": "<EP001-or-null-for-series>",
+  "requested_endpoint": "text",
+  "gate_status": "blocked",
+  "checks": {
+    "accepted_brief": {
+      "status": "pending",
+      "evidence": []
+    },
+    "accepted_rhythm_profile": {
+      "status": "pending",
+      "evidence": []
+    },
+    "storyboard": {
+      "status": "pending",
+      "evidence": []
+    },
+    "shot_list": {
+      "status": "pending",
+      "evidence": []
+    },
+    "character_assets": {
+      "status": "pending",
+      "evidence": []
+    },
+    "scene_assets": {
+      "status": "pending",
+      "evidence": []
+    },
+    "prop_assets": {
+      "status": "pending",
+      "evidence": []
+    },
+    "sound_assets": {
+      "status": "pending",
+      "evidence": []
+    },
+    "voice_samples_approved": {
+      "status": "pending",
+      "evidence": []
+    },
+    "model_route": {
+      "status": "pending",
+      "evidence": []
+    },
+    "cost_preview_confirmed": {
+      "status": "pending",
+      "evidence": []
+    },
+    "generation_authorized": {
+      "status": "pending",
+      "evidence": []
+    }
+  },
+  "not_applicable": [],
+  "blockers": [
+    "<why generation is blocked; name owner and next task>"
+  ],
+  "last_updated": "<ISO-8601>"
+}

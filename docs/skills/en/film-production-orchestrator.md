@@ -41,6 +41,7 @@ Task-specific briefs, prerequisite/asset checks, workflow and resumable handoff 
 2. Resolve roles from actually available host capabilities, dispatch ready tasks within permission, inspect returned artifacts and evidence, route failures to their earliest owner and resume affected downstream work. Missing delegation returns explicit blocked task packages, not simulated execution.
 3. Creation mode selects a task-specific workflow and proactively discovers asset and tool prerequisites; triage mode restates evidence and locates the earliest defect layer. Direct stage requests skip unnecessary planning.
 4. Keep task dependencies and review states in the existing project record, resume only verified inputs, and stop for bounded spend, missing authority, unknown submission outcomes or uninspectable deliverables.
+5. Before any image, video, audio or dubbing dispatch, read the project's production-gate.json; a missing or non-passing gate blocks media execution, while text-only work may continue under ready_for_text.
 
 <!-- contract:returns -->
 ## 6. Return, rework, and rollback
@@ -52,6 +53,7 @@ Task-specific briefs, prerequisite/asset checks, workflow and resumable handoff 
 
 - [ ] Check real inputs, versions, required reviews, spend and returned evidence after every handoff. Media claims need actual viewing/listening; input changes stale affected tasks, and unknown submissions are reconciled before retry.
 - [ ] A routing decision is a hypothesis until the owning role checks the actual material; unknowns that change story, cost or permissions return to the user.
+- [ ] A project gate passes only with real evidence paths and required approvals; task acceptance or an existing generated file cannot override a blocked project gate.
 
 <!-- contract:pass -->
 ## 8. Pass standard and states
@@ -90,7 +92,12 @@ Task-specific briefs, prerequisite/asset checks, workflow and resumable handoff 
 
 - [`references/creation-workflows.md`](../../../skills/film-production-orchestrator/references/creation-workflows.md)
 - [`references/orchestration-loop.md`](../../../skills/film-production-orchestrator/references/orchestration-loop.md)
+- [`references/production-readiness-gate.md`](../../../skills/film-production-orchestrator/references/production-readiness-gate.md)
 - [`references/routing-cases.md`](../../../skills/film-production-orchestrator/references/routing-cases.md)
+
+**Other packaged files**
+
+- [`assets/production-gate.json`](../../../skills/film-production-orchestrator/assets/production-gate.json)
 
 **Distribution notices in new ZIP builds**
 

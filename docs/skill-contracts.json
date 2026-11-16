@@ -2726,12 +2726,20 @@
         {
           "en": "Keep task dependencies and review states in the existing project record, resume only verified inputs, and stop for bounded spend, missing authority, unknown submission outcomes or uninspectable deliverables.",
           "zh-CN": "在现有项目记录保存任务依赖和审核状态，只恢复已核输入；费用边界、缺权限、未知提交或无法审阅的交付物使相关动作停止。"
+        },
+        {
+          "en": "Before any image, video, audio or dubbing dispatch, read the project's production-gate.json; a missing or non-passing gate blocks media execution, while text-only work may continue under ready_for_text.",
+          "zh-CN": "任何图片、视频、音频或配音分派前读取项目 production-gate.json；缺文件或未通过即阻断媒体执行，纯文本工作可在 ready_for_text 下继续。"
         }
       ],
       "extra_review": [
         {
           "en": "A routing decision is a hypothesis until the owning role checks the actual material; unknowns that change story, cost or permissions return to the user.",
           "zh-CN": "分诊只是假设，直到负责角色核对实际材料；会改变剧情、成本或权限的未知项须返回用户决定。"
+        },
+        {
+          "en": "A project gate passes only with real evidence paths and required approvals; task acceptance or an existing generated file cannot override a blocked project gate.",
+          "zh-CN": "项目门只有真实证据路径与所需批准才能通过；任务接受或已生成文件不能覆盖 blocked 项目门。"
         }
       ]
     },

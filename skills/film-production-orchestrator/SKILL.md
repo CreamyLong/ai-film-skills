@@ -33,10 +33,14 @@ Do not treat "which Skill?", maintenance, an example film, accepting a creative 
 1. Recover the actual project, supplied sources, requested endpoint, valid approvals and existing progress. Separate facts, assumptions, unknowns and user locks; reuse unchanged work.
 2. Identify the task type and acceptance criteria. Make ordinary creative/production choices through the owning role; ask only when a missing choice materially changes meaning, brand/product truth, locked structure, rights, publication or spend.
 3. Check actual input-reading, image/video/audio, editing, playback and delegation capabilities. Resolve role codes using the host's actually discovered capabilities; do not invent available tools or installed Skills.
-4. Form only the required tasks, dependencies, asset needs and review gates. Detect people, spaces, products/props, voices, music and historical/state variants; reconcile source, design and actual submission inventories.
+4. Form only the required tasks, dependencies, asset needs and review gates. Detect people, spaces, products/props, voices, music and historical/state variants; reconcile source, design and actual submission inventories. For any image, video, audio or dubbing endpoint, read the project's production readiness gate before planning dispatch.
 5. Dispatch ready tasks through supported host mechanisms within authorization. Do not stop at a routing table when execution is available and requested. If dispatch is unavailable, return executable task packages and the exact blocked capability; standalone planning still works, but no downstream work is claimed.
 6. Inspect returned artifacts, versions, scope and review evidence; use an authorized reviewer with real playback/inspection when required. Mark unverified content honestly. Send defects to their earliest owner, recheck affected dependencies and continue until the endpoint or a concrete blocker/stop limit.
 7. Deliver the requested artifact first, then actual validation state, residual issues and next decision if blocked. A finished-film request requires the actual assembled media; task packages, prompts and QC reports cannot substitute.
+
+### Production readiness gate
+
+Before dispatching any image, video, audio or dubbing task, read the project's `项目开发/production-gate.json` (or the project-state path declared in the task package) and apply [the readiness gate](references/production-readiness-gate.md). Template: [production-gate.json](assets/production-gate.json). A missing gate, an incomplete check, or any `pending`/`fail` check blocks dispatch. `ready_for_text` allows only text deliverables; `ready_for_generation` is required for media execution. Route missing checks to their owning roles; never create a fake `pass` or use "regenerate" to bypass missing assets, storyboard, sound, cost or authorization.
 
 ### Sound asset gate
 
@@ -55,7 +59,7 @@ These are responsibilities, not claims that an implementation is installed. The 
 | PROP_ASSET | prop form, structure, material, handling and state |
 | SOUND_ASSET | character voice casting, voice source, reference samples and rights; reusable ambience beds, signature effects and music themes |
 | GENRE_VISUAL | genre-specific visual language applied to existing story, assets and shots |
-| PRODUCTION_CONTROL | task-specific brief and acceptance, source/asset inventory, continuity, versions, budget/rights/change records |
+| PRODUCTION_CONTROL | task-specific brief and acceptance, source/asset inventory, continuity, versions, budget/rights/change records, production-gate status and evidence |
 | VIDEO_PRODUCTION | actual generation, selection, editing, dubbing and mix using approved sound assets, playback review and repair |
 | MARKET_RESEARCH | market questions answered from verifiable official sources |
 | KNOWLEDGE_REVIEW | review and versioned writing of approved knowledge |
