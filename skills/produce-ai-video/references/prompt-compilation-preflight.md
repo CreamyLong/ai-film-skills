@@ -10,6 +10,19 @@
 
 特别注意“操作死者手部”：法医的手可以有操作动作，不代表法医的脸可见；死者的状态和手部焦点不能被另一位活人的表演模板覆盖。必须直接检查实际编译后的文本及其参考图片，不以标签齐全证明语义正确。
 
+## H3 实测失败模式
+
+以下问题在 20 集短剧生产里反复出现，编译时必须主动规避：
+
+- **可读文字不要交给 H3**：证件、标签、登记簿、小票、屏幕、车牌、照片正反面一律用静帧或后期文字板。模型会生成伪字，步数越高反而越容易把伪字写“清楚”。
+- **手持照片必须指定朝向**：写“照片面朝下 / 背对镜头 / 只看到空白背面”，否则模型会自创一张倾斜、换人、穿西装的肖像，并与已锁定的道具图冲突。
+- **取景写死头肩**：对白和反应镜写 `head and shoulders fully inside frame, camera at eye level, no torso-only framing`；只写“medium close-up”会切头或只拍躯干。
+- **负向“不笑”无效**：模型会忽略 `does not smile`。改用正向状态：`mouth tense, jaw set, eyes wide, afraid`，并检查实际帧。
+- **背对、手部、道具特写用 8 步**：4 步会出现后脑黑斑、发际碎裂、手指粘连、衣料网格；8 步显著改善，但更慢。
+- **参考图不是越多越好**：每张参考图都参与采样；3–4 张加 `ref_image_size=max` 会明显变慢。只给当前段真正需要的身份、场景、道具。
+- **屏幕与反光面**：显示器、手机、车窗容易产生摩尔纹和伪 UI。让屏幕背对镜头、只留冷光，或直接切静帧。
+- **同一条连续动作才用多段**：真正的换机位/换场分别生成；不要用 0 重叠把独立镜头拼进一次执行，接缝会在表演、光位与方向上同时断开。
+
 ## 提交记录
 
 由执行者从当前源材料、资产清单、审批记录和**将要提交的实际模型请求**整理 JSON。下例路径和哈希是占位符，不能用于提交：
@@ -69,7 +82,7 @@
 - `asset_inventory.coverage` 为 `complete`、`incomplete` 或 `unverified`；先从剧本、分镜与实际提示词分别清点匿名人物、场景、道具和声音，再逐项记录。`assets` 的类型为 `character`、`scene`、`prop`、`voice` 或 `other`，状态为 `approved`、`missing`、`unverified` 或 `rejected`；批准必须有版本及可追溯证据。空清单或 `complete` 只是录入声明，不证明人物提取完整或资产真实合格。
 - `binding.scheme` 仅在真实运行节点采用逐文件 `<Picture N>`、`<Video N>`、`<Audio N>` 且附件顺序已知时填 `h3_explicit`，否则填 `opaque` 并人工核对模型适配器。附件按该运行时每种媒体的实际编号顺序填写；不得假定首尾帧、配对音频和参考素材在所有 H3 节点中的接法相同。
 - `prompt_format` 为可选字段：缺省或 `narrative` 表示自然语言格式（如六模块编译结果）；`context_ir` 表示实际提示词采用 [context-ir-format.md](context-ir-format.md) 的官方六段结构；`h3_base` 表示实际提示词采用 [h3-base-format.md](h3-base-format.md) 的官方基础模式三字段结构。填 `context_ir` 或 `h3_base` 时脚本对 `prompt` 运行对应结构校验并把结果并入 findings；`h3_base` 还必须填 `h3_mode`（`t2va`/`i2va`/`fl2va`/`l2va`），缺省或非法值即阻断。`<Subject N>` 是语义标签不是附件，附件绑定仍只核对 `<Picture>`、`<Video>`、`<Audio>`。结构通过不证明语义或画面合格。
-- 目标时长超过单次 H3 生成、含多镜/多角色/参考音频/长视频时，按 [h3-timeline-director.md](h3-timeline-director.md) 的强制触发条件编译 `segmentConfig`，并对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`；不能把整段任务写成一条 base prompt 后用“后期拼接”代替分段计划。
+- 目标时长超过单次 H3 生成、含多镜/多角色/参考音频/长视频时，按 [h3-timeline-director.md](h3-timeline-director.md) 的强制触发条件编译 `segmentConfig`，并对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`；不能把整段任务写成一条 base prompt 后用“后期拼接”代替分段计划。多段只用于同一条连续动作的拆分，使用正重叠；真正的换机位/换场分别生成，按 [transition-causality.md](transition-causality.md) 设计切点，不用 0 重叠把独立镜头拼成一组。
 - `max_by_kind` 是当前模型、模式和运行节点已核实的上限，不是全平台默认值；可对 `image`、`video`、`audio`、`other` 填非负整数或 `null`。未知上限必须保持未验证，超限不能默默截断。`capacity_evidence` 记录依据。
 - 附件 `path` 为真实本地文件的绝对路径，不可读取时填 `null`。`sha256` 是预期投送版本，`review.sha256` 是批准记录绑定的版本，两者须对应实际文件字节；`review.status` 为 `approved`、`unverified` 或 `rejected`，`evidence` 指向实际审核记录。声明“已审核”不代替查看记录和图片；一张关键帧内包含多个人，也不自动证明各人物资产齐全。
 
