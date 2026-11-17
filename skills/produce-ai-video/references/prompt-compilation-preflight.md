@@ -18,6 +18,7 @@
 - **手持照片必须指定朝向**：写“照片面朝下 / 背对镜头 / 只看到空白背面”，否则模型会自创一张倾斜、换人、穿西装的肖像，并与已锁定的道具图冲突。
 - **取景写死头肩**：对白和反应镜写 `Tight close-up, chin to hairline; only the collar is visible at the bottom edge`；只写“medium close-up”会切头或只拍躯干。景别句必须与画面内容一致：删掉会把别的人物或交通工具拉进画面的叙述（如 `stops his e-bike`、`sees X waiting`），否则模型会用全景交代这些信息，直接破坏单人紧景。
 - **负向道具/人物提及会“召唤”它们**：不要写 `no envelope`、`no phone`、`hands out of frame`、`the other character is off-camera` 这类排除句。H3 会把被否定的物件当画面元素生成，实测把信封、手机、另一角色都画了进来。改用纯正向限定：只描述画面里确实存在的东西，把景别收到 `chin to hairline`，不提该道具/人物。
+- **制服与屏幕会被反向提示召唤**：写 `badge, shoulder boards outside frame` 会把便装角色画成警服；写“打开档案系统/看显示器”会把可读伪 UI、窗口边框甚至任务栏画进画面。便装角色只正向写服装本身（`dark navy zip jacket over a dark shirt`），办公室戏尽量不让屏幕入画，信息交给静帧插入。
 - **负向“不笑”无效**：模型会忽略 `does not smile`。改用正向状态：`mouth tense, jaw set, eyes wide, afraid`，并检查实际帧。
 - **烧录字幕是随机故障**：H3 会把台词烧成中英双语字幕，位置在画面下三分之一；与台词长短、道具、景别没有稳定相关，同一提示词换 seed 重跑可能消失。出现即整镜重跑，不能用裁剪或涂抹“修”，除非字幕稳定落在可安全裁掉的衣料区。字幕里还会出现英文错译和拼写错误（如 `ins hand`），不能当成片交付。提示词里的技术规格和制作标签也会被烧成文字：实测 `vertical 9:16, 24fps` 被写成画面底部的白色横幅，`Speaker ID: Qiu Jianmin = (S1)` 被写成 `Speaker ID: Jianmin ...` 的字幕条；景别和画幅由采样器参数决定，正文只写可见内容，不写 `9:16`、`24fps`、分辨率等规格。
 - **背对、手部、道具特写用 8 步**：4 步会出现后脑黑斑、发际碎裂、手指粘连、衣料网格；8 步显著改善，但更慢。
