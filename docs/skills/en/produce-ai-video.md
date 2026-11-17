@@ -134,6 +134,7 @@ A full production and validation contract; with the required host tools and perm
 - [`references/spatial-consistency-ledger.md`](../../../skills/produce-ai-video/references/spatial-consistency-ledger.md)
 - [`references/storyboard-prompt-compiler.md`](../../../skills/produce-ai-video/references/storyboard-prompt-compiler.md)
 - [`references/submission-preflight.md`](../../../skills/produce-ai-video/references/submission-preflight.md)
+- [`references/transition-causality.md`](../../../skills/produce-ai-video/references/transition-causality.md)
 
 **Deterministic helpers**
 

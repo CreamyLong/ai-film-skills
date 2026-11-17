@@ -134,6 +134,7 @@
 - [`references/spatial-consistency-ledger.md`](../../../skills/produce-ai-video/references/spatial-consistency-ledger.md)
 - [`references/storyboard-prompt-compiler.md`](../../../skills/produce-ai-video/references/storyboard-prompt-compiler.md)
 - [`references/submission-preflight.md`](../../../skills/produce-ai-video/references/submission-preflight.md)
+- [`references/transition-causality.md`](../../../skills/produce-ai-video/references/transition-causality.md)
 
 **确定性辅助脚本**
 
