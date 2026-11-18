@@ -117,6 +117,7 @@
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
 - [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
+- [`references/ffmpeg-assembly-toolkit.md`](../../../skills/produce-ai-video/references/ffmpeg-assembly-toolkit.md)
 - [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
 - [`references/h3-timeline-director.md`](../../../skills/produce-ai-video/references/h3-timeline-director.md)
@@ -139,6 +140,7 @@
 **确定性辅助脚本**
 
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
+- [`scripts/ffmpeg_conform_check.py`](../../../skills/produce-ai-video/scripts/ffmpeg_conform_check.py)
 - [`scripts/h3_base_check.py`](../../../skills/produce-ai-video/scripts/h3_base_check.py)
 - [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
