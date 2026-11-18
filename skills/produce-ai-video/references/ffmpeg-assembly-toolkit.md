@@ -135,7 +135,7 @@ ffmpeg -y -i in.mp4 \
 | 电平/峰值 | `volumedetect` | 均值、峰值在目标范围 |
 | 响度 | `loudnorm`/`ebur128` | integrated LUFS、true peak |
 | 切点 | 抽帧 + 波形 | 硬切无叠影、无爆音、无重复对白 |
-| 字幕 | 抽帧/OCR | 无模型自创字幕，位置不遮脸 |
+| 字幕 | `caption_frame_qc.py` 抽帧 + 人工看联系表 | 报告默认 `review_required`；`media_qc.py --caption-report --require-caption-review` 才把该门计入交付；无模型自创字幕，位置不遮脸 |
 
 机械检查只证明“文件没坏”，不证明表演、构图、混音平衡或观众接受。
 

@@ -133,12 +133,13 @@ def _srt_seconds(value):
 def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
           expect_dialogue=False, srt_text=None, dialogue=None,
           loudness_range=DEFAULT_LUFS_RANGE, contact_sheet=None,
+          caption_report=None, require_caption_review=False,
           runner=_run):
     """Return the QC report. ``runner`` is injectable for tests."""
     findings = []
     checks = {name: {"status": "not_applicable"} for name in
               ("probe", "black_frames", "frozen_frames", "audio_volume", "loudness",
-               "subtitles", "contact_sheet")}
+               "subtitles", "caption_review", "contact_sheet")}
 
     def add(code, severity, location, advice):
         findings.append({"code": code, "severity": severity,
@@ -285,6 +286,32 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
                 add("SUBTITLE_DIALOGUE_MISSING", "block", text[:30],
                     "Every planned spoken line needs a matching subtitle cue.")
 
+    if caption_report:
+        checks["caption_review"] = {"status": "unverified"}
+        try:
+            caption = json.loads(Path(caption_report).read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            add("CAPTION_REVIEW_UNREADABLE", "block", str(caption_report),
+                f"Generate a readable caption review report first: {exc}")
+        else:
+            status = str(caption.get("status") or "").lower()
+            issues = caption.get("issues") or []
+            sheet = caption.get("contact_sheet")
+            if status in ("reviewed", "pass", "completed") and not issues:
+                checks["caption_review"] = {"status": "completed",
+                                            "contact_sheet": sheet}
+            else:
+                add("CAPTION_REVIEW_REQUIRED", "review", str(caption_report),
+                    "Inspect the contact sheet, record issues, then set status=reviewed; "
+                    "text burned into the frame is not approved by a mechanical QC pass.")
+    elif require_caption_review:
+        add("CAPTION_REVIEW_MISSING", "block", str(path),
+            "A burned-in text review is required for this route; run caption_frame_qc.py, "
+            "inspect it, and pass --caption-report.")
+        checks["caption_review"] = {"status": "unverified"}
+    else:
+        checks["caption_review"] = {"status": "not_performed"}
+
     artifacts = {}
     if contact_sheet:
         out_path = str(contact_sheet)
@@ -323,6 +350,10 @@ def main(argv=None):
                         help="JSON list of {\"text\": ...} expected lines")
     parser.add_argument("--loudness", default=None, help="min,max LUFS range")
     parser.add_argument("--contact-sheet", type=Path, default=None)
+    parser.add_argument("--caption-report", type=Path, default=None,
+                        help="caption_frame_qc.py report; must be set to reviewed with no issues")
+    parser.add_argument("--require-caption-review", action="store_true",
+                        help="block when no caption review report is supplied")
     args = parser.parse_args(argv)
 
     size = None
@@ -358,7 +389,9 @@ def main(argv=None):
                    expect_size=size, expect_fps=args.expect_fps,
                    expect_dialogue=args.expect_dialogue, srt_text=srt_text,
                    dialogue=dialogue, loudness_range=loudness,
-                   contact_sheet=args.contact_sheet)
+                   contact_sheet=args.contact_sheet,
+                   caption_report=args.caption_report,
+                   require_caption_review=args.require_caption_review)
     print(json.dumps(result, ensure_ascii=False))
     return 1 if result["status"] in ("BLOCK", "INVALID_INPUT") else 2
 

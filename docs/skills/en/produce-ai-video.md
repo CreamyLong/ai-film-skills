@@ -140,6 +140,8 @@ A full production and validation contract; with the required host tools and perm
 
 **Deterministic helpers**
 
+- [`scripts/caption_frame_qc.py`](../../../skills/produce-ai-video/scripts/caption_frame_qc.py)
+- [`scripts/caption_preflight.py`](../../../skills/produce-ai-video/scripts/caption_preflight.py)
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
 - [`scripts/ffmpeg_conform_check.py`](../../../skills/produce-ai-video/scripts/ffmpeg_conform_check.py)
 - [`scripts/generation_asset_gc.py`](../../../skills/produce-ai-video/scripts/generation_asset_gc.py)

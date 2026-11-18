@@ -156,6 +156,23 @@ class MediaQcTests(unittest.TestCase):
         report = qc.audit(str(self.media), runner=fake_runner(**outputs))
         self.assertEqual(report["checks"]["loudness"]["status"], "not_applicable")
 
+    def test_caption_review_can_block_or_be_recorded(self):
+        runner = fake_runner(**CLEAN)
+        report = qc.audit(str(self.media), runner=runner, require_caption_review=True)
+        self.assertEqual(report["status"], "BLOCK")
+        self.assertIn("CAPTION_REVIEW_MISSING", codes(report))
+        path = Path(self.tmp.name) / "caption.json"
+        path.write_text(json.dumps({"status": "reviewed", "issues": [],
+                                    "contact_sheet": "sheet.jpg"}), encoding="utf-8")
+        report = qc.audit(str(self.media), runner=runner, caption_report=path,
+                          require_caption_review=True)
+        self.assertEqual(report["checks"]["caption_review"]["status"], "completed")
+        self.assertNotIn("CAPTION_REVIEW_MISSING", codes(report))
+        path.write_text(json.dumps({"status": "review_required",
+                                    "contact_sheet": "sheet.jpg"}), encoding="utf-8")
+        report = qc.audit(str(self.media), runner=runner, caption_report=path)
+        self.assertIn("CAPTION_REVIEW_REQUIRED", codes(report))
+
     def test_unknown_required_fps_and_duration_block(self):
         outputs = {**CLEAN, "-show_streams": (0, probe_json(duration="N/A", fps="0/0"), "")}
         report = qc.audit(str(self.media), expect_duration=8, expect_fps=24,
