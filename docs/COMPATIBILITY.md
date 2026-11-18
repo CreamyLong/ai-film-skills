@@ -52,4 +52,4 @@ The historical compatibility review distinguished Claude Code from an ambiguous 
 - [WorkBuddy Skills](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market)
 - [Trint product information](https://trint.com/how-to-trint)
 
-See [Installation](INSTALLATION.md) for source versus historical-release choices. Report actual host versions and reproducible outcomes through [Issues](https://github.com/62656456/ai-film-skills/issues).
+See [Installation](INSTALLATION.md) for source versus historical-release choices. Report actual host versions and reproducible outcomes through [Issues](https://github.com/CreamyLong/ai-film-skills/issues).

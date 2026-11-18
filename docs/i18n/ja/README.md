@@ -38,7 +38,7 @@
 ## ソースからインストール
 
 ```bash
-git clone https://github.com/62656456/ai-film-skills.git
+git clone https://github.com/CreamyLong/ai-film-skills.git
 cd ai-film-skills
 git log -1 --oneline
 python scripts/install_skill.py ai-storyboard-director --platform codex
@@ -52,4 +52,4 @@ python scripts/install_skill.py ai-storyboard-director --platform codex
 
 構図、光、素材、色は場面ごとに選択し、夕景、浅い被写界深度、ネオンを必須にはしません。白箱プレビューは実装済みの主体と個別に合格した動作に限られ、任意の長い格闘を保証しません。5.6の状態チェックは美的判断の代わりにはなりません。
 
-[設計・確認原則](../../SKILL_DESIGN_SYSTEM.md) · [公開範囲](../../../PUBLICATION_SCOPE.md) · [Apache License 2.0](../../../LICENSE) · [フィードバック](https://github.com/62656456/ai-film-skills/issues)
+[設計・確認原則](../../SKILL_DESIGN_SYSTEM.md) · [公開範囲](../../../PUBLICATION_SCOPE.md) · [Apache License 2.0](../../../LICENSE) · [フィードバック](https://github.com/CreamyLong/ai-film-skills/issues)

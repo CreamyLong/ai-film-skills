@@ -38,7 +38,7 @@
 ## 소스 설치
 
 ```bash
-git clone https://github.com/62656456/ai-film-skills.git
+git clone https://github.com/CreamyLong/ai-film-skills.git
 cd ai-film-skills
 git log -1 --oneline
 python scripts/install_skill.py ai-storyboard-director --platform codex
@@ -52,4 +52,4 @@ python scripts/install_skill.py ai-storyboard-director --platform codex
 
 구도·빛·재질·색은 장면에 맞게 선택합니다. 황금 시간대, 얕은 심도, 네온은 필수가 아닙니다. 화이트박스 프리뷰는 구현된 대상과 개별 검증 동작에 한정되며 임의의 긴 전투를 보장하지 않습니다.5.6 상태 검사는 미적 판단을 대신하지 않습니다.
 
-[설계·검수 원칙](../../SKILL_DESIGN_SYSTEM.md) · [공개 범위](../../../PUBLICATION_SCOPE.md) · [Apache License 2.0](../../../LICENSE) · [피드백](https://github.com/62656456/ai-film-skills/issues)
+[설계·검수 원칙](../../SKILL_DESIGN_SYSTEM.md) · [공개 범위](../../../PUBLICATION_SCOPE.md) · [Apache License 2.0](../../../LICENSE) · [피드백](https://github.com/CreamyLong/ai-film-skills/issues)

@@ -6,6 +6,8 @@ If you do not know which Skill to choose, install `film-production-orchestrator`
 
 ## Choose a snapshot
 
+> **Repository identity:** current source and install commands use `CreamyLong/ai-film-skills`. Release tags, ZIP downloads and old GitHub Pages remain on the archived `62656456/ai-film-skills` repository until they are migrated; a release link is not the current source location.
+
 Current source and the [ai-storyboard-director-v5.8.6 release](https://github.com/62656456/ai-film-skills/releases/tag/ai-storyboard-director-v5.8.6) contain **Storyboard Director 5.8.6**, including task-driven optics and the revised six-module prompt. The video/short-drama prompt handoffs use the same order. Install that release or current source; frozen v1.4.0 archives still contain 5.7.2.
 
 
@@ -22,7 +24,7 @@ A source update or local ZIP build is not a GitHub Release publication. The new 
 ## Install from a clone
 
 ```bash
-git clone https://github.com/62656456/ai-film-skills.git
+git clone https://github.com/CreamyLong/ai-film-skills.git
 cd ai-film-skills
 git log -1 --oneline
 python scripts/install_skill.py --list
@@ -71,8 +73,8 @@ For manual installation, copy each selected complete module folder into the host
 The open [Skills CLI](https://github.com/vercel-labs/skills) can discover a public repository:
 
 ```bash
-npx --yes skills@latest add 62656456/ai-film-skills --list
-npx --yes skills@latest add 62656456/ai-film-skills --skill ai-storyboard-director --agent codex --copy --yes
+npx --yes skills@latest add CreamyLong/ai-film-skills --list
+npx --yes skills@latest add CreamyLong/ai-film-skills --skill ai-storyboard-director --agent codex --copy --yes
 ```
 
 The recorded CLI 1.5.23 verification covered the older 18-regular-module discovery and six-file 5.4.4 copy. It is historical evidence, not a fresh 5.6/20-module host test. See [CLI evidence](../examples/skills-cli-install-verification.md) and [historical directory-index evidence](../examples/skills-sh-index-verification.md). Installation counts include maintainer tests and are not distinct external-user adoption.

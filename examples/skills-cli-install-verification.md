@@ -2,6 +2,8 @@
 
 This record verifies repository discovery and a bounded file-copy route. It does not claim that every Agent host loaded the Skill natively or produced identical model behavior.
 
+> **Historical record**: this verification ran against the former repository name `62656456/ai-film-skills` on 2026-09-01. The current source and install commands are `CreamyLong/ai-film-skills`; the old name below is retained only as recorded evidence.
+
 ## Environment
 
 - Date: 2026-09-01

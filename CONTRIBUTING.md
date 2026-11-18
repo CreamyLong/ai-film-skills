@@ -61,4 +61,4 @@ When adding a host, link its official documentation and classify it as one of:
 
 Do not describe an instructions-only fallback as native integration. Do not revive anything listed as retired in [SKILL_CATALOG.md](SKILL_CATALOG.md) without an explicit new decision and new validation evidence.
 
-Use [GitHub Discussions](https://github.com/62656456/ai-film-skills/discussions), [GitHub Issues](https://github.com/62656456/ai-film-skills/issues), or [haldissita@gmail.com](mailto:haldissita@gmail.com) for proposals.
+Use [GitHub Discussions](https://github.com/CreamyLong/ai-film-skills/discussions), [GitHub Issues](https://github.com/CreamyLong/ai-film-skills/issues), or [haldissita@gmail.com](mailto:haldissita@gmail.com) for proposals.

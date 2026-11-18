@@ -15,7 +15,7 @@
 ![Regular packages](https://img.shields.io/badge/regular_packages-23-FF6B35?style=flat-square)
 ![Experimental packages](https://img.shields.io/badge/experimental_packages-3-D6A756?style=flat-square)
 ![Bilingual guides](https://img.shields.io/badge/bilingual_guides-52-7ED6A5?style=flat-square)
-[![Validate Skills](https://github.com/62656456/ai-film-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/62656456/ai-film-skills/actions/workflows/validate.yml)
+[![Validate Skills](https://github.com/CreamyLong/ai-film-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/CreamyLong/ai-film-skills/actions/workflows/validate.yml)
 [![skills.sh](https://skills.sh/b/62656456/ai-film-skills)](https://skills.sh/62656456/ai-film-skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-5B8CFF?style=flat-square)](LICENSE)
 
@@ -424,10 +424,12 @@ https://github.com/user-attachments/assets/fef933aa-eee3-40b9-8930-feb019b4e507
 
 ## 安装与调用：先选一个当前需要的技能
 
+> **仓库身份**：当前源码、安装命令、Issues、Discussions 和 Actions 统一使用 `CreamyLong/ai-film-skills`。`62656456/ai-film-skills` 只保留历史 Release 资产、旧 GitHub Pages 与 skills.sh 目录，作为归档链接；不要用旧仓库安装当前源码。
+
 ### 安装当前源码
 
 ```bash
-git clone https://github.com/62656456/ai-film-skills.git
+git clone https://github.com/CreamyLong/ai-film-skills.git
 cd ai-film-skills
 python scripts/install_skill.py --list
 python scripts/install_skill.py director-agent --platform codex
@@ -442,8 +444,8 @@ python scripts/install_skill.py hard-sci-fi-visual-director --platform codex --e
 也可以使用 Skills CLI 发现仓库中的技能：
 
 ```bash
-npx --yes skills@latest add 62656456/ai-film-skills --list
-npx --yes skills@latest add 62656456/ai-film-skills --skill ai-storyboard-director --agent codex --copy --yes
+npx --yes skills@latest add CreamyLong/ai-film-skills --list
+npx --yes skills@latest add CreamyLong/ai-film-skills --skill ai-storyboard-director --agent codex --copy --yes
 ```
 
 [完整安装说明](docs/INSTALLATION.md) · [宿主兼容与实际验证范围](docs/COMPATIBILITY.md) · [52份中英指南](docs/skills/INDEX.md)
@@ -494,7 +496,7 @@ npx --yes skills@latest add 62656456/ai-film-skills --skill ai-storyboard-direct
 
 常规与实验是分发类别。安装成功、文字成立、媒体执行和用户接受分别记录；市场分析保留来源和日期，知识写入需要明确批准。短剧控制包的实际视频效果尚待验证；FCML机制库的实际模型效果未由程序检查替代。白模需要兼容运行环境，新打斗规格不能借用旧动作门的通过状态。
 
-[研究总览](docs/RESEARCH.md) · [共同审核逻辑](docs/SKILL_DESIGN_SYSTEM.md) · [历史CLI验证](examples/skills-cli-install-verification.md) · [skills.sh目录](https://skills.sh/62656456/ai-film-skills)
+[研究总览](docs/RESEARCH.md) · [共同审核逻辑](docs/SKILL_DESIGN_SYSTEM.md) · [历史CLI验证](examples/skills-cli-install-verification.md) · [skills.sh目录（旧归档）](https://skills.sh/62656456/ai-film-skills)
 
 <a id="english-overview"></a>
 
@@ -510,7 +512,7 @@ Choose a Skill by the task and deliverable listed above. Existing approved decis
 
 原创技能、脚本、文档、提示词和明确授权的原创示例按仓库许可及各自来源说明使用。第三方参考和外部上游保留各自许可与范围；私人项目、账户凭证和本机状态不进入公开资料。
 
-[Apache License 2.0](LICENSE) · [原创版权与商用](COMMERCIAL_USE.md) · [第三方说明](THIRD_PARTY_NOTICES.md) · [公开范围](PUBLICATION_SCOPE.md) · [贡献说明](CONTRIBUTING.md) · [安全反馈](SECURITY.md) · [讨论](https://github.com/62656456/ai-film-skills/discussions) · [问题反馈](https://github.com/62656456/ai-film-skills/issues)
+[Apache License 2.0](LICENSE) · [原创版权与商用](COMMERCIAL_USE.md) · [第三方说明](THIRD_PARTY_NOTICES.md) · [公开范围](PUBLICATION_SCOPE.md) · [贡献说明](CONTRIBUTING.md) · [安全反馈](SECURITY.md) · [讨论](https://github.com/CreamyLong/ai-film-skills/discussions) · [问题反馈](https://github.com/CreamyLong/ai-film-skills/issues)
 
 <a id="updates"></a>
 

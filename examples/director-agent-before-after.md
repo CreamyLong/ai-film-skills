@@ -226,4 +226,4 @@ They lift together.
 | Prop function | Receipt changes knowledge; money/key change options; clock recovery changes the physical result |
 | Anti-neatness pass | The siblings do not fully reconcile or explain the theme; they resume a shared physical task |
 
-No independent cold reader was used. This record is therefore **SELF-AUDIT ONLY**. It demonstrates a bounded author-run forward test and remains open to external critique in the [Showcase discussion](https://github.com/62656456/ai-film-skills/discussions/7).
+No independent cold reader was used. This record is therefore **SELF-AUDIT ONLY**. It demonstrates a bounded author-run forward test and remains open to external critique in the [Showcase discussion](https://github.com/CreamyLong/ai-film-skills/discussions/7).

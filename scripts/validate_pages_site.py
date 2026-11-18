@@ -241,10 +241,10 @@ def main() -> int:
                 errors.append(f"Pages broken relative asset: {value}")
 
     required_html = (
-        "npx --yes skills@latest add 62656456/ai-film-skills --list",
+        "npx --yes skills@latest add CreamyLong/ai-film-skills --list",
         "SELF-AUDIT",
         "https://skills.sh/62656456/ai-film-skills",
-        "https://github.com/62656456/ai-film-skills/discussions/7",
+        "https://github.com/CreamyLong/ai-film-skills/discussions/7",
     )
     for term in required_html:
         if term not in html:

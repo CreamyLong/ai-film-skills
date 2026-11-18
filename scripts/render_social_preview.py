@@ -79,7 +79,7 @@ def render(output: Path, font_dir: Path | None) -> None:
         box = draw.textbbox((0, 0), label, font=font(15, True, font_dir))
         draw.text((x - (box[2] - box[0]) / 2, 486), label, fill=COLORS["paper"], font=font(15, True, font_dir))
 
-    draw.text((64, 570), "github.com/62656456/ai-film-skills", fill="#7F8C9B", font=font(15, False, font_dir))
+    draw.text((64, 570), "github.com/CreamyLong/ai-film-skills", fill="#7F8C9B", font=font(15, False, font_dir))
     footer = "APACHE-2.0  |  v1.3.0"
     footer_box = draw.textbbox((0, 0), footer, font=font(14, False, font_dir))
     draw.text((1216 - (footer_box[2] - footer_box[0]), 570), footer, fill="#7F8C9B", font=font(14, False, font_dir))

@@ -1,6 +1,6 @@
 # Open Film Skills
 
-Repository: https://github.com/62656456/ai-film-skills
+Repository: https://github.com/CreamyLong/ai-film-skills
 
 Purpose: reusable, standalone Skills for AI film writing, directing, asset definition, visual language, storyboard design, production, web design, and source-backed research.
 

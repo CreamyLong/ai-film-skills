@@ -57,7 +57,7 @@
 ### 安装与使用
 
 ```bash
-git clone https://github.com/62656456/ai-film-skills.git
+git clone https://github.com/CreamyLong/ai-film-skills.git
 cd ai-film-skills
 git log -1 --oneline
 python scripts/install_skill.py --list

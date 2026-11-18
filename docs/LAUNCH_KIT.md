@@ -11,7 +11,7 @@ Use these messages only with the linked public evidence. Do not add model-succes
 ## Lowest-friction verified discovery
 
 ```bash
-npx --yes skills@latest add 62656456/ai-film-skills --list
+npx --yes skills@latest add CreamyLong/ai-film-skills --list
 ```
 
 This route was verified with `skills` 1.5.23. It discovers the regular modules under `skills/`; the isolated experiment remains outside default discovery.
@@ -26,7 +26,7 @@ Open Film Skills v1.3.0 is a public toolkit of 19 standalone Agent Skills for sc
 
 See the verified eight-second text example and install one Skill without adopting the entire toolkit:
 
-https://github.com/62656456/ai-film-skills
+https://github.com/CreamyLong/ai-film-skills
 
 Structural validation and packaging passed. Video-model execution and user visual acceptance remain separate evidence states.
 
@@ -38,7 +38,7 @@ Structural validation and packaging passed. Video-model execution and user visua
 
 仓库提供一个经过文字行为回归的 8 秒修表案例，也允许只安装一个 Skill，不必整套使用：
 
-https://github.com/62656456/ai-film-skills
+https://github.com/CreamyLong/ai-film-skills
 
 结构、独立包和打包已经验证；真实视频模型执行与用户审美验收仍单独记录。
 
@@ -48,13 +48,13 @@ https://github.com/62656456/ai-film-skills
 
 ## Evidence links
 
-- Repository: https://github.com/62656456/ai-film-skills
+- Repository: https://github.com/CreamyLong/ai-film-skills
 - Website: https://62656456.github.io/ai-film-skills/
 - Local media evidence: https://62656456.github.io/ai-film-skills/#media
-- Visual-language examples: https://github.com/62656456/ai-film-skills#explore-the-visual-language
-- Storyboard 5.4.4 example: https://github.com/62656456/ai-film-skills/blob/main/examples/storyboard-director-5.4.4-visible-camera-plan.md
-- Director Agent before/after: https://github.com/62656456/ai-film-skills/blob/main/examples/director-agent-before-after.md
-- Skill catalog: https://github.com/62656456/ai-film-skills/blob/main/SKILL_CATALOG.md
-- Installation: https://github.com/62656456/ai-film-skills/blob/main/docs/INSTALLATION.md
+- Visual-language examples: https://github.com/CreamyLong/ai-film-skills#explore-the-visual-language
+- Storyboard 5.4.4 example: https://github.com/CreamyLong/ai-film-skills/blob/main/examples/storyboard-director-5.4.4-visible-camera-plan.md
+- Director Agent before/after: https://github.com/CreamyLong/ai-film-skills/blob/main/examples/director-agent-before-after.md
+- Skill catalog: https://github.com/CreamyLong/ai-film-skills/blob/main/SKILL_CATALOG.md
+- Installation: https://github.com/CreamyLong/ai-film-skills/blob/main/docs/INSTALLATION.md
 - Skills directory: https://skills.sh/62656456/ai-film-skills
 - Release: https://github.com/62656456/ai-film-skills/releases/tag/v1.3.0
