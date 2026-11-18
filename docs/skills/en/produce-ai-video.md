@@ -115,6 +115,7 @@ A full production and validation contract; with the required host tools and perm
 
 - [`references/asset-retention-and-cleanup.md`](../../../skills/produce-ai-video/references/asset-retention-and-cleanup.md)
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
+- [`references/audio-route-ab.md`](../../../skills/produce-ai-video/references/audio-route-ab.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
 - [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
