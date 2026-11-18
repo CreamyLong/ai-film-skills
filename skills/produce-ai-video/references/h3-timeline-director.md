@@ -153,6 +153,13 @@ H3 单次推理只能出 4–15 秒（官方训练区间约 124–362 帧），�
 
 以上都不成立时才由 H3 生成声音。因此：**要用参考视频、同时要 H3 生成新对白或音效，把该视频片段设为 `hasAudio: false`，`videoAudioEnabled` 保持 true**。兼容导演台不做锁定，视频原声只作为配对的参考音频编号。
 
+`audioMode: "reference"` 与 `"locked"` 是两种不同注入方式，不要混用概念：
+
+- `reference` 把 WAV 编码成参考音频条件（`<Audio N>`），H3 仍生成新声音；音色受参考影响，但台词可能被模型改写或遗漏。
+- `locked` 把 WAV 编码后直接替换目标 AV latent 的音频流，音频 `noise_mask` 全为 0，音频分支不再去噪；视频分支继续生成并 attend 到这条固定音轨，最终音轨用原始 WAV 整轨替换。locked 不会修正 TTS 读错的词，只会原样保留。
+
+因此固定台词的正脸镜适合 locked，但必须先做 TTS 内容回读；reference 适合让 H3 自己表演，但仍要听辨台词是否说对、说全。单镜实测见 [audio-route-ab.md](audio-route-ab.md)。
+
 ## 8. 标签编号规则
 
 - `<Picture N>`：该段图片按顺序从 1 编号（未分段时用全局顺序）。
