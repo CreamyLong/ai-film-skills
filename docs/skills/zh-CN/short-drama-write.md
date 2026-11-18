@@ -99,6 +99,7 @@
 
 **引用资料**
 
+- [`references/adversarial-script-audit.md`](../../../skills/short-drama-write/references/adversarial-script-audit.md)
 - [`references/dialogue-craft.md`](../../../skills/short-drama-write/references/dialogue-craft.md)
 - [`references/production-format-dialect.md`](../../../skills/short-drama-write/references/production-format-dialect.md)
 - [`references/scene-handoff-capsule.md`](../../../skills/short-drama-write/references/scene-handoff-capsule.md)

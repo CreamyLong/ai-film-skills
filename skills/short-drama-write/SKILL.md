@@ -1,6 +1,6 @@
 ---
 name: short-drama-write
-description: 编写或修订可拍摄的中文短剧、漫剧单集 Markdown 剧本，也负责保留作者原文并规范化现成剧本。用户提出“写/改一集短剧”“把大纲写成剧本”“优化场景/对白”“去模板感”“去 AI 味润色”“续写下一集”“按分集地图批量写多集”或提供剧本要求进入后续制作时使用；不负责资产、分镜、媒体提示词或终审。
+description: 编写或修订可拍摄的中文短剧、漫剧单集 Markdown 剧本，也负责保留作者原文并规范化现成剧本。用户提出“写/改一集短剧”“把大纲写成剧本”“优化场景/对白”“去模板感”“去 AI 味润色”“续写下一集”“按分集地图批量写多集”“干聊断层”“谜语人台词”“无效微动作”“对抗式审稿”或提供剧本要求进入后续制作时使用；不负责资产、分镜、媒体提示词或终审。
 ---
 
 # 短剧写作
@@ -62,6 +62,7 @@ description: 编写或修订可拍摄的中文短剧、漫剧单集 Markdown 剧
 - 长单集跨上下文续写的最小交接：[场景交接摘要](references/scene-handoff-capsule.md)
 - 使用 `[VO]`、外化小说内心独白或落地痛点场景：[能演的不说](references/script-craft.md#44-能演的不说vo内心独白与痛点)
 - 交稿前自检、AI 使用边界、台词辨识度、模板与占位文本、文本事故、交付完整性：[文本自检](references/text-defect-checklist.md)
+- 干聊断层、谜语人/黑话未翻译、无效微动作、对抗式审稿十二问与只找雷报告：[对抗式剧本审稿](references/adversarial-script-audit.md)
 - `项目开发/project.json` 中 `creator_authority.rhythm_profile` 状态为 `accepted`：[项目节奏档案](references/script-craft.md#64-项目节奏档案)
 
 ## 时长估算（按需）

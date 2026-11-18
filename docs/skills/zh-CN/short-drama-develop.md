@@ -126,6 +126,7 @@
 - [`references/premise-devices.md`](../../../skills/short-drama-develop/references/premise-devices.md)
 - [`references/reveal-reversal-payoff.md`](../../../skills/short-drama-develop/references/reveal-reversal-payoff.md)
 - [`references/serial-character-and-memory.md`](../../../skills/short-drama-develop/references/serial-character-and-memory.md)
+- [`references/serial-rounds-and-payoff.md`](../../../skills/short-drama-develop/references/serial-rounds-and-payoff.md)
 - [`references/stage-contract.md`](../../../skills/short-drama-develop/references/stage-contract.md)
 - [`references/story-craft.md`](../../../skills/short-drama-develop/references/story-craft.md)
 
