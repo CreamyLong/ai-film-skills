@@ -151,6 +151,7 @@
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
 - [`scripts/quality_gate_check.py`](../../../skills/produce-ai-video/scripts/quality_gate_check.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
+- [`scripts/speech_route_check.py`](../../../skills/produce-ai-video/scripts/speech_route_check.py)
 - [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
 - [`scripts/timeline_plan_check.py`](../../../skills/produce-ai-video/scripts/timeline_plan_check.py)
 
