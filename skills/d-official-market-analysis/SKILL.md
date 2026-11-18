@@ -1,6 +1,6 @@
 ---
 name: d-official-market-analysis
-description: 基于可验证的官方和权威来源分析影视、微短剧、漫剧、AI影视、网络动画与剧情短视频市场。用于“调用D”“用D分析”、题材趋势、平台对比、指标解释、项目市场评估与完整市场研究；按本次问题确定范围与交付，不把单项咨询自动扩成全市场报告。
+description: 当用户说“调用D”“用D分析”“看一下这个题材有没有市场”时使用；基于可验证的官方和权威来源分析影视、微短剧、漫剧、AI影视、网络动画与剧情短视频市场。用于“调用D”“用D分析”、题材趋势、平台对比、指标解释、项目市场评估与完整市场研究；按本次问题确定范围与交付，不把单项咨询自动扩成全市场报告。 English triggers include film market analysis, genre trends, platform comparison.
 ---
 
 # D｜官方影视市场分析

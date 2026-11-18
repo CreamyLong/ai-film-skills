@@ -1,6 +1,6 @@
 ---
 name: film-production-orchestrator
-description: Unified entry for AI film creation and repair when the user does not know which Skill to choose. Turn a sentence, story, reference video, music or product material into a scoped workflow for short drama, TVC, promotional video, MV or product film. Plan prerequisites, coordinate available specialist roles through the host, inspect handoff evidence and continue to the requested deliverable. Also triage production defects. Text-only requests never authorize media generation; unavailable tools or delegation are reported, not simulated.
+description: 当用户说“不知道用哪个技能”“帮我做一部短剧/广告/MV”“这个项目怎么推进”时使用；Unified entry for AI film creation and repair when the user does not know which Skill to choose. Turn a sentence, story, reference video, music or product material into a scoped workflow for short drama, TVC, promotional video, MV or product film. Plan prerequisites, coordinate available specialist roles through the host, inspect handoff evidence and continue to the requested deliverable. Also triage production defects. Text-only requests never authorize media generation; unavailable tools or delegation are reported, not simulated.
 ---
 
 # Film Production Orchestrator | 影视创作总控

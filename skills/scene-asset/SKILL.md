@@ -1,6 +1,6 @@
 ---
 name: scene-asset
-description: >
+description: 当用户说“这个场景长什么样”“给我场景参考”“房间多角度”“场景机位设定”时使用；> English triggers include scene design, environment reference, location sheet, reverse angle.
   根据剧本设计电影场景的美术、构图、光色与氛围，常规场景默认主图加反打图；按用户需要扩展同空间多机位或九宫格，无指定画风时默认摄影写实。用于场景资产、环境图、房间多角度和场景机位设定；输出静态参考图任务说明与资产合同，
   本 Skill 独立完成静态参考图任务说明、空间锁定、审核字段、负向约束和可供后续制作直接读取的资产合同。
 ---

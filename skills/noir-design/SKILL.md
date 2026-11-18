@@ -1,6 +1,6 @@
 ---
 name: noir-design
-description: >
+description: 当用户要做黑色/犯罪风格的画面、图像/视频提示词或视觉诊断，或提到黑色、犯罪、悬疑、谍战、暗夜、侦探、黑帮时使用；用于明确需要此类型的画面设计、图像/视频提示词、视觉参数查询与诊断；保留摄影、光色、空间、动作、材质、连续性及 style_route/style_module 接口。 English triggers include noir, crime, thriller, detective, dark night.
   黑色类型视觉设计预设。触发词：黑色、犯罪、悬疑、谍战、暗夜、侦探、黑帮。用于明确需要此类型的画面设计、图像/视频提示词、视觉参数查询与诊断；保留摄影、光色、空间、动作、材质、连续性及 style_route/style_module 接口。
 ---
 

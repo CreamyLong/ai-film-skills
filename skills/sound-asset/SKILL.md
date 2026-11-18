@@ -1,6 +1,6 @@
 ---
 name: sound-asset
-description: >
+description: 当用户说“给这个角色选个声音”“配个音色”“试音”“做环境声/音效”时使用；> English triggers include voice casting, TTS voice, sound design, ambience.
   根据剧本、人物身份与空间设计可复用的声音资产：角色音色（选角、声线锚定、试音样音组与演绎基线）、环境声底、标志性音效和音乐主题。用于声音资产、音色、声线、配音选角、试音、角色声音、voice、TTS 音色、环境声、音效资产、音乐主题、sound asset；输出试音/样音任务说明与资产合同，
   本 Skill 独立完成样音任务说明、音色与声音锁定、权利记录、审听字段、排除约束和可供后续制作直接读取的资产合同。
 ---

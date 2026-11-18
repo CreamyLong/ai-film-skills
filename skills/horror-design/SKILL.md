@@ -1,6 +1,6 @@
 ---
 name: horror-design
-description: >
+description: 当用户要做恐怖风格的画面、图像/视频提示词或视觉诊断，或提到恐怖、鬼、怪物、惊悚、灵异、凶宅、丧尸时使用；用于明确需要此类型的画面设计、图像/视频提示词、视觉参数查询与诊断；保留摄影、光色、空间、动作、材质、连续性及 style_route/style_module 接口。 English triggers include horror, ghost, monster, haunted house, zombie.
   恐怖类型视觉设计预设。触发词：恐怖、鬼、怪物、惊悚、灵异、凶宅、丧尸。用于明确需要此类型的画面设计、图像/视频提示词、视觉参数查询与诊断；保留摄影、光色、空间、动作、材质、连续性及 style_route/style_module 接口。
 ---
 

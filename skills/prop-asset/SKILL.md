@@ -1,6 +1,6 @@
 ---
 name: prop-asset
-description: >
+description: 当用户说“设计这个道具”“道具设定图”“这个东西长什么样”时使用；> English triggers include prop design, prop sheet, item reference.
   根据剧情、使用方式与美术方向设计道具形制、结构、材质及多视角/关键细节设定图。用于道具设计、道具资产、道具设定图、道具细节图、prop、物品图；输出静态参考图任务说明与资产合同，
   本 Skill 独立完成静态参考图任务说明、资产锁定、审核字段、负向约束和可供后续制作直接读取的资产合同。
 ---
