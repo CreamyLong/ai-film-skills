@@ -113,6 +113,7 @@
 
 **引用资料**
 
+- [`references/asset-retention-and-cleanup.md`](../../../skills/produce-ai-video/references/asset-retention-and-cleanup.md)
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
@@ -141,6 +142,7 @@
 
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
 - [`scripts/ffmpeg_conform_check.py`](../../../skills/produce-ai-video/scripts/ffmpeg_conform_check.py)
+- [`scripts/generation_asset_gc.py`](../../../skills/produce-ai-video/scripts/generation_asset_gc.py)
 - [`scripts/h3_base_check.py`](../../../skills/produce-ai-video/scripts/h3_base_check.py)
 - [`scripts/media_qc.py`](../../../skills/produce-ai-video/scripts/media_qc.py)
 - [`scripts/production_state.py`](../../../skills/produce-ai-video/scripts/production_state.py)
