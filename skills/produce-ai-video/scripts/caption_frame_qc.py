@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Create review evidence for burned-in text/captions on a generated clip.
 
-This tool does not pass the clip and does not use OCR. It samples three frames,
-crops the middle/bottom bands where H3 usually burns text, and writes a contact
-sheet plus a JSON report whose default status is ``review_required``. A reviewer
-must inspect the sheet and change the report status to ``reviewed`` before the
-clip can pass a caption gate.
+This tool does not pass the clip and does not use OCR. It samples six frames,
+crops the lower 45% where H3 usually burns text, and writes a contact sheet plus
+a JSON report whose default status is ``review_required``. A reviewer must
+inspect the sheet and change the report status to ``reviewed`` before the clip
+can pass a caption gate. Three samples miss short captions that appear late in
+a clip, so six is the default; raise it with ``--samples`` for long clips.
 """
 from __future__ import annotations
 
@@ -57,10 +58,13 @@ def main(argv=None) -> int:
     parser.add_argument("--video", required=True, type=Path)
     parser.add_argument("--contact-sheet", type=Path, default=None)
     parser.add_argument("--report", type=Path, default=None)
+    parser.add_argument("--samples", type=int, default=6,
+                        help="number of evenly spaced frames to sample (default 6)")
     args = parser.parse_args(argv)
     try:
         duration = probe_duration(args.video)
-        times = [0.5, duration / 2, max(0.0, duration - 0.5)]
+        count = max(2, args.samples)
+        times = [min(duration - 0.05, duration * (i + 0.5) / count) for i in range(count)]
         sheet = args.contact_sheet or args.video.with_name(args.video.stem + "_caption_review.jpg")
         report_path = args.report or args.video.with_name(args.video.stem + "_caption_review.json")
         with tempfile.TemporaryDirectory(prefix="caption-qc-") as raw:
