@@ -72,6 +72,13 @@ class OrchestratorContractTests(unittest.TestCase):
             with self.subTest(term=term):
                 self.assertIn(term, text)
 
+    def test_watchability_routes_are_acyclic_and_name_owners(self):
+        text = (PACKAGE / "references/routing-cases.md").read_text()
+        for term in ("有向无环图", "台词轮播", "接招反应", "TTS", "交叉引用可以双向",
+                     "不新开环", "STORYBOARD：可看性诊断"):
+            with self.subTest(term=term):
+                self.assertIn(term, text)
+
 
 class OrchestratorInstallationTests(unittest.TestCase):
     def run_cli(self, *args):

@@ -133,6 +133,7 @@ Creative shot ideas, a readable storyboard or copy-ready prompts, according to t
 - [`references/reference-design-and-handoff.md`](../../../skills/ai-storyboard-director/references/reference-design-and-handoff.md)
 - [`references/shot-design-engine.md`](../../../skills/ai-storyboard-director/references/shot-design-engine.md)
 - [`references/shot-size-rhythm.md`](../../../skills/ai-storyboard-director/references/shot-size-rhythm.md)
+- [`references/watchability-repair.md`](../../../skills/ai-storyboard-director/references/watchability-repair.md)
 
 **Deterministic helpers**
 

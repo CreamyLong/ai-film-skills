@@ -10,6 +10,10 @@ Worked examples of symptom-to-role assignment. Each case names the observable sy
 | Character acts against established motive | Screenplay | DIRECTOR | Behavior, alternatives rejected, consequence |
 | Dialogue says one thing, scene needs another | Screenplay | DIRECTOR | Subtext, listener effect, character voice |
 | Audience cannot tell who controls the scene | Directing | DIRECTOR, then STORYBOARD | Power geometry, viewing order |
+| 每句台词切一次近景，连起来像台词轮播 | Storyboard | STORYBOARD：可看性诊断 | 按攻守单元并镜、只在权力/知情变化处切 |
+| 重话抛出后没有接招反应 | Directing or storyboard | DIRECTOR, then STORYBOARD | 听者完成一个可观察的策略/关系变化 |
+| 镜头时长均匀、没有重音，或全片同尺寸近景 | Storyboard | STORYBOARD：可看性诊断 | 主力景别、Hero Frames、重音换档有理由 |
+| TTS 每句都像读稿，重音和气口不承担戏 | Sound performance | SOUND_ASSET, then VIDEO_PRODUCTION | 逐句 pace/energy/emphasis/pause/delivery 字段与实际听感 |
 
 ## Assets
 
@@ -49,6 +53,13 @@ Worked examples of symptom-to-role assignment. Each case names the observable sy
 | Novel adaptation loses the causal spine | Source breakdown | DIRECTOR | Source spans against screenplay decisions |
 | Scenes are missing or assembled out of order | Ledger or editing | VIDEO_PRODUCTION | Scene order and completeness against the plan |
 | Market or genre question blocks a creative decision | Research | MARKET_RESEARCH, then DIRECTOR | Dated official sources, stated limits |
+
+## Routing topology
+
+- 路由是**有向无环图**：用户意图 → 总控/路由入口 → 最早责任角色 → 复核证据 → 下游。执行依赖不得成环；A 把任务交给 B 后，B 不能把同一决定再交回 A 形成回环。
+- 交叉引用可以双向，用于阅读导航；但“文档互链”不等于“技能会被自动加载”。命中首先取决于 frontmatter 的 `description` 触发词、明确职责和不适用边界。
+- 一个症状只设一个最早责任角色；后续角色是复核/执行，不是共同所有权。需要回退时回到最早责任层，不新开环。
+- 不用新增“万能 Skill”解决命中问题；优先把触发词、反例和路由行补进现有职责包。
 
 ## Not routing
 

@@ -1,6 +1,6 @@
 ---
 name: ai-storyboard-director
-description: 根据剧本与已定导演方案设计观看顺序、人物调度、电影摄影和剪辑，编写或修订分镜与视频提示词；支持创意镜头思路、打戏和运镜诊断。创意思路可单独交付或并列于主分镜，采用后才纳入；分镜、提示词与实际生成按当前阶段分别执行。
+description: 根据剧本与已定导演方案设计观看顺序、人物调度、电影摄影和剪辑，编写或修订分镜与视频提示词；支持创意镜头思路、打戏和运镜诊断。用于分镜设计、镜头节奏、景别、反应镜、Hero Frame、短剧连起来不好看、台词轮播、镜头碎或节奏平；创意思路可单独交付或并列于主分镜，采用后才纳入；分镜、提示词与实际生成按当前阶段分别执行。
 ---
 
 # AI Storyboard Director
@@ -36,6 +36,7 @@ description: 根据剧本与已定导演方案设计观看顺序、人物调度�
 |---|---|
 | 新设计分镜、重设计尚未锁定的拍法 | `references/shot-design-engine.md`；该文件包含普通设计所需核心 |
 | Scene shot-size rhythm, visual distribution, all-close-up sequences | `references/shot-size-rhythm.md`; optional working-size heuristic, never a required opening, alternation pattern or shot-size quota |
+| 连起来不好看：台词轮播、镜头碎、每句一近景、重话无反应、节奏均匀 | `references/watchability-repair.md`；先排除台词、资产、生成与声音问题，再按攻守单元、接招反应、主力景别与 Hero Frames 重写 |
 | 创意镜头思路、另给拍法或转场方案 | `references/creative-shot-ideas.md`；只为所选位置提供思路与取舍，不默认生成 |
 | 寻找更有力的视点、光学、复杂路径或注意力接力；明确要求院线/好莱坞摄影完成度 | `references/cinematography-design-engine.md`；按实际设计问题使用 |
 | 选择具体镜组、微距/探针/潜望、分焦、移轴或变焦等光学方案 | `references/optical-shot-selection.md`；按画面需要主动选型，保留专业名称及可见作用 |
