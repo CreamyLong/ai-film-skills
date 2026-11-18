@@ -104,6 +104,7 @@
 **引用资料**
 
 - [`references/anti-laziness-contract.md`](../../../skills/director-agent/references/anti-laziness-contract.md)
+- [`references/contrivance-audit.md`](../../../skills/director-agent/references/contrivance-audit.md)
 - [`references/dialogue-writing-techniques.md`](../../../skills/director-agent/references/dialogue-writing-techniques.md)
 - [`references/director-thinking-spine.md`](../../../skills/director-agent/references/director-thinking-spine.md)
 - [`references/director-workbench-protocol.md`](../../../skills/director-agent/references/director-workbench-protocol.md)
