@@ -516,6 +516,17 @@ Choose a Skill by the task and deliverable listed above. Existing approved decis
 
 ## 版本更新与历史下载
 
+### 2026-11-18 · 制作门禁、可看性诊断与连续剧写作补齐
+
+本轮不新增独立 Skill 包，**结构计数仍为 26 个源码包 / 52 份中英说明**；改动集中在现有包的 references、scripts 与触发词：
+
+- `ai-storyboard-director` 新增“短剧连起来不好看”的诊断入口：攻守单元、接招反应、主力景别、Hero Frames、构图量化。
+- `short-drama-develop` 新增三集一回合、回合尾、`setup→payoff` 台账与 20 集回合映射。
+- `short-drama-write` 新增 E24 干聊断层、E25 谜语人/黑话、E26 无效微动作与对抗式审稿。
+- `produce-ai-video` 新增字幕提交前硬门 `caption_preflight.py`、生成后抽帧检查 `caption_frame_qc.py`、`media_qc.py --caption-report` 交付门，以及候选资产“审核标废→干跑→授权清理”流程。
+- `h3-timeline-director.md` 补齐规划台三输出接线、单段上限、原生 Loop 路径、Soft AV 边界与检查器陷阱。
+- 总控路由新增“台词轮播/重话无反应/节奏平/TTS 读稿”分诊，并明确使用有向无环路由，不让文档互链成环。
+
 ### 2026-10-15 · GitHub首页介绍全面重整
 
 本次按整个仓库重写README：前置21个技能的适用任务和直接交付，补齐阶段交接与三种调用示例；完整作品与研究重新分组，保留原图、视频和验收状态。当前介绍由本仓库首页直接承载。
