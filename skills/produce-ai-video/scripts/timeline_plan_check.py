@@ -122,6 +122,9 @@ def _segments(timeline, report, generation_seconds):
         selection = timeline.get("selection") or {}
         seconds = generation_seconds if generation_seconds is not None else _f(selection.get("duration"), 5.0)
         length = aligned_length(seconds)
+        if length > MAX_SEGMENT_FRAMES:
+            report.add("SEGMENT_LENGTH_OFF_GRID", "block", "/generation_seconds",
+                       f"{seconds}s resolves to {length} frames, beyond the plugin's 3592-frame limit.")
         if abs(float(seconds) * FPS - length) > 0.5:
             report.add("GENERATION_LENGTH_SNAPPED", "review", "/generation_seconds",
                        f"{seconds}s resolves to {length} frames ({length / FPS:.3f}s); declare the aligned duration.")
@@ -260,6 +263,24 @@ def audit(payload):
     elif windows and runtime == "finite_segment" and not global_prompt:
         report.add("PROMPT_MISSING", "block", "/globalPrompt",
                    "An unsegmented Material Planner plan uses globalPrompt; it is empty.")
+
+    prompt_index = payload.get("prompt_index")
+    if prompt_index is not None:
+        report.add("PROMPT_INDEX_CONNECTED", "block", "/prompt_index",
+                   "Disconnect Prompt Index when the Finite Segment Sampler reads the full Segment Plan; "
+                   "the plan carries a prompt_index and the sampler refuses it.")
+    planner_output = payload.get("planner_output")
+    if planner_output is not None and planner_output not in {"material", "segment"}:
+        report.add("PLANNER_OUTPUT_INVALID", "block", "/planner_output",
+                   'Use "material" or "segment".')
+    elif planner_output == "material" and segmented:
+        report.add("MATERIAL_PLAN_OUTPUT", "block", "/planner_output",
+                   "The Material Plan output is filtered to the activeIndex/prompt_index segment; "
+                   "connect the third Segment Plan output to the Finite Segment Sampler.")
+    if payload.get("inject_continuity_instruction") and segmented and runtime == "finite_segment":
+        report.add("CONTINUITY_INJECTION_LEGACY_ONLY", "review", "/inject_continuity_instruction",
+                   "Only the deprecated Finite Segment Expansion node injects the opening continuity "
+                   "instruction; the Material Planner path requires it in every continuation [Shot 1].")
 
     audio_enabled = timeline.get("videoAudioEnabled", True) is not False
     segments_out, locks = [], []

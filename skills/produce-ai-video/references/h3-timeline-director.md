@@ -10,15 +10,18 @@
 
 | 条件 | 应触发的能力 |
 |---|---|
-| 目标时长超过单次 H3 生成（约 15 秒） | 多段拆分 + 合并 |
+| 目标时长超过单次 H3 生成（官方 4–15 秒） | 多段拆分 + 合并 |
 | 同一条连续动作/机位被时长拆成多段 | `segmentConfig` 多段 + 正重叠续写；真正的换机位/换场拆开单独生成 |
+| 同一条连续动作内含多个 `[Shot N]` 切点，或整集需要跨段镜头号映射 | 全局镜头号与段内 `[Shot N]` 映射；切点必须仍在同一条连续动作内 |
+| 单段 5–15 秒但需要多图锁身份、参考音频或统一规划 | 单段 `segmentConfig`（`count = 1`）或 H3 base，按素材复杂度选 |
 | 需要同时锁两个以上人物身份 | 每段分配实际需要的 `<Picture N>`，不把全剧素材塞进每段 |
 | 使用参考音频、保留原生音频或 locked audio | 明确 `audioMode` 与音频路由；locked 必须每段同文件同 `trimStart` |
-| 长视频、整集、整场多镜一次出 | 全局镜头号与段内 `[Shot N]` 映射 |
-| 需要段级重抽、接缝修复或重叠续写 | 逐段生成或合法的段间重叠，不用 RGB 拼接冒充连续镜头 |
+| 需要段级重抽、接缝修复或重叠续写 | 原生 Loop 节点组逐段观察，或合法的段间重叠；不用 RGB 拼接冒充连续镜头 |
 | 没有对白但长视频模型可能自行发声 | 在 `overall_soundscape` 明确只有环境声/脚步/风，不出现人声 |
 
 **只有**单镜 4–15 秒、单张参考图、无参考音频且不需要长视频拆分时，才可留在 H3 base 模式。
+
+**“整场多镜一次出”不是本插件的用法。** 这里的“多镜”只允许是同一条连续动作内部的 `[Shot N]` 切点，不允许换机位、换景别或换场。
 
 **不要把独立镜头用 0 重叠拼进同一次执行。** 0 重叠只是插件语法允许的值，不是多镜生产方式：把换机位、换景别、换场的镜头塞进同一次 `segmentConfig`，表演、光位、方向和底噪会在段边界同时断开，剪辑阶段也救不回来。需要剪辑硬切就分别生成；多段执行只服务同一条连续动作的拆分。
 
@@ -33,7 +36,7 @@
 5. 有对白时先过 `dialogue_preflight.py`；长视频的每段台词都要逐段检查，不能只检查总稿。
 6. 提交前对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`；`block` 必须修，`review` 要写证据。
 7. 生成后核对成片时长是否等于 `目标输出帧数 / 24`，并检查段间接缝、身份、服装、道具、光源、轴线、声音和口型。
-8. 段级失败先回到该段；有限分段一次执行不能只重跑单段时，重跑整组并保留上次检查结果，不把失败片段继续传给下游。
+8. 段级失败先回到该段；一键采样器和低内存版都不能只重跑单段，需要逐段观察时改用原生 Loop 节点组，否则重跑整组并保留上次检查结果，不把失败片段继续传给下游。
 
 ### 低显存与 Pika 兼容
 
@@ -44,7 +47,7 @@
 
 ## 1. 它解决什么、什么时候用
 
-H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视频、3 段音频、合计 12 个。插件解决五件事：
+H3 单次推理只能出 4–15 秒（官方训练区间约 124–362 帧），参考素材每次最多 9 图、3 段视频、3 段音频、合计 12 个。插件在语法上允许单段最长 3592 帧（约 150 秒），但超过 362 帧已超出训练区间，质量未经证实；长镜头仍应按连续动作拆成多段，不要拿“插件能跑”当作“模型能拍好”。插件解决五件事：
 
 1. **一次执行出长视频**：按时间框把目标时长拆成多段，在一次 ComfyUI 执行内逐段采样；后段直接从前段的 AV latent 尾部续写（不经 RGB 解码再编码），全段共用一个种子，接缝处有 Drift-Control 视频遮罩与 Soft AV 音频渐放，最后自动去掉重叠并合成音画。
 2. **参考素材编排**：视频、图片、音频放在同一条时间线上，可移动、裁剪、切分；每段视频可选三种用途（第 6 节），每段可分配不同的图片和音频。
@@ -58,18 +61,27 @@ H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视�
 |---|---|
 | 单镜 ≤15 秒、只靠首帧/首尾帧 | 不必用本插件，走 H3 基础模式（[h3-base-format.md](h3-base-format.md)） |
 | 多参考图锁身份、需要参考视频/音频、需要按时间放置素材 | 本插件单段 |
-| 单镜 >15 秒的连续镜头、整场多镜一次出、长时长数字人 | 本插件有限分段 |
+| 单镜 >15 秒的连续镜头、长时长数字人、同一条连续动作被拆成多个 GEN 窗口 | 本插件有限分段 |
 
 ## 2. 节点与工作流怎么选
 
 | 节点/工作流 | 什么时候用 |
 |---|---|
-| **素材规划台 → 有限分段采样**（默认） | 一切新工作。规划台的「分段规划」直接接采样器的「有限分段规划」；单段、多段、文生、参考生都用同一张图 |
-| **有限分段采样（低内存版本）** | 长时长或高分辨率：每段解码后立即编码为临时视频并释放帧内存，直接输出 `VIDEO` 给保存节点；不输出 latent，不支持单段重跑 |
-| **原生 Loop 节点组**（初始化/选择/准备/合并/完成分段循环） | 需要在每段之间插入自定义处理、预览或保存时；依赖 ComfyUI 原生 `Start Loop / End Loop` |
+| **素材规划台 → 有限分段采样**（默认） | 一切新工作。规划台的 **Segment Plan（第三个输出）** 接采样器的「有限分段规划」；单段、多段、文生、参考生都用同一张图 |
+| **有限分段采样（低内存版本）** | 长时长或高分辨率：每段解码后立即编码为临时视频并释放帧内存，直接输出 `VIDEO` 给保存节点；支持二采，但不保存 latent checkpoint（只保留末段 latent 输出），也没有片段重跑 |
+| **原生 Loop 节点组** | 需要逐段预览、保存或在每段之间插入自定义处理时使用。连线：`初始化分段循环 → Start Loop → 选择循环分段 → 规划编码器 → 准备循环分段 → 采样/二采 → VAE 解码 → 合并循环分段 → End Loop → 完成分段循环`。仍没有磁盘片段缓存和选择性单段重跑，但能把失败停在当前段下游之前 |
+| **规划编码器（公开节点）** | 在原生 Loop 循环体里对当前段做 H3 编码；一键采样器内部也复用它，不需要手工展开 |
 | **Omni 素材包提示词桥** | 让多模态提示词重写器先读完有序素材再写 H3 提示词；需另装 Prompt Rewriter Omni。重写结果仍要按本 Skill 预检，不能直接视为合格提示词 |
 | **时间线导演台（兼容）** | 旧的一体化单段节点：自带 `prompt` 输入，只渲染一个时间窗，不支持分段与原音锁定 |
 | **导出预设 / 本地预设加载器** | 保存与复用素材编排（第 11 节） |
+
+规划台有三个输出，接错会直接失败或只生成一段：
+
+- **Material Plan（第一个输出）**：只输出 `activeIndex` 高亮的这一段的素材，并带 `prompt_index`。它是给单段生成、逐段材料过滤或提示词重写器用的。
+- **Omni Media Bundle（第二个输出）**：给 Omni 提示词桥的素材包。
+- **Segment Plan（第三个输出）**：完整多段计划，有限分段采样必须接这个。把 Material Plan 接进有限分段采样时，插件会报 `Disconnect Prompt Index when generating all timeline segments`，因为该输出已经被段索引过滤。
+
+`Prompt Index` 是规划台的 1-based 段索引输入，用来按段过滤 Material Plan 的素材；接 Segment Plan 生成全部段时必须保持断开。
 
 ## 3. 任务配方
 
@@ -100,17 +112,24 @@ H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视�
 
 | 位置 | 字段 | 含义 |
 |---|---|---|
-| 顶层 | `selection.start/duration` | 生成区（秒）。未分段时就是本次生成窗口 |
+| 节点 | `generation_seconds` | 生成时长（秒），与青色 GEN 选区双向同步。分段时它是总时长，单段时是唯一片段长度；最大 150，但超过 15 秒超出训练区间 |
+| 节点 | `prompt_index` | 1-based 段索引；连接后 `Material Plan` 只输出该段素材。接 `Segment Plan` 生成全部段时必须断开 |
+| 顶层 | `selection.start/duration` | 生成区（秒）。未分段时就是本次生成窗口；分段时各段用 `startFrame/endFrame` 覆盖它 |
+| 顶层 | `length` | 规划器把 `generation_seconds` 对齐到 `5 + 17n` 后的帧数；单段模式直接用它 |
 | 顶层 | `images[]` | `{id, file, name}`；顺序即未分段时的 `<Picture N>` 顺序 |
 | 顶层 | `audios[]` | `{id, file, name, audioMode, trimStart, duration}`；`audioMode` 为 `reference` 或 `locked` |
 | 顶层 | `videoClips[]` | `{id, file, name, start, duration, trimStart, hasAudio, referenceMode, referenceWidth, referenceHeight}`；`start` 是时间线位置，`trimStart` 是源文件入点 |
 | 顶层 | `videoAudioEnabled` | 参考视频原声总开关；决定锁定、静音还是生成（第 7 节） |
 | 顶层 | `globalPrompt` | 全局提示词：未分段时使用；分段且没有任何段落提示词时复用于每段 |
 | 顶层 | `secondPass / secondPassModel / secondPassHighSteps` | 二采开关、Latent Upscaler 文件名、高清步数 |
-| 顶层 | `segmentConfig` | `{count, mode: "timeline", segments[]}`；`count` 为 0 时不分段 |
-| 每段 | `startFrame / endFrame` | 整数帧（24 fps），时间线全局坐标 |
+| 顶层 | `segmentConfig` | `{count, mode: "timeline", activeIndex, segments[]}`；`count` 为 0 时走单段模式 |
+| 每段 | `startFrame / endFrame` | 整数帧（24 fps），时间线全局坐标；段长必须 `5 + 17n` |
 | 每段 | `images[] / audios[]` | 该段使用的素材 id，顺序即该段内的标签顺序 |
-| 每段 | `prompt` | 该段完整的六段式提示词 |
+| 每段 | `prompt` | 该段完整的六段式提示词；主规划路径不会自动注入续写说明 |
+
+`count = 0` 时规划器把当前 GEN 选区当成唯一段：必须写 `globalPrompt`，长度对齐到 `5 + 17n` 且不超过 3592 帧。这是文生/参考生的单段路径，不是“多段退化成一段”。
+
+`segmentConfig.activeIndex` 只影响 `Material Plan` 输出（选中哪一段的素材），不影响 `Segment Plan`；一键采样器读的是完整 `Segment Plan`，所以不要指望改 `activeIndex` 能只重跑一段。
 
 采样器侧的 `seed` 对所有段共用；`continue_audio_latent`（默认开）控制段间音频是否走 Soft AV 续接；`ref_image_size` 见第 10 节。
 
@@ -154,32 +173,36 @@ H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视�
 
 ### 9.1 提示词层：重叠区永远属于上一段
 
-- 第 2 段及以后，如果开启 `inject_continuity_instruction`，插件会在 `[Shot 1]` 后自动注入固定说明：开头 `00:00.000–00:0X.XXX` 是上一段的 latent 续接，必须保持人物位置、环境、运动、运镜、光线、色彩与声音，再引入新动作。这个开关关闭时，作者必须自己写同样的说明；没有 `[Shot 1]` 的段会直接报错。
+- **主规划路径不会自动注入续写说明。** 只有已弃用的 `MiniMaxH3FiniteSegmentExpansion` 节点有 `inject_continuity_instruction`（默认开）；`MiniMaxH3TimelinePlanner → MiniMaxH3FiniteSegmentSampler` 这条主路径没有这个开关。第 2 段及以后，作者必须在 `[Shot 1]` 里自己写：开头 `00:00.000–00:0X.XXX` 是上一段的 latent 续接，必须保持人物位置、环境、运动、运镜、光线、色彩与声音，再引入新动作。没有 `[Shot 1]` 的续写段会被 `timeline_plan_check.py` 报 `CONTINUATION_SHOT1_MISSING`；写了但没复述重叠区，只会得到 `CONTINUATION_SHOT1_REVIEW`，需要人工确认。
 - 续写段的 `[Shot 1]` 先准确复述重叠区里已经存在的画面，不能为了把新内容写成 `[Shot 1]` 而忽略或错误描述固定 Guide。
 - 重叠结束后如果仍是同一镜头，写 “After 00:0X.XXX, the same uninterrupted shot continues as …”，不要人为制造剪辑点。
 - 重叠结束处如果本来就该切镜，新镜头从实际切点写成 `[Shot 2] At 00:0X.XXX, the shot cuts to …`；不要假装它从第 0 帧开始。
-- 我们当前的单镜生产流程（`segmentConfig.count = 1`）不经过这条路径，所以不会自动注入；只有真正使用有限分段续写时才需要按本节写。
+- 单段生产（`segmentConfig.count = 0` 或 `1`）没有上一段，不需要这段说明；只有真正使用正重叠续写时才按本节写。
 
 ### 9.2 采样层：latent 续接、Drift-Control 与音频
 
-- 所有段共用采样器上的同一个 `seed`；后段不是重新起一张图，而是从上一段 `sampled` 的 AV latent 尾部继续。
+- 所有段共用采样器上的同一个 `seed`；后段不是重新起一张图，而是从上一段 `sampled` 的 AV latent 尾部继续。每段的 `RandomNoise` 都用同一个种子。
+- **重叠值不是单独填的参数**，而是从两个 GEN 窗口算出来的 `previous_end - start`。写 `startFrame/endFrame` 时让相邻窗口实际相交，相交帧数就是重叠；时间框路径要求它正好是 0、1 或 `5 + 17n`，否则直接报错；旧的有限扩展节点才会向下取整。
 - `overlap > 1` 时，插件先把重叠帧向下对齐到 H3 合法网格（例如 24→22、48→39），复制上一段 latent 尾部到本段开头，用线性时间遮罩把重叠区固定为保留、之后为全新去噪；同时按遮罩的视频 token 数安装 Drift-Control，只对临时视频前缀动态加噪，接缝侧保持干净。
-- 音频默认走 Soft AV：重叠音频前部完全保护，最后 8 个音频 latent tick 用半余弦释放到新生成声音；锁定音轨或静音时改走零去噪的 locked/silent 音轨路径，最终整轨替换。
-- `overlap = 1` 的贴边分支只钉上一段最后一帧，不做 latent 尾部复制；`overlap = 0` 分支直接返回，不做任何续接。
+- 音频默认走 Soft AV：重叠音频前部完全保护，最后 8 个音频 latent tick 用半余弦释放到新生成声音；锁定音轨或静音时改走零去噪的 locked/silent 音轨路径，最终整轨替换。此时 `continue_audio_latent` 不会让 H3 续写声音，输出音轨按锁定/静音路径整轨替换。音频 latent 约 40 tick/秒：22 帧重叠对应约 37 个 tick，只有末尾 8 tick（约 0.2 秒）做渐变，其余重叠区完整保留旧声音；合并时裁掉前段尾部重叠采样，接上后段完整音频，渐变因此留在成片里。它解决的是接缝爆音、相位/音量跳变和重复声音，**不解决台词没说出来、人物音色不统一或镜头内容错误**——这些仍要靠逐段提示词、统一 `audio_refs`、足够时长和重跑。
+- `overlap = 1` 的贴边分支只钉上一段最后一帧，不做 latent 尾部复制；`overlap = 0` 分支直接返回，不做任何续接。`overlap = 1` 需要上一段解码图、VAE 与音频 VAE；`overlap > 1` 需要上一段 sampled latent，缺一个都会报错。
+- 开二采时，SelfLift 会把上一段原生低清 latent 的 `selflift_low_resolution_carry` 一并带进下一段，避免 Drift-Control 重新缩小高清 latent 造成边界模糊或闪白；这是二采长视频接缝比逐段放大更稳的原因。
 
 ### 9.3 合并：前段拥有重叠区
 
 - 合并时第一段完整保留；第 2 段及以后由 `MiniMaxH3FiniteSegmentFinalize` 裁掉开头的 `trim_frames`（等于实际重叠帧数），保留前段解码出的尾部。这样切点处不会重复帧，也不会把重叠区算两次。
 - Soft AV 模式下，音频先由 `MiniMaxH3FiniteAudioTrimTail` 裁掉前段尾部重叠，再由 `AudioConcat` 拼接，后段的半余弦释放区保留在最终音轨里；非 Soft 模式则与视频同步裁掉重叠头部。
-- 成片总帧数等于最后一段的终点帧；每段实际贡献的新帧 = 段长 − 重叠。
+- 成片总帧数等于最后一段的终点帧；每段实际贡献的新帧 = 段长 − 重叠。规划器给出 `target_output_frames` 时，最后由 `MiniMaxH3FiniteOutputTrim` 把自动补出的尾巴裁回目标帧数，音轨同时按帧数裁样。
+- 采样器的 `Last Sampled Latent` 只是**最后一段**的完整 AV latent，不是整条成片的合并 latent；不要把它当作“整条长视频 latent”再喂给下一次执行。要续写就继续加段，不要拿末段 latent 冒充全片上下文。
+- 合并帧默认留在内存；长片或高分辨率可用低内存版本，或设置 `H3_MERGED_FP16=1` 让合并帧以 float16 保存（减半内存，实测无可感知差异）。
 
 ### 9.4 参数与选择
 
-- 每段长度必须是 `5 + 17n` 帧；段数 1–64；第一段从第 0 帧开始；后段起点和终点都要前进，段间不能有空隙。
-- 重叠必须是 0、1 或 `5 + 17n`（5、22、39、56…），且短于相邻两段；时间框路径直接拒绝非法值，旧的有限扩展节点会向下取整。
+- 每段长度必须是 `5 + 17n` 帧，最大 3592 帧（约 150 秒），但 H3 训练区间约 124–362 帧（5–15 秒）；超过 362 帧插件仍会跑，质量未验证。段数 1–64；第一段从第 0 帧开始；后段起点和终点都要前进，段间不能有空隙；重叠必须大于等于 0 且小于相邻两段的较短长度。
+- 重叠必须是 0、1 或 `5 + 17n`（5、22、39、56…）；时间框路径直接拒绝非法值，旧的有限扩展节点会向下取整。实际重叠取相邻窗口的相交帧数，不取提示词里写的时长。
 - 静态镜头取 5 或 22 帧；动作、运镜或跨段对白取 22–39 帧（约 0.9–1.6 秒），覆盖动作趋势与语气。不要把接缝放在嘴型中间、快速闪切或最模糊的一帧。
 - 只要求首尾构图一致、参考视频中段可自由变化时，用视频片段的 `referenceMode: "boundary"`：只解码重叠区首帧和末帧作 `boundary-start`/`boundary-end` 两个单帧 Guide，不锁中间内容。
-- 段提示词模式：只要有一段写了提示词，所有段都必须写；全部留空时复用 `globalPrompt`。
+- 段提示词模式：只要有一段写了提示词，所有段都必须写；全部留空时复用 `globalPrompt`。单段模式（`count = 0`）必须有 `globalPrompt`。
 - 生产判断：独立镜头分别生成；只有单条连续动作超过单次 15 秒上限，才用正重叠拆分。**不要用 0 重叠把换机位、换景别、换场的镜头塞进同一次执行。**
 
 ## 10. 画质与性能参数
@@ -187,7 +210,8 @@ H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视�
 - **`ref_image_size`**：`match` 把参考图按生成画面的像素面积等比缩小（不放大），速度快；`max` 用参考管线的 2048 短边，身份保真最好，但参考 token 参与每一步采样，可能慢数倍。主角特写和身份敏感镜头用 `max`，群像与空镜用 `match`。
 - **画布**：宽高都是 32 的倍数；参考视频单独降分辨率可显著省算力。
 - **SelfLift 二采**：开启 `secondPass`，`secondPassModel` 填 `latent_upscale_models` 目录中的 H3 Latent Upscaler，`secondPassHighSteps` 取总步数的约 25%（如 8 步填 2），必须大于 0 且小于总步数；采样器必须是标准 `euler`（`s_churn` 为 0）。二采在低清和高清两层都做段间续接，长视频不会逐段反复编解码而劣化。
-- **低内存版本**：内存紧张或超长成片时改用，代价是失去 latent 输出和单段重跑。
+- **低内存版本**：内存紧张或超长成片时改用；每段解码后立即编码为临时视频并释放帧内存。保留二采和重叠去重，但不保存 latent checkpoint，只有末段 latent 输出，也没有单段重跑。临时片段是 H.264 CRF 18，最终再合并；对代际压缩敏感时用内存版。
+- **帧内存**：默认合并帧留在内存；需要时设置 `H3_MERGED_FP16=1` 减半保留字节，或用低内存版本。
 - 先用 2–3 段、低分辨率验证整条计划，再放大到正式规格。
 
 ## 11. 预设与复现
@@ -196,16 +220,20 @@ H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视�
 
 ## 12. 与本 Skill 门禁的衔接
 
-1. 提交前对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`。输入 JSON 包含 `timeline_data`，可选 `runtime`（`finite_segment` 默认，或 `director` 表示兼容导演台）、`width`、`height`、`generation_seconds`、`prompt`（兼容导演台的节点提示词）、`audio_intent`（`generate`/`locked_audio`/`video_original`/`silent`）与 `sampler`（`{name, steps}`）。报告给出逐段标签清单、Guide 帧、音频路由、保留帧数与问题清单；`block` 必须修，`review` 要有证据。
+1. 提交前对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`。输入 JSON 包含 `timeline_data`，可选 `runtime`（`finite_segment` 默认，或 `director` 表示兼容导演台）、`width`、`height`、`generation_seconds`、`prompt`（兼容导演台的节点提示词）、`audio_intent`（`generate`/`locked_audio`/`video_original`/`silent`）、`sampler`（`{name, steps}`）、`prompt_index`、`planner_output`（`material`/`segment`）与 `inject_continuity_instruction`。报告给出逐段标签清单、Guide 帧、音频路由、保留帧数与问题清单；`block` 必须修，`review` 要有证据。
 2. 每段提示词照常过 `context_ir_check.py` 与 `prompt_preflight.py`；把计划检查给出的该段标签清单作为附件绑定的依据。
-3. **一次执行与逐段把关的取舍**：有限分段一次跑完，中途不能停下检查，也不能只重跑一段。长镜续写、单场景、风险低的段落用它，生成后按 [segment-seam-continuity.md](segment-seam-continuity.md) 逐个接缝复核；有台词、多人、高风险的段落改为逐段生成：每段合格后把成片作为下一段的 `guide` 片段，合并时按计划检查报告的 Guide 帧数同时删掉视频和音频的重复部分。
-4. `scripts/submission_gateway.py` 目前只认兼容导演台的单节点工作流图；有限分段工作流图要等适配器核实后再接入网关，在此之前提交记录标记该路线 `unverified`，并以计划检查报告和台账作为证据。
-5. 生成后用 `scripts/media_qc.py` 测时长、黑帧、冻结和响度；有限分段的成片时长应等于报告的 `target_output_frames / 24`。
+3. **一次执行与逐段把关的取舍**：一键采样器一次跑完，中途不能停、不能单段重跑；低内存版同样没有单段重跑。原生 Loop 节点组可以在循环体里插入预览、保存或自定义处理，逐段观察，失败时停在当前段下游之前；它仍没有磁盘片段缓存和选择性单段重跑。长镜续写、单场景、低风险段落用一键采样器，生成后按 [segment-seam-continuity.md](segment-seam-continuity.md) 逐个接缝复核；有台词、多人、高风险段落用原生 Loop 逐段看，或逐段独立生成——每段合格后把成片作为下一段的 `guide` 片段，合并时按计划检查报告的 Guide 帧数同时删掉视频和音频的重复部分。后者会失去 latent 续接，接缝质量不如同一次有限分段。
+4. `Prompt Index` 只给 `Material Plan` 按段过滤素材；一键采样器的 `Segment Plan` 不接受它。要逐段材料过滤，用 Material Plan + 单段生成，或原生 Loop 的选择循环分段。
+5. `scripts/submission_gateway.py` 目前只认兼容导演台的单节点工作流图；有限分段工作流图要等适配器核实后再接入网关，在此之前提交记录标记该路线 `unverified`，并以计划检查报告和台账作为证据。
+6. 生成后用 `scripts/media_qc.py` 测时长、黑帧、冻结和响度；有限分段的成片时长应等于报告的 `target_output_frames / 24`。低内存版本没有 latent checkpoint，不能用末段 latent 继续整片。
 
 ## 13. 静默陷阱速查
 
 | 情况 | 插件行为 | 计划检查代码 |
 |---|---|---|
+| 规划台接的是 `Material Plan` 而不是 `Segment Plan` | Material Plan 已被 `activeIndex`/`prompt_index` 过滤，有限分段采样报 `Disconnect Prompt Index when generating all timeline segments` | `MATERIAL_PLAN_OUTPUT`（需在检查输入声明 `planner_output: "material"`） |
+| 接 `Segment Plan` 时 `Prompt Index` 仍连着 | 规划器输出带 `prompt_index`，有限分段采样报错 | `PROMPT_INDEX_CONNECTED` |
+| 以为主规划路径会自动注入续写说明 | 不会；只有已弃用的 Finite Segment Expansion 有 `inject_continuity_instruction` | `CONTINUITY_INJECTION_LEGACY_ONLY` / `CONTINUATION_SHOT1_REVIEW` |
 | 视频片段没写 `referenceMode` | 按 `guide` 逐帧锁定（界面新上传默认却是 `edit`） | `REFERENCE_MODE_IMPLICIT` |
 | `referenceMode` 拼错 | 静默变成 `guide` | `REFERENCE_MODE_INVALID` |
 | 没写 `hasAudio` / `videoAudioEnabled` | 当作 true，原声可能锁死最终音轨 | `CLIP_AUDIO_IMPLICIT` / `VIDEO_AUDIO_IMPLICIT` |
@@ -214,9 +242,16 @@ H3 单次推理只能出 4–15 秒，参考素材每次最多 9 图、3 段视�
 | 视频与生成区相交不足 5 帧 | 不作参考；清单与编码器可能错位 | `VIDEO_INTERSECTION_TOO_SHORT` |
 | 提示词引用了该段不存在的编号 | 绑定落空 | `PROMPT_LABEL_OUT_OF_RANGE` |
 | 续写段没有 `[Shot 1]` | 新剧情与固定画面冲突 | `CONTINUATION_SHOT1_MISSING` |
+| 段长超过 362 帧 | 插件接受，但超出 H3 训练区间，质量未验证 | `SEGMENT_OUTSIDE_TRAINED_RANGE` |
+| 段长超过 3592 帧或不在 `5+17n` 网格 | 报错 | `SEGMENT_LENGTH_OFF_GRID` |
+| `count=0` 单段没写 `globalPrompt` | 报错 | `PROMPT_MISSING` |
 | 想要生成声音却带着有声参考视频 | 最终音轨被原声替代 | `AUDIO_ROUTE_FIXED` / `AUDIO_ROUTE_MISMATCH` |
 | 锁定音轨只分给部分段 | 报错停止 | `LOCKED_AUDIO_PARTIAL` |
+| 锁定音轨/静音时仍开 `continue_audio_latent` | 音频续接被绕过，最终整轨替换 | `AUDIO_ROUTE_FIXED`（review） |
+| 把 `Last Sampled Latent` 当整条长视频 latent | 它只是最后一段的 latent | 对照计划报告的 `target_output_frames` |
+| 用一键采样器或低内存版做单段重跑 | 没有这个能力 | 用原生 Loop 或逐段生成 |
 | 二采用了非 euler 采样器 | 报错停止 | `SECOND_PASS_SAMPLER` |
+| 二采用了非 H3 latent upscaler | 报错停止 | `SECOND_PASS_MODEL_MISSING` |
 
 ## 来源
 

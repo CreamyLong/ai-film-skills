@@ -171,6 +171,22 @@ class TimelinePlanCheckTest(unittest.TestCase):
     def test_invalid_json(self):
         self.assertIn("TIMELINE_INVALID", codes(checker.audit({"timeline_data": "{"})))
 
+    def test_prompt_index_blocks_full_plan_generation(self):
+        self.assertIn("PROMPT_INDEX_CONNECTED", codes(run(segmented(), prompt_index=1)))
+
+    def test_material_plan_output_blocks_segmented_generation(self):
+        self.assertIn("MATERIAL_PLAN_OUTPUT", codes(run(segmented(), planner_output="material")))
+        self.assertNotIn("MATERIAL_PLAN_OUTPUT", codes(run(segmented(), planner_output="segment")))
+
+    def test_legacy_continuity_injection_is_flagged(self):
+        report = run(segmented(), inject_continuity_instruction=True)
+        self.assertIn("CONTINUITY_INJECTION_LEGACY_ONLY", codes(report))
+
+    def test_single_segment_beyond_plugin_limit_blocks(self):
+        timeline = {"selection": {"start": 0.0, "duration": 160.0}, "images": [], "audios": [],
+                    "videoClips": [], "globalPrompt": "x"}
+        self.assertIn("SEGMENT_LENGTH_OFF_GRID", codes(run(timeline, generation_seconds=160.0)))
+
     def test_report_does_not_mutate_input(self):
         timeline = segmented()
         before = copy.deepcopy(timeline)
