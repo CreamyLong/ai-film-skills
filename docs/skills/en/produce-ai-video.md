@@ -117,6 +117,7 @@ A full production and validation contract; with the required host tools and perm
 - [`references/audio-continuity.md`](../../../skills/produce-ai-video/references/audio-continuity.md)
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/audio-route-ab.md`](../../../skills/produce-ai-video/references/audio-route-ab.md)
+- [`references/auto-review-gate.md`](../../../skills/produce-ai-video/references/auto-review-gate.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
 - [`references/context-ir-format.md`](../../../skills/produce-ai-video/references/context-ir-format.md)
 - [`references/editorial-workflow.md`](../../../skills/produce-ai-video/references/editorial-workflow.md)
@@ -146,6 +147,7 @@ A full production and validation contract; with the required host tools and perm
 **Deterministic helpers**
 
 - [`scripts/audio_continuity_check.py`](../../../skills/produce-ai-video/scripts/audio_continuity_check.py)
+- [`scripts/auto_review.py`](../../../skills/produce-ai-video/scripts/auto_review.py)
 - [`scripts/caption_frame_qc.py`](../../../skills/produce-ai-video/scripts/caption_frame_qc.py)
 - [`scripts/caption_preflight.py`](../../../skills/produce-ai-video/scripts/caption_preflight.py)
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
