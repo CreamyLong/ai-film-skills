@@ -34,6 +34,7 @@ The English and Simplified Chinese pages are generated from the same reviewed co
 | `whitebox-previs-executor` | Experimental; implemented basic previs and individually qualified action gates | [Design guide](en/whitebox-previs-executor.md) | [设计说明](zh-CN/whitebox-previs-executor.md) | [`SKILL.md`](../../experimental/whitebox-previs-executor/SKILL.md) |
 | `guofeng-visual-director` | Candidate 0.1.1; opt-in experiment; image review pending | [Design guide](en/guofeng-visual-director.md) | [设计说明](zh-CN/guofeng-visual-director.md) | [`SKILL.md`](../../experimental/guofeng-visual-director/SKILL.md) |
 | `model-select` | New source package; structural checks only. The selection rules have not been validated on a real production task yet. | [Design guide](en/model-select.md) | [设计说明](zh-CN/model-select.md) | [`SKILL.md`](../../skills/model-select/SKILL.md) |
+| `omni-review` | New source package; structural checks and single-episode model calls only. No full-series acceptance evidence yet. | [Design guide](en/omni-review.md) | [设计说明](zh-CN/omni-review.md) | [`SKILL.md`](../../skills/omni-review/SKILL.md) |
 
 ## Common review logic / 共同审核逻辑
 

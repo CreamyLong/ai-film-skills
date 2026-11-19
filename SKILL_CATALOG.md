@@ -4,7 +4,7 @@
 
 > **仓库身份**：当前源码与安装入口是 `CreamyLong/ai-film-skills`。下方 Release ZIP 与下载链接指向历史归档仓库 `62656456/ai-film-skills`，尚未迁移；历史资产原样保留，不代表当前源码位置。
 
-**本仓库26个源码包：23项常规＋3项实验；52份英文/简体中文指南。** 此页列出每包实际用途、源码版本和直接文件入口，GitHub仓库首页是[README](README.md)。
+**本仓库27个源码包：24项常规＋3项实验；54份英文/简体中文指南。** 此页列出每包实际用途、源码版本和直接文件入口，GitHub仓库首页是[README](README.md)。
 
 [完整工作流](docs/WORKFLOW.md) · [全部双语指南](docs/skills/INDEX.md) · [安装](docs/INSTALLATION.md) · [原创版权与商用](COMMERCIAL_USE.md)
 
@@ -66,6 +66,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 | `film-production-orchestrator`<br/>影视创作总控 | 默认入口；按短剧、参考广告、MV、产品片或修复目标安排前置需求、专业交接与验收，跟踪到本次终点 | — | 常规；真实宿主调度与实片待验 | [运行正文](skills/film-production-orchestrator/SKILL.md) · [中文说明](docs/skills/zh-CN/film-production-orchestrator.md) · [EN](docs/skills/en/film-production-orchestrator.md) · 源码安装 |
 | `model-select`<br/>生成模型选型 | 按产物选生成模型、参数与回退顺序：静帧、单镜视频、多参考身份、长镜分段、配音与音乐；写明不要用的情况与一致性红线 | — | 常规；新增源码包，选型规则待实战验证 | [运行正文](skills/model-select/SKILL.md) · [中文说明](docs/skills/zh-CN/model-select.md) · [EN](docs/skills/en/model-select.md) · 源码安装 |
 | `produce-ai-video`<br/>实际视频生产 | 统筹实际生成、选片、剪辑、对白音效、完整播放审查与修复 | — | 常规 | [运行正文](skills/produce-ai-video/SKILL.md) · [中文说明](docs/skills/zh-CN/produce-ai-video.md) · [EN](docs/skills/en/produce-ai-video.md) · [5.8.6同步发布 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/produce-ai-video.zip) |
+| `omni-review`<br/>成片审判 | 用多模态模型审查角色身份、烧录字幕、空间连续性、切点声音与伪影；输出带帧/秒证据的缺陷清单 | — | 常规 | [运行正文](skills/omni-review/SKILL.md) · [中文说明](docs/skills/zh-CN/omni-review.md) · [EN](docs/skills/en/omni-review.md) |
 | `ai-short-drama-production`<br/>短剧控制 | 五列分镜＋一条六模块母提示词；现行六模块已对齐，文本验证通过，实片待验 | — | 常规；未部署 | [运行正文](skills/ai-short-drama-production/SKILL.md) · [中文说明](docs/skills/zh-CN/ai-short-drama-production.md) · [EN](docs/skills/en/ai-short-drama-production.md) · [5.8.6同步发布 ZIP](https://github.com/62656456/ai-film-skills/releases/download/ai-storyboard-director-v5.8.6/ai-short-drama-production.zip) |
 | `web-design-director`<br/>网页辅助 | 明确网页或应用界面任务时设计与审核；仓库README维护不触发建站 | 1.3.0 | 常规 | [运行正文](skills/web-design-director/SKILL.md) · [中文说明](docs/skills/zh-CN/web-design-director.md) · [EN](docs/skills/en/web-design-director.md) · [v1.4.0 ZIP](https://github.com/62656456/ai-film-skills/releases/download/v1.4.0/web-design-director.zip) |
 | `d-official-market-analysis`<br/>市场研究 | 根据当前可验证来源研究题材、平台、受众与制作机会，保留数据局限 | — | 常规 | [运行正文](skills/d-official-market-analysis/SKILL.md) · [中文说明](docs/skills/zh-CN/d-official-market-analysis.md) · [EN](docs/skills/en/d-official-market-analysis.md) · [v1.4.0 ZIP](https://github.com/62656456/ai-film-skills/releases/download/v1.4.0/d-official-market-analysis.zip) |
@@ -113,7 +114,7 @@ python scripts/install_skill.py <skill-name> --platform codex
 
 [xianxia-visual-director](https://github.com/liyue-aigc/xianxia-visual-director)只提供上游链接，不再分发其源码或ZIP；上游尚无已核实再分发许可。十种视觉路线为八项常规类型、实验硬科幻和外部仙侠。
 
-本仓库26包＝25项影视＋1项网页辅助；另计外部仙侠后，完整工作流是26项影视职责＋1项网页辅助。外部项不计入26包或52份指南。
+本仓库27包＝26项影视＋1项网页辅助；另计外部仙侠后，完整工作流是27项影视职责＋1项网页辅助。外部项不计入27包或54份指南。
 
 ## 实际证据与返修
 

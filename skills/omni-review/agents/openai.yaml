@@ -1,0 +1,4 @@
+interface:
+  display_name: "Omni 成片审判员"
+  short_description: "用多模态模型审查成片的身份、烧录字幕、空间连续性、切点声音与伪影，输出可复核的缺陷清单。"
+  default_prompt: "Use $omni-review to audit a rendered episode against its references and prompt contracts."

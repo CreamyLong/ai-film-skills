@@ -3129,6 +3129,59 @@
           "zh-CN": "只写模型名、却无法按记录的标识与参数复现的选型不算完成。"
         }
       ]
+    },
+    {
+      "name": "omni-review",
+      "family": "video-production",
+      "status": "packaged",
+      "title": {
+        "en": "Omni Rendered-Film Reviewer",
+        "zh-CN": "Omni 成片审判员"
+      },
+      "purpose": {
+        "en": "Judge a rendered AI drama episode with a multimodal reviewer: identity, burned-in text, spatial continuity, cut-point sound, artifacts and sequence clarity, with frame- or second-level evidence.",
+        "zh-CN": "用多模态审查模型判断已生成的 AI 短剧成片：角色身份、烧录字幕、空间连续性、切点声音、伪影与序列清晰度，并给出帧级或秒级证据。"
+      },
+      "standalone": {
+        "en": "An evidence pack plus a severity-ranked review report; it does not generate, repair or rerender media.",
+        "zh-CN": "一份证据包和按严重度排序的审查报告；不生成、不修复、不重渲媒体。"
+      },
+      "status_label": {
+        "en": "New source package; structural checks and single-episode model calls only. No full-series acceptance evidence yet.",
+        "zh-CN": "新增源码包；仅完成结构检查和单集模型调用。尚无全剧验收证据。"
+      },
+      "cannot": {
+        "en": "It cannot prove taste, performance, script causality, platform compliance or user acceptance; model findings need a human look at the cited frame or second.",
+        "zh-CN": "不能证明审美、表演、剧本因果、平台合规或用户接受；模型结论必须由人核对所指帧或秒。"
+      },
+      "download": {
+        "state": "source_only",
+        "source_install": "docs/INSTALLATION.md",
+        "note": {
+          "en": "No release snapshot yet; install from the current source tree.",
+          "zh-CN": "尚无发布快照；从当前源码树安装。"
+        }
+      },
+      "extra_workflow": [
+        {
+          "en": "Build evidence from the editlist, prompts and rendered file before calling the model: per-scene grids, reference-to-frame identity pairs and cut-point audio pairs.",
+          "zh-CN": "调用模型前先从剪辑表、提示词和成片生成证据：每场网格、参考图对单帧的身份对、切点音频对。"
+        },
+        {
+          "en": "Run cheap tiers first, send audio in A/B pairs, and keep the model output as review_required until a human confirms the cited evidence.",
+          "zh-CN": "先跑低成本层，音频成对送；模型输出保持 review_required，直到人工确认所指证据。"
+        }
+      ],
+      "extra_review": [
+        {
+          "en": "Every finding names a shot or timecode, an observable difference and one repair owner; unsupported findings are recorded as false positives.",
+          "zh-CN": "每条问题都带镜号或时间码、可见/可听差异和唯一修复归属；无证据的结论记为误报。"
+        },
+        {
+          "en": "A blocker count above zero keeps the cut at candidate status; model silence never counts as a pass.",
+          "zh-CN": "blocker 大于零时成片只能算候选；模型没报问题不等于通过。"
+        }
+      ]
     }
   ],
   "distribution": {
