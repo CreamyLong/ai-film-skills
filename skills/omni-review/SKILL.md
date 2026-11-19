@@ -47,7 +47,7 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 | T5 序列 | 观众能否看懂 | 同场 12 帧 + 人物背景 | 谁是谁、关系是否建立、流程是否清楚、有无无源特写 |
 | T6 伪影 | 手指、肢体、拖影、重影、漂浮物 | 5–10 s 原片或可疑帧 | 多指、断肢、叠影、粒子、穿模 |
 
-详细送法、提示词和采样规则见 [references/review-tiers.md](references/review-tiers.md)。
+详细送法、提示词和采样规则见 [references/review-tiers.md](references/review-tiers.md)。两个镜头已经剪在一起、你怀疑接缝时，按 [references/seam-review.md](references/seam-review.md) 先分类（同镜续接/同场换视点/叙事跳跃），再用 `scripts/seam_review.py` 取 A 末帧、B 首帧和切点音频对。
 
 ## 4. 判定规则
 
@@ -85,6 +85,7 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 |---|---|
 | `scripts/episode_audit.py` | 从 editlist/prompts/成片生成证据包：场网格、身份对、切点音频、manifest；可用 `--run` 调模型 |
 | `scripts/omni_review.py` | 单次审查：`identity` / `sheet` / `video` / `audio`，输出 JSON |
+| `scripts/seam_review.py` | 两镜接缝：A 末帧 + B 首帧 + 切点音频对，检查身份/空间/轴线/动作/声场 |
 
 示例：
 
