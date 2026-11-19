@@ -1,7 +1,6 @@
 ---
 name: ai-short-drama-production
-description: 当用户说“这场戏怎么拍”“帮我排站位/调度”“打戏怎么设计”“生成前检查”时使用；> English triggers include short-drama production, blocking, shot plan, pre-generation QC.
-  将 AI 短剧、漫剧、剧情短视频从故事意图独立编排为可控生产任务。适用于剧本钩子、人物/场景/道具资产、场面调度图、布光图、打戏、草图转镜头与生成前 QC；全部必要合同随本 Skill 打包。
+description: 当用户已有明确剧本或项目，要把单集/单场编排成可执行生产任务时使用：场面调度、站位、布光、打戏、资产与分镜衔接、六模块提示词、生成前 QC。用于“这场戏怎么拍”“帮我排站位/调度”“打戏怎么设计”“生成前检查”。已有一集/一场范围时，资产→分镜→提示词的先后与单集成本控制也由本技能负责。不负责“不知道该用哪个技能”的入口分诊、项目类型判断或整季流程总控；也不写剧本、不做终审。English triggers include short-drama production, blocking, shot plan, pre-generation QC.
 ---
 
 # AI 短剧生产编排

@@ -1,6 +1,6 @@
 ---
 name: film-production-orchestrator
-description: 当用户说“不知道用哪个技能”“帮我做一部短剧/广告/MV”“这个项目怎么推进”时使用；Unified entry for AI film creation and repair when the user does not know which Skill to choose. Turn a sentence, story, reference video, music or product material into a scoped workflow for short drama, TVC, promotional video, MV or product film. Plan prerequisites, coordinate available specialist roles through the host, inspect handoff evidence and continue to the requested deliverable. Also triage production defects. Text-only requests never authorize media generation; unavailable tools or delegation are reported, not simulated.
+description: 当用户不知道用哪个技能、需要判断项目类型，或要把一句想法、故事、参考片、音乐、产品素材拆成跨阶段流程时使用：入口分诊、阶段顺序、交接证据与制作缺陷分诊。用于“不知道用哪个技能”“帮我做一部短剧/广告/MV”“这个项目怎么推进”。已有明确剧本和单集范围时，具体调度、布光、打戏、分镜、提示词顺序与单集成本控制属于生产编排，不在本技能；本技能不替代单集生产设计，也不写剧本。Unified entry for AI film creation and repair when the user does not know which Skill to choose; triage only, never simulate unavailable tools. Text-only requests never authorize media generation.
 ---
 
 # Film Production Orchestrator | 影视创作总控
