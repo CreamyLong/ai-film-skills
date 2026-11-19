@@ -4,7 +4,7 @@ Contributions should improve a Skill's real-task performance without hiding its 
 
 ## Runtime claims need a source
 
-A statement that a model, node or plugin "must", "cannot" or "always" behaves in a certain way is a runtime claim. Before writing it into a Skill:
+A statement that a model, node or plugin "must", "cannot" or "always" behaves in a certain way is a runtime claim. The reviewed register is [docs/RUNTIME_CLAIMS.md](docs/RUNTIME_CLAIMS.md); add or update its row with the claim. Before writing it into a Skill:
 
 1. cite the official file, line, commit or plugin README, or
 2. run a reproducible test and record the command, input and output, or
