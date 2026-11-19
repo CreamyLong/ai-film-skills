@@ -64,6 +64,31 @@
 - 本插件用 `<Picture N>/<Video N>/<Audio N>` 稳定编号；不要使用其他 fork 的 `@CHR`/`@SCN` 标签，除非目标运行时明确支持并已实测。
 - 无对白段在声音字段写清只有脚步、风、衣料、环境声，不写“无字幕/无人声”式负面清单来赌模型行为。
 
+## 0.2 必须先看的官方材料与误用清单
+
+运行时行为以插件源码/README 为准；升级后重新核对以下链接，不凭记忆写参数：
+
+- 插件仓库：[Songssx/ComfyUI-MiniMaxH3-TimelineDirector](https://github.com/Songssx/ComfyUI-MiniMaxH3-TimelineDirector)
+- 中文说明：[README_CN.md](https://github.com/Songssx/ComfyUI-MiniMaxH3-TimelineDirector/blob/main/README_CN.md)
+- 长视频 Agent 指南：[AGENT_LONG_VIDEO_GUIDE_CN.md](https://github.com/Songssx/ComfyUI-MiniMaxH3-TimelineDirector/blob/main/docs/AGENT_LONG_VIDEO_GUIDE_CN.md)
+- 官方 H3 提示词规范：[MiniMax-AI/MiniMax-H3](https://github.com/MiniMax-AI/MiniMax-H3)
+- 官方权重与 4/8 步 turbo LoRA：[Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)
+
+### 常见误用
+
+| 误用 | 后果 | 正确做法 |
+|---|---|---|
+| 31 秒塞进 `count = 1` 的单段 | 753 帧从第一帧起是噪声 | 拆 3 段（277/277/243），22 帧重叠 |
+| 单段超过 362 帧 | 超出 H3 训练区间，整段 latent 失效 | 每段 ≤362 帧，按连续动作拆分 |
+| 把 Material Plan 接有限分段采样 | 报 `Disconnect Prompt Index…` 或只生成一段 | 接 **Segment Plan**（第三个输出） |
+| 接 Segment Plan 时仍连 `prompt_index` | 素材被段索引过滤 | 生成全部段时断开 `prompt_index` |
+| 用 0 重叠把换机位镜头串成长链 | 不继承 latent，等于各跑各的 | 切镜写段内 `[Shot N]`；跨段只用于连续动作 |
+| 后段 prompt 不写重叠区 | 接缝处人物/光位跳变 | `[Shot 1]` 先复述重叠区，再写新内容 |
+| 每段音频文件/trimStart 不一致却用 locked | 最终音轨错位 | locked 必须每段同文件、同 trimStart |
+| 用 `@CHR`/`@SCN` 等其他 fork 标签 | 标签不被识别 | 只用 `<Picture N>/<Video N>/<Audio N>` |
+
+提交前必须对实际 `timeline_data` 跑 `scripts/timeline_plan_check.py`；段长、重叠、`count`、标签任何一项不合法都不提交。
+
 ## 1. 它解决什么、什么时候用
 
 H3 单次推理只能出 4–15 秒（官方训练区间约 124–362 帧），参考素材每次最多 9 图、3 段视频、3 段音频、合计 12 个。插件在语法上允许单段最长 3592 帧（约 150 秒），但超过 362 帧已超出训练区间，质量未经证实；长镜头仍应按连续动作拆成多段，不要拿“插件能跑”当作“模型能拍好”。插件解决五件事：
