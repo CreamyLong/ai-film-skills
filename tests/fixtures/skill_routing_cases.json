@@ -1,37 +1,154 @@
 [
-  {"query": "帮我把这本小说改成20集短剧，先做分集地图", "expect": "short-drama-develop"},
-  {"query": "写一集短剧剧本，男女主在雨夜对峙", "expect": "short-drama-write"},
-  {"query": "帮我改一下这场戏的台词，太像解释了", "expect": "short-drama-write"},
-  {"query": "诊断一下这个剧本的因果，感觉人物动机很硬", "expect": "director-agent"},
-  {"query": "给我一个导演阐述，说明这场戏的视点和调度", "expect": "director-agent"},
-  {"query": "把这场戏做成完整分镜，要有起中终画框", "expect": "ai-storyboard-director"},
-  {"query": "这个镜头怎么设计机位和运镜", "expect": "ai-storyboard-director"},
-  {"query": "设计男主的三视图、表情九宫格和面部特写", "expect": "character-asset"},
-  {"query": "给这个老宅做一张主图和反打图", "expect": "scene-asset"},
-  {"query": "设计一块怀表道具，要有正反面和细节图", "expect": "prop-asset"},
-  {"query": "给女主选一个音色，做试音样音", "expect": "sound-asset"},
-  {"query": "这个角色说话太播音腔了，帮我定演绎指令", "expect": "sound-asset"},
-  {"query": "用赛博朋克风格设计未来都市的霓虹街景", "expect": "cyberpunk-design"},
-  {"query": "做一个古代宫殿的史诗感场景", "expect": "epic-design"},
-  {"query": "设计一个魔法森林和精灵角色", "expect": "fantasy-design"},
-  {"query": "恐怖片里的凶宅怎么打光", "expect": "horror-design"},
-  {"query": "黑色电影风格的侦探办公室", "expect": "noir-design"},
-  {"query": "爱情片告白场景的暖调设计", "expect": "romance-design"},
-  {"query": "战争片的小队巷战画面怎么设计", "expect": "war-design"},
-  {"query": "武侠客栈里的对峙镜头", "expect": "wuxia-design"},
-  {"query": "古风人物和古装场景的视觉设计", "expect": "guofeng-visual-director"},
-  {"query": "硬科幻里的机甲驾驶舱和界面设计", "expect": "hard-sci-fi-visual-director"},
-  {"query": "做一个3D白模预演，看看机位和走位", "expect": "whitebox-previs-executor"},
-  {"query": "把这段分镜真正生成成视频", "expect": "produce-ai-video"},
-  {"query": "帮我把这集成片从头到尾审一遍，找换脸和烧字幕", "expect": "omni-review"},
-  {"query": "这个镜头是不是换脸了，对比一下参考图", "expect": "omni-review"},
-  {"query": "我不知道该用哪个技能，帮我把这个项目拆成流程", "expect": "film-production-orchestrator"},
-  {"query": "现在该用哪个模型出图、哪个模型出视频", "expect": "model-select"},
-  {"query": "帮我分析一下今年微短剧市场的题材趋势", "expect": "d-official-market-analysis"},
-  {"query": "把这些分析结论写进知识库，先做审核", "expect": "d-data-analysis-semantic-layer"},
-  {"query": "设计一个影视项目的官网首页", "expect": "web-design-director"},
-  {"query": "从剧本到资产、分镜、生成提示词全流程怎么排", "expect": "ai-short-drama-production"},
-  {"query": "这个短剧项目要控成本，先做资产和分镜再生成", "expect": "ai-short-drama-production"},
-  {"query": "帮我把分集大纲写成可拍摄的剧本", "expect": "short-drama-write"},
-  {"query": "这个反转太机械降神了，有没有前文依据", "expect": "director-agent"}
+  {
+    "query": "帮我把这本小说改成20集短剧，先做分集地图",
+    "expect": "short-drama-develop"
+  },
+  {
+    "query": "写一集短剧剧本，男女主在雨夜对峙",
+    "expect": "short-drama-write"
+  },
+  {
+    "query": "帮我改一下这场戏的台词，太像解释了",
+    "expect": "short-drama-write"
+  },
+  {
+    "query": "诊断一下这个剧本的因果，感觉人物动机很硬",
+    "expect": "director-agent"
+  },
+  {
+    "query": "给我一个导演阐述，说明这场戏的视点和调度",
+    "expect": "director-agent"
+  },
+  {
+    "query": "把这场戏做成完整分镜，要有起中终画框",
+    "expect": "ai-storyboard-director"
+  },
+  {
+    "query": "这个镜头怎么设计机位和运镜",
+    "expect": "ai-storyboard-director"
+  },
+  {
+    "query": "设计男主的三视图、表情九宫格和面部特写",
+    "expect": "character-asset"
+  },
+  {
+    "query": "给这个老宅做一张主图和反打图",
+    "expect": "scene-asset"
+  },
+  {
+    "query": "设计一块怀表道具，要有正反面和细节图",
+    "expect": "prop-asset"
+  },
+  {
+    "query": "给女主选一个音色，做试音样音",
+    "expect": "sound-asset"
+  },
+  {
+    "query": "这个角色说话太播音腔了，帮我定演绎指令",
+    "expect": "sound-asset"
+  },
+  {
+    "query": "用赛博朋克风格设计未来都市的霓虹街景",
+    "expect": "cyberpunk-design"
+  },
+  {
+    "query": "做一个古代宫殿的史诗感场景",
+    "expect": "epic-design"
+  },
+  {
+    "query": "设计一个魔法森林和精灵角色",
+    "expect": "fantasy-design"
+  },
+  {
+    "query": "恐怖片里的凶宅怎么打光",
+    "expect": "horror-design"
+  },
+  {
+    "query": "黑色电影风格的侦探办公室",
+    "expect": "noir-design"
+  },
+  {
+    "query": "爱情片告白场景的暖调设计",
+    "expect": "romance-design"
+  },
+  {
+    "query": "战争片的小队巷战画面怎么设计",
+    "expect": "war-design"
+  },
+  {
+    "query": "武侠客栈里的对峙镜头",
+    "expect": "wuxia-design"
+  },
+  {
+    "query": "古风人物和古装场景的视觉设计",
+    "expect": "guofeng-visual-director"
+  },
+  {
+    "query": "硬科幻里的机甲驾驶舱和界面设计",
+    "expect": "hard-sci-fi-visual-director"
+  },
+  {
+    "query": "做一个3D白模预演，看看机位和走位",
+    "expect": "whitebox-previs-executor"
+  },
+  {
+    "query": "把这段分镜真正生成成视频",
+    "expect": "produce-ai-video"
+  },
+  {
+    "query": "帮我把这集成片从头到尾审一遍，找换脸和烧字幕",
+    "expect": "omni-review"
+  },
+  {
+    "query": "这个镜头是不是换脸了，对比一下参考图",
+    "expect": "omni-review"
+  },
+  {
+    "query": "我不知道该用哪个技能，帮我把这个项目拆成流程",
+    "expect": "film-production-orchestrator"
+  },
+  {
+    "query": "现在该用哪个模型出图、哪个模型出视频",
+    "expect": "model-select"
+  },
+  {
+    "query": "帮我分析一下今年微短剧市场的题材趋势",
+    "expect": "d-official-market-analysis"
+  },
+  {
+    "query": "把这些分析结论写进知识库，先做审核",
+    "expect": "d-data-analysis-semantic-layer"
+  },
+  {
+    "query": "设计一个影视项目的官网首页",
+    "expect": "web-design-director"
+  },
+  {
+    "query": "从剧本到资产、分镜、生成提示词全流程怎么排",
+    "expect": "ai-short-drama-production"
+  },
+  {
+    "query": "这个短剧项目要控成本，先做资产和分镜再生成",
+    "expect": "ai-short-drama-production"
+  },
+  {
+    "query": "帮我把分集大纲写成可拍摄的剧本",
+    "expect": "short-drama-write"
+  },
+  {
+    "query": "这个反转太机械降神了，有没有前文依据",
+    "expect": "director-agent"
+  },
+  {
+    "query": "用 ai-film-skills 帮我做一部短剧",
+    "expect": "film-production-orchestrator"
+  },
+  {
+    "query": "ai-film-skills 里哪个技能适合我",
+    "expect": "film-production-orchestrator"
+  },
+  {
+    "query": "我想做短剧，但不知道用哪个技能",
+    "expect": "film-production-orchestrator"
+  }
 ]
