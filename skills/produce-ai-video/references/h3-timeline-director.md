@@ -20,6 +20,25 @@
 | 没有对白但长视频模型可能自行发声 | 在 `overall_soundscape` 明确只有环境声/脚步/风，不出现人声 |
 
 **只有**单镜 4–15 秒、单张参考图、无参考音频且不需要长视频拆分时，才可留在 H3 base 模式。
+### 0.1 场级多镜配方（官方能力）
+
+官方 H3 prompt 支持在同一次 5–15 秒生成里用 `[Shot N] At …` 切镜；时间线插件也允许每段 prompt 内含切点。生产上按场组织：
+
+| 场的总时长 | 生成方式 | 切点写在哪 |
+|---|---|---|
+| ≤15 秒 | **一场一次执行**，`segmentConfig.count = 1` | 同一段 prompt 内，`[Shot 2] At 00:0X.XXX, the shot cuts to …` |
+| >15 秒 | 按**同一条连续动作**拆 2–3 段，段间正重叠 22 帧 | 切点仍写在段内；段边界不要放在切镜上 |
+| 需要换场/时间跳跃 | 另起一场/一段 | 不靠 0 重叠把无关镜头串起来 |
+
+示例（一场 10 秒、两个镜头）：
+
+```text
+[Shot 1] ... 门口过肩，门打开，沈远停在门槛 ...
+[Shot 2] At 00:07.290, the shot cuts to a tight close-up on <Subject 2> (S2) ...
+```
+
+来源：`MiniMax-AI/MiniMax-H3` 仓库的 h3-prompt-writing 的 base 参考文档第 86–92 行（`[Shot N]` 与 `the shot cuts to`），以及插件 `Songssx/ComfyUI-MiniMaxH3-TimelineDirector` README 的 per-segment prompt 说明。
+
 
 **“整场多镜一次出”不是本插件的用法。** 这里的“多镜”只允许是同一条连续动作内部的 `[Shot N]` 切点，不允许换机位、换景别或换场。
 

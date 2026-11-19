@@ -2,6 +2,16 @@
 
 Contributions should improve a Skill's real-task performance without hiding its evidence state, breaking its standalone package, or tying the canonical workflow to one Agent host.
 
+## Runtime claims need a source
+
+A statement that a model, node or plugin "must", "cannot" or "always" behaves in a certain way is a runtime claim. Before writing it into a Skill:
+
+1. cite the official file, line, commit or plugin README, or
+2. run a reproducible test and record the command, input and output, or
+3. mark it `ASSUMED` / `unverified` and keep it out of hard gates.
+
+Production heuristics (for example "do not chain unrelated shots with 0 overlap") are allowed, but must be written as guidance, not as an official capability limit. A claim without (1) or (2) cannot become a blocker.
+
 ## Change the runtime contract
 
 1. Open an issue describing a concrete user request that should trigger the Skill and the visible result that should pass.
