@@ -37,7 +37,7 @@ def check_prompt(text: str, mode: str = "native") -> list[dict]:
             f"technical spec can be burned as visible text: {match.group(0)!r}")
     if DIALOGUE_TAG.search(text or ""):
         add("DIALOGUE_TAG_REVIEW", "review",
-            "<d> dialogue tags raise burned-caption risk in this runtime; prefer quoted direct speech or a silent TTS shot")
+            "<d> is the official H3 dialogue tag; it can still burn captions in this runtime. Keep the tag, then check six frames; on captions reseed, reframe or use a still, never switch to non-official syntax")
     for match in QUOTED_CJK.finditer(text or ""):
         quote = match.group(1).strip()
         if len(quote) >= 2:
