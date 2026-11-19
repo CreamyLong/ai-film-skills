@@ -106,6 +106,7 @@
 
 - [`references/model-behavior.md`](../../../skills/omni-review/references/model-behavior.md)
 - [`references/qwen-mm-plugins.md`](../../../skills/omni-review/references/qwen-mm-plugins.md)
+- [`references/repair-matrix.md`](../../../skills/omni-review/references/repair-matrix.md)
 - [`references/review-tiers.md`](../../../skills/omni-review/references/review-tiers.md)
 - [`references/seam-review.md`](../../../skills/omni-review/references/seam-review.md)
 - [`references/verdict-schema.md`](../../../skills/omni-review/references/verdict-schema.md)
@@ -114,6 +115,7 @@
 
 - [`scripts/episode_audit.py`](../../../skills/omni-review/scripts/episode_audit.py)
 - [`scripts/omni_review.py`](../../../skills/omni-review/scripts/omni_review.py)
+- [`scripts/repair_plan.py`](../../../skills/omni-review/scripts/repair_plan.py)
 - [`scripts/seam_review.py`](../../../skills/omni-review/scripts/seam_review.py)
 
 **其他随包文件**

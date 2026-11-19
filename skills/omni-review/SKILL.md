@@ -59,14 +59,14 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 
 每条必须带：时间码/镜号、证据类型、模型原话摘要、修复归属层（资产/提示词/生成/剪辑/声音）。
 
-判定与报告格式见 [references/verdict-schema.md](references/verdict-schema.md)。
+判定与报告格式见 [references/verdict-schema.md](references/verdict-schema.md)；审查结论如何落到资产/提示词/生成/剪辑/声音各层，见 [references/repair-matrix.md](references/repair-matrix.md)。
 
 ## 5. 工作流
 
 1. **收集证据**：从 editlist、prompts、成片生成网格、身份对、切点音频；可用 `scripts/episode_audit.py` 自动打包。
 2. **分层送检**：先 T2/T3（便宜、覆盖广），再 T1/T4（关键镜和切点），最后 T5/T6（主 key 镜）。
 3. **逐条复核**：人打开对应帧/秒确认；模型说的与画面不符时，以画面为准并记录误报。
-4. **给出判决**：blocker 未清零，成片只能叫候选；清零后仍需完整看片。
+4. **给出判决**：blocker 未清零，成片只能叫候选；清零后仍需完整看片。用 `scripts/repair_plan.py` 把每条结论路由到“根因 → 动作 → 复验 → 命令”，不要把所有问题都归为“重渲整集”。
 5. **回归**：修复后只重跑受影响层，并保留修复前后证据。
 
 ## 6. 模型使用
@@ -86,6 +86,8 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 | `scripts/episode_audit.py` | 从 editlist/prompts/成片生成证据包：场网格、身份对、切点音频、manifest；可用 `--run` 调模型 |
 | `scripts/omni_review.py` | 单次审查：`identity` / `sheet` / `video` / `audio`，输出 JSON |
 | `scripts/seam_review.py` | 两镜接缝：A 末帧 + B 首帧 + 切点音频对，检查身份/空间/轴线/动作/声场 |
+| `scripts/repair_plan.py` | 把审查结果转成修复计划：缺陷分类、归属层、动作、复验方式；不自动执行 |
+| `scripts/repair_plan.py` | 把审查结果路由成技术修复计划：缺陷类 → 根因 → 动作 → 复验 → 命令 |
 
 示例：
 
