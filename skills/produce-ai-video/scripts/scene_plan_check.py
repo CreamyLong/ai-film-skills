@@ -55,6 +55,9 @@ def main(argv=None) -> int:
         ambience = scene.get("ambience") or {}
         if not (ambience.get("source") or ambience.get("description")):
             findings.append(blocker(f"scene {sid}: no ambience source or description"))
+        pieces = scene.get("set_pieces") or []
+        if not pieces:
+            findings.append(blocker(f"scene {sid}: no set_pieces list; the scene image cannot be matched to the script"))
         lighting = scene.get("lighting") or {}
         if not lighting.get("key_source"):
             findings.append(blocker(f"scene {sid}: no lighting.key_source (light has no origin)"))

@@ -114,6 +114,7 @@
 **引用资料**
 
 - [`references/asset-retention-and-cleanup.md`](../../../skills/produce-ai-video/references/asset-retention-and-cleanup.md)
+- [`references/asset-scene-consistency.md`](../../../skills/produce-ai-video/references/asset-scene-consistency.md)
 - [`references/audio-continuity.md`](../../../skills/produce-ai-video/references/audio-continuity.md)
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/audio-route-ab.md`](../../../skills/produce-ai-video/references/audio-route-ab.md)
@@ -160,6 +161,7 @@
 - [`scripts/prompt_preflight.py`](../../../skills/produce-ai-video/scripts/prompt_preflight.py)
 - [`scripts/quality_gate_check.py`](../../../skills/produce-ai-video/scripts/quality_gate_check.py)
 - [`scripts/scene_plan_check.py`](../../../skills/produce-ai-video/scripts/scene_plan_check.py)
+- [`scripts/script_asset_check.py`](../../../skills/produce-ai-video/scripts/script_asset_check.py)
 - [`scripts/shot_preflight.py`](../../../skills/produce-ai-video/scripts/shot_preflight.py)
 - [`scripts/speech_route_check.py`](../../../skills/produce-ai-video/scripts/speech_route_check.py)
 - [`scripts/submission_gateway.py`](../../../skills/produce-ai-video/scripts/submission_gateway.py)
