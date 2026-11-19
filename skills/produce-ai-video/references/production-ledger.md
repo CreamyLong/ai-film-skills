@@ -37,7 +37,11 @@ python scripts/production_state.py --state <台账.json> --command <动作.json>
 - 媒体类条目（keyframe、video、scene、film、animatic）必须指向真实本地文件；登记只代表“这个字节存在”，不代表合格。
 - 台账文件有独占锁。锁被占用时停止；不得删除他人的锁，确认无进程占用后由操作者手工处理。
 
-## 提交网关：submission_gateway.py
+## 通用提交边界与 H3 网关
+
+所有运行时共用台账。宿主适配器须在实际发出请求的位置核对已登记的请求和依赖、附件字节及授权，预留尝试并绑定实际请求与服务回执，最后把供应商返回的同一任务产物登记为待审。缺少可验证的接入时保持 `UNVERIFIED`，不直接发送付费或生成请求。
+
+`submission_gateway.py` 只负责其白名单支持的 ComfyUI `MiniMaxH3TimelineDirector` 图。其他模型、H3 基础模式或不在白名单的图（包括 Planner/Sampler 图）需要另行验证的适配器。提示词结构预检通过不能代替运行时接入。ComfyUI 的 `prompt_id` 与投送图回读只属于该运行时。
 
 `describe` 只读取图和输入文件，不提交：
 

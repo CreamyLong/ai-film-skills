@@ -26,12 +26,12 @@
 - **`<d>` 仍可能烧字幕，但正确做法是保留标签并逐镜查**：官方格式不能省；出现烧录字幕时换 seed、调整镜头或改静帧，不要退回去掉标签的写法。烧录判定必须按整条片子抽样，不能只看 3 帧；`<d>` 内只用 `. ? !` 收句，不用省略号。
 - **烧录字幕是随机故障**：H3 会把台词烧成中英双语字幕，位置在画面下三分之一；与台词长短、道具、景别没有稳定相关，同一提示词换 seed 重跑可能消失。出现即整镜重跑，不能用裁剪或涂抹“修”，除非字幕稳定落在可安全裁掉的衣料区。字幕里还会出现英文错译和拼写错误（如 `ins hand`），不能当成片交付。提示词里的技术规格和制作标签也会被烧成文字：实测 `vertical 9:16, 24fps` 被写成画面底部的白色横幅，`Speaker ID: Qiu Jianmin = (S1)` 被写成 `Speaker ID: Jianmin ...` 的字幕条；景别和画幅由采样器参数决定，正文只写可见内容，不写 `9:16`、`24fps`、分辨率等规格。
 - **提交前硬门**：对正向提示词运行 `scripts/caption_preflight.py`。出现 `subtitle/caption/watermark`、`9:16`、`24fps`、`Speaker ID` 或尺寸规格即阻断；静默/TTS 路线出现引号中文台词也阻断；原生对白的引号台词标 review，生成后必须抽帧检查。不要用“在提示词里写无字幕”来防字幕，这本身就是在点名字幕。
-- **生成后硬门**：运行 `scripts/caption_frame_qc.py` 生成六帧联系表和报告；报告默认 `review_required`，人工看过后才能改成 `reviewed`。交付 QC 用 `media_qc.py --caption-report <报告> --require-caption-review`；没有报告时该门阻断。
+- **生成后硬门（适用于各供应商的视频）**：运行 `scripts/caption_frame_qc.py` 生成六帧联系表和报告，记录视频和联系表 SHA-256。审核者看过证据、记录 `reviewer` 和问题后才能把状态改成 `reviewed`。交付 QC 用 `media_qc.py --caption-report <报告> --require-caption-review`，要求问题清单明确为空，两个哈希与当前文件一致。旧版无哈希报告需重新抽帧和复核。
 - **背对、手部、道具特写优先换 seed / 改构图，再考虑 8 步补偿**：官方默认是 4 步；8 步不是官方要求，只是需要细节时的补偿选项。不要默认把“步数太低”写成根因，先验证同一镜在 4 步 + 正确台词格式下是否成立。
 - **同一角色轮换音色参考会漂移**：H3 把每条 `reference` 音频都当作音色锚点；同一说话人在不同镜头引用不同样音，会得到年龄感、厚薄、口音都不一致的“同一个人”。每个角色全片只锁一条参考，情绪写进台词与演绎指令；年轻版/电话版按独立身份锁定。
 - **参考图不是越多越好**：每张参考图都参与采样；3–4 张加 `ref_image_size=max` 会明显变慢。只给当前段真正需要的身份、场景、道具。
 - **屏幕与反光面**：显示器、手机、车窗容易产生摩尔纹和伪 UI。让屏幕背对镜头、只留冷光，或直接切静帧。
-- **同一条连续动作才用多段**：真正的换机位/换场分别生成；不要用 0 重叠把独立镜头拼进一次执行，接缝会在表演、光位与方向上同时断开。
+- **H3 正重叠多段仅用于连续动作**：独立换机位或换场使用适用的原生多镜能力，或分开生成再剪辑。不要用 0 重叠的续接计划代替剪辑。
 - **反物理一票否决**：道具尺度和人体比例、手与物体的接触、手指关节、车轮/铰链/镜架结构、悬空与穿模、同一个人出现两次、反射多出物体、阴影方向矛盾，任一项出现就必须重做关键帧或重跑 shot；信息型道具直接改静帧。不能把反物理镜头留给后期或“观众看不出来”。
 
 ## 提交记录
@@ -93,7 +93,7 @@
 - `asset_inventory.coverage` 为 `complete`、`incomplete` 或 `unverified`；先从剧本、分镜与实际提示词分别清点匿名人物、场景、道具和声音，再逐项记录。`assets` 的类型为 `character`、`scene`、`prop`、`voice` 或 `other`，状态为 `approved`、`missing`、`unverified` 或 `rejected`；批准必须有版本及可追溯证据。空清单或 `complete` 只是录入声明，不证明人物提取完整或资产真实合格。
 - `binding.scheme` 仅在真实运行节点采用逐文件 `<Picture N>`、`<Video N>`、`<Audio N>` 且附件顺序已知时填 `h3_explicit`，否则填 `opaque` 并人工核对模型适配器。附件按该运行时每种媒体的实际编号顺序填写；不得假定首尾帧、配对音频和参考素材在所有 H3 节点中的接法相同。
 - `prompt_format` 为可选字段：缺省或 `narrative` 表示自然语言格式（如六模块编译结果）；`context_ir` 表示实际提示词采用 [context-ir-format.md](context-ir-format.md) 的官方六段结构；`h3_base` 表示实际提示词采用 [h3-base-format.md](h3-base-format.md) 的官方基础模式三字段结构。填 `context_ir` 或 `h3_base` 时脚本对 `prompt` 运行对应结构校验并把结果并入 findings；`h3_base` 还必须填 `h3_mode`（`t2va`/`i2va`/`fl2va`/`l2va`），缺省或非法值即阻断。`<Subject N>` 是语义标签不是附件，附件绑定仍只核对 `<Picture>`、`<Video>`、`<Audio>`。结构通过不证明语义或画面合格。
-- 目标时长超过单次 H3 生成、含多镜/多角色/参考音频/长视频时，按 [h3-timeline-director.md](h3-timeline-director.md) 的强制触发条件编译 `segmentConfig`，并对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`；不能把整段任务写成一条 base prompt 后用“后期拼接”代替分段计划。多段只用于同一条连续动作的拆分，使用正重叠；真正的换机位/换场分别生成，按 [transition-causality.md](transition-causality.md) 设计切点，不用 0 重叠把独立镜头拼成一组。
+- 只在 ComfyUI + H3 TimelineDirector 路线按 [h3-timeline-director.md](h3-timeline-director.md) 的触发条件编译 `segmentConfig`，并对实际 `timeline_data` 运行 `scripts/timeline_plan_check.py`。需要跨生成窗延续同一条动作时使用正重叠。独立镜头按 [transition-causality.md](transition-causality.md) 设计切点，并用目标运行时支持的模式执行。
 - `max_by_kind` 是当前模型、模式和运行节点已核实的上限，不是全平台默认值；可对 `image`、`video`、`audio`、`other` 填非负整数或 `null`。未知上限必须保持未验证，超限不能默默截断。`capacity_evidence` 记录依据。
 - 附件 `path` 为真实本地文件的绝对路径，不可读取时填 `null`。`sha256` 是预期投送版本，`review.sha256` 是批准记录绑定的版本，两者须对应实际文件字节；`review.status` 为 `approved`、`unverified` 或 `rejected`，`evidence` 指向实际审核记录。声明“已审核”不代替查看记录和图片；一张关键帧内包含多个人，也不自动证明各人物资产齐全。
 

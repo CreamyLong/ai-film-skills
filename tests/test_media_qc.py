@@ -161,17 +161,48 @@ class MediaQcTests(unittest.TestCase):
         report = qc.audit(str(self.media), runner=runner, require_caption_review=True)
         self.assertEqual(report["status"], "BLOCK")
         self.assertIn("CAPTION_REVIEW_MISSING", codes(report))
-        path = Path(self.tmp.name) / "caption.json"
-        path.write_text(json.dumps({"status": "reviewed", "issues": [],
-                                    "contact_sheet": "sheet.jpg"}), encoding="utf-8")
+        path, _ = self.write_reviewed_caption_report()
         report = qc.audit(str(self.media), runner=runner, caption_report=path,
                           require_caption_review=True)
         self.assertEqual(report["checks"]["caption_review"]["status"], "completed")
         self.assertNotIn("CAPTION_REVIEW_MISSING", codes(report))
-        path.write_text(json.dumps({"status": "review_required",
-                                    "contact_sheet": "sheet.jpg"}), encoding="utf-8")
-        report = qc.audit(str(self.media), runner=runner, caption_report=path)
-        self.assertIn("CAPTION_REVIEW_REQUIRED", codes(report))
+
+    def write_reviewed_caption_report(self):
+        path = self.media.with_name("caption.json")
+        sheet = self.media.with_name("sheet.jpg")
+        sheet.write_bytes(b"synthetic contact sheet")
+        review = {"status": "reviewed", "reviewer": "reviewer", "issues": [],
+                  "video_sha256": qc.file_sha256(self.media),
+                  "contact_sheet": sheet.name, "contact_sheet_sha256": qc.file_sha256(sheet)}
+        path.write_text(json.dumps(review), encoding="utf-8")
+        return path, review
+
+    def test_caption_review_rejects_incomplete_evidence(self):
+        path, review = self.write_reviewed_caption_report()
+        invalid_fields = ({"reviewer": " "}, {"issues": ["burned text"]}, {"issues": None},
+                          {"video_sha256": None}, {"contact_sheet_sha256": None},
+                          {"status": "review_required"})
+        payloads = [{"status": "pass"}, {"status": "reviewed"}]
+        payloads.extend({**review, **fields} for fields in invalid_fields)
+        for payload in payloads:
+            with self.subTest(payload=payload):
+                path.write_text(json.dumps(payload), encoding="utf-8")
+                report = qc.audit(self.media, runner=fake_runner(**CLEAN), caption_report=path,
+                                  require_caption_review=True)
+                self.assertEqual(report["status"], "BLOCK")
+                self.assertEqual(report["checks"]["caption_review"]["status"], "unverified")
+                self.assertIn("CAPTION_REVIEW_REQUIRED", codes(report))
+
+    def test_caption_review_rejects_replaced_video_or_sheet(self):
+        for evidence in ("video", "contact_sheet"):
+            with self.subTest(evidence=evidence):
+                path, review = self.write_reviewed_caption_report()
+                changed = self.media if evidence == "video" else path.parent / review[evidence]
+                changed.write_bytes(b"new version")
+                report = qc.audit(self.media, runner=fake_runner(**CLEAN), caption_report=path,
+                                  require_caption_review=True)
+                self.assertEqual(report["status"], "BLOCK")
+                self.assertIn("CAPTION_REVIEW_REQUIRED", codes(report))
 
     def test_unknown_required_fps_and_duration_block(self):
         outputs = {**CLEAN, "-show_streams": (0, probe_json(duration="N/A", fps="0/0"), "")}

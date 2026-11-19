@@ -4,8 +4,9 @@
 This tool does not pass the clip and does not use OCR. It samples six frames,
 crops the lower 45% where H3 usually burns text, and writes a contact sheet plus
 a JSON report whose default status is ``review_required``. A reviewer must
-inspect the sheet and change the report status to ``reviewed`` before the clip
-can pass a caption gate. Three samples miss short captions that appear late in
+inspect the sheet, record their name and issues, and set the status to
+``reviewed``. The report binds the review to the video and sheet hashes.
+Three samples miss short captions that appear late in
 a clip, so six is the default; raise it with ``--samples`` for long clips.
 """
 from __future__ import annotations
@@ -13,10 +14,14 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import json
+import math
+import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+from media_qc import file_sha256
 
 FFPROBE = ["ffprobe", "-v", "error", "-show_entries", "format=duration",
            "-of", "csv=p=0"]
@@ -41,7 +46,7 @@ def build_sheet(frames: list[Path], out: Path) -> None:
     inputs = []
     for frame in frames:
         inputs += ["-i", str(frame)]
-    # Full frame plus lower 45% at higher scale; three samples side by side.
+    # Stack full frames and outline the lower 45% in each.
     filters = []
     for index in range(len(frames)):
         filters.append(f"[{index}:v]scale=300:-1,drawbox=x=0:y=ih*0.55:w=iw:h=ih*0.45:color=red@0.35:t=2[v{index}]")
@@ -62,25 +67,43 @@ def main(argv=None) -> int:
                         help="number of evenly spaced frames to sample (default 6)")
     args = parser.parse_args(argv)
     try:
-        duration = probe_duration(args.video)
+        video = args.video.resolve()
+        sheet = (args.contact_sheet or video.with_name(video.stem + "_caption_review.jpg")).resolve()
+        report_path = (args.report or video.with_name(video.stem + "_caption_review.json")).resolve()
+        if len({video, sheet, report_path}) != 3:
+            raise ValueError("video, contact sheet and report must be different files")
+        video_hash = file_sha256(video)
+        duration = probe_duration(video)
+        if not math.isfinite(duration) or duration <= 0:
+            raise ValueError("video duration must be positive and finite")
         count = max(2, args.samples)
-        times = [min(duration - 0.05, duration * (i + 0.5) / count) for i in range(count)]
-        sheet = args.contact_sheet or args.video.with_name(args.video.stem + "_caption_review.jpg")
-        report_path = args.report or args.video.with_name(args.video.stem + "_caption_review.json")
+        tail = max(0, duration - 0.05)
+        times = [min(tail, duration * (i + 0.5) / count) for i in range(count)]
         with tempfile.TemporaryDirectory(prefix="caption-qc-") as raw:
             tmp = Path(raw)
             frames = []
             for index, timestamp in enumerate(times):
                 frame = tmp / f"frame_{index}.png"
-                extract(args.video, timestamp, frame)
+                extract(video, timestamp, frame)
                 frames.append(frame)
-            build_sheet(frames, sheet)
+            generated_sheet = tmp / sheet.name
+            build_sheet(frames, generated_sheet)
+            if file_sha256(video) != video_hash:
+                raise ValueError("video changed during frame extraction")
+            if not generated_sheet.stat().st_size:
+                raise ValueError("contact sheet is empty")
+            sheet_hash = file_sha256(generated_sheet)
+            shutil.copyfile(generated_sheet, sheet)
         report = {
             "status": "review_required",
-            "video": str(args.video),
+            "video": str(video),
+            "video_sha256": video_hash,
             "duration_seconds": round(duration, 3),
             "sample_times": [round(value, 3) for value in times],
-            "contact_sheet": str(sheet),
+            "contact_sheet": sheet.name if sheet.parent == report_path.parent else str(sheet),
+            "contact_sheet_sha256": sheet_hash,
+            "reviewer": None,
+            "issues": [],
             "note": "Inspect the full frames and the red-marked lower band for burned-in text. "
                     "Change status to 'reviewed' only after inspection; record reviewer and issues.",
             "created_at": datetime.now(timezone.utc).isoformat(),

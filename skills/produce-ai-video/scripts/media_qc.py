@@ -11,6 +11,7 @@ visually acceptable.
 from __future__ import annotations
 
 import argparse
+from hashlib import sha256
 import json
 import os
 from pathlib import Path
@@ -51,6 +52,39 @@ _LUFS_RE = re.compile(r"I: +(-?\d+(?:\.\d+)?) LUFS")
 def _run(command, timeout=120):
     proc = subprocess.run(command, capture_output=True, text=True, timeout=timeout)
     return proc.returncode, proc.stdout, proc.stderr
+
+
+def file_sha256(path):
+    path = Path(path)
+    if not path.is_file():
+        raise ValueError(f"not a regular file: {path}")
+    digest = sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_caption_review(report_path, video_path):
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    if not isinstance(report, dict):
+        raise ValueError("expected a JSON object")
+    if report.get("status") != "reviewed":
+        return None, "Inspect the contact sheet and set status to reviewed."
+    reviewer = report.get("reviewer")
+    if not isinstance(reviewer, str) or not reviewer.strip() or report.get("issues") != []:
+        return None, "Record the reviewer and resolve all issues before approval."
+    sheet = report.get("contact_sheet")
+    if not isinstance(sheet, str) or not sheet.strip() or not report.get("contact_sheet_sha256"):
+        return None, "Generate a report with hashed contact sheet evidence."
+    if not report.get("video_sha256") or report["video_sha256"] != file_sha256(video_path):
+        return None, "The report must match the current video SHA-256. Regenerate and review the evidence."
+    sheet_path = report_path.parent / sheet
+    if not sheet_path.is_file() or not sheet_path.stat().st_size:
+        return None, "The contact sheet is missing or empty. Regenerate and review the evidence."
+    if report["contact_sheet_sha256"] != file_sha256(sheet_path):
+        return None, "The contact sheet has changed. Regenerate and review the evidence."
+    return str(sheet_path), None
 
 
 def probe(path, runner=_run):
@@ -289,21 +323,17 @@ def audit(path, expect_duration=None, expect_size=None, expect_fps=None,
     if caption_report:
         checks["caption_review"] = {"status": "unverified"}
         try:
-            caption = json.loads(Path(caption_report).read_text(encoding="utf-8"))
+            sheet, issue = verify_caption_review(Path(caption_report), path)
         except (OSError, ValueError) as exc:
             add("CAPTION_REVIEW_UNREADABLE", "block", str(caption_report),
-                f"Generate a readable caption review report first: {exc}")
+                f"Generate a readable caption review report with accessible evidence: {exc}")
         else:
-            status = str(caption.get("status") or "").lower()
-            issues = caption.get("issues") or []
-            sheet = caption.get("contact_sheet")
-            if status in ("reviewed", "pass", "completed") and not issues:
+            if issue is None:
                 checks["caption_review"] = {"status": "completed",
                                             "contact_sheet": sheet}
             else:
-                add("CAPTION_REVIEW_REQUIRED", "review", str(caption_report),
-                    "Inspect the contact sheet, record issues, then set status=reviewed; "
-                    "text burned into the frame is not approved by a mechanical QC pass.")
+                add("CAPTION_REVIEW_REQUIRED", "block" if require_caption_review else "review",
+                    str(caption_report), issue)
     elif require_caption_review:
         add("CAPTION_REVIEW_MISSING", "block", str(path),
             "A burned-in text review is required for this route; run caption_frame_qc.py, "
@@ -351,7 +381,7 @@ def main(argv=None):
     parser.add_argument("--loudness", default=None, help="min,max LUFS range")
     parser.add_argument("--contact-sheet", type=Path, default=None)
     parser.add_argument("--caption-report", type=Path, default=None,
-                        help="caption_frame_qc.py report; must be set to reviewed with no issues")
+                        help="reviewed report with reviewer, no issues and matching video and sheet hashes")
     parser.add_argument("--require-caption-review", action="store_true",
                         help="block when no caption review report is supplied")
     args = parser.parse_args(argv)

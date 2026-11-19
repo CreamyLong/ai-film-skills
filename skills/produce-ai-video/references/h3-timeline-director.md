@@ -40,7 +40,7 @@
 来源：`MiniMax-AI/MiniMax-H3` 仓库的 h3-prompt-writing 的 base 参考文档第 86–92 行（`[Shot N]` 与 `the shot cuts to`），以及插件 `Songssx/ComfyUI-MiniMaxH3-TimelineDirector` README 的 per-segment prompt 说明。
 
 
-**“整场多镜一次出”不是本插件的用法。** 这里的“多镜”只允许是同一条连续动作内部的 `[Shot N]` 切点，不允许换机位、换景别或换场。
+段内 `[Shot N]` 可表达已核实的机位和景别切换。跨生成窗的正重叠只续接同一条连续动作；独立场景和时间跳跃另行生成再剪。
 
 **官方的多镜能力写在“段内 prompt”，不是靠段边界拼。** H3 支持单次 5–15 秒内多个 `[Shot N]` 切镜；超过 15 秒时按同一条连续动作拆段，切镜仍写在段内。不要用 0 重叠把互不相关的镜头串成长链——0 重叠不复制 latent，表演、光位、方向和底噪都不会继承，等同于“同一次执行里各跑各的”。
 

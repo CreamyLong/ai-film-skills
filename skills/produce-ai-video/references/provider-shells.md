@@ -22,6 +22,8 @@
 |---|---|---|---|
 | ComfyUI + MiniMax H3 TimelineDirector 插件 | `context_ir` | [h3-timeline-director.md](h3-timeline-director.md) | `timeline_plan_check.py` |
 
+提示词方言、时间线结构校验和实际提交适配分别确认。包内网关仅覆盖白名单内的 `MiniMaxH3TimelineDirector` 图；使用其他图或供应商须在真实发出请求的位置验证适配，按 [生产台账](production-ledger.md) 绑定请求、附件、任务回执和输出。非 ComfyUI 路线用自身的回执和任务机制。
+
 ## 新增一种方言的条件
 
 把一种模型方言登记为"已核实"前必须记录：供应商与节点标识、提示词形状（字段/顺序/首行指令）、附件绑定机制（标签、槽位或隐式顺序）、每种媒体的容量上限、任务类型映射、时长与画幅能力，以及该信息的实际来源（官方文档或实测）。任何一项只是"差不多像 H3"而未核实的，方言保持 `unverified`：可以用它出提示词，但提交记录里绑定方案记 `opaque` 并在预检报未验证项，不能当作已核实通过。

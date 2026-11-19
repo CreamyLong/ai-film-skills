@@ -28,6 +28,22 @@ class RuntimeConsistencyTests(unittest.TestCase):
         self.assertIn("h3-official-prompt-contract.md",
                       (ROOT / "skills" / "produce-ai-video" / "SKILL.md").read_text(encoding="utf-8"))
 
+    def test_submission_rules_are_scoped_to_the_selected_runtime(self):
+        skill = ROOT / "skills" / "produce-ai-video"
+        entry = (skill / "SKILL.md").read_text(encoding="utf-8")
+        lines = entry.splitlines()
+        common = next(line for line in lines if "**Every provider and retry:**" in line)
+        prompt = next(line for line in lines if "**Prompt format:**" in line)
+        runtime = next(line for line in lines if "**Execution runtime:**" in line)
+        for h3_only in ("h3-official-prompt-contract.md", "submission_gateway.py", "prompt_id"):
+            self.assertNotIn(h3_only, common)
+        self.assertIn("only to H3 Ref2VA", prompt)
+        self.assertIn("For other routes, use their verified", prompt)
+        self.assertIn('with `h3_mode` and use `scripts/h3_base_check.py`', prompt)
+        self.assertIn("Only on ComfyUI, read back", runtime)
+        self.assertIn("For other graphs or providers, use a verified runtime adapter", runtime)
+        self.assertNotIn("TimelineDirector", entry.splitlines()[2])
+
     def test_no_global_single_bed_rule(self):
         self.assertNotIn("整片铺一条低电平房间声底", self.all_skill_text())
 
