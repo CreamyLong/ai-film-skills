@@ -150,9 +150,10 @@ def _segments(timeline, report, generation_seconds):
             report.add("SEGMENT_LENGTH_OFF_GRID", "block", loc,
                        "Segment length must be 5 + 17*n frames and at most 3592.")
         elif not TRAINED_FRAMES[0] <= length <= TRAINED_FRAMES[1]:
-            report.add("SEGMENT_OUTSIDE_TRAINED_RANGE", "review", loc,
-                       "H3 is trained on about 124-362 frames (5-15 s); longer or shorter segments are "
-                       "accepted by the plugin but quality is unverified.")
+            report.add("SEGMENT_OUTSIDE_TRAINED_RANGE", "block", loc,
+                       "H3 is trained on about 124-362 frames (5-15 s). A longer segment is not a "
+                       "long-video mechanism; split it into <=362-frame segments with 22-frame overlap. "
+                       "A 753-frame single segment produced noise from its first frame.")
         if index == 1 and start != 0:
             report.add("SEGMENT_SEQUENCE_INVALID", "block", loc, "The first segment must start at frame 0.")
         if index > 1 and (start <= previous_start or end <= previous_end or overlap < 0
