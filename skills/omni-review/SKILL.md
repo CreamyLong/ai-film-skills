@@ -77,7 +77,7 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 - 音频必须成对送（可疑段 + 正常段）；单段容易漏报。
 - 单集预算 5–8 次调用：每个对白特写 1 次身份、每场 1 次空间、每个场景切点 1 次音频 A/B。
 
-模型实测能力、延迟、误报模式见 [references/model-behavior.md](references/model-behavior.md)。
+模型实测能力、延迟、误报模式见 [references/model-behavior.md](references/model-behavior.md)。需要说话人分离、时间戳转写、OCR/目标框、事件定位或整季记忆时，可选用 Qwen-MM-Plugins 的 MCP 工具，接法见 [references/qwen-mm-plugins.md](references/qwen-mm-plugins.md)。
 
 ## 7. 脚本
 

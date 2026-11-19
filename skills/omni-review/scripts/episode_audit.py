@@ -45,18 +45,28 @@ def duration(path: Path) -> float:
 
 def make_grid(video: Path, start: float, end: float, out: Path, count: int = 12) -> None:
     span = max(0.5, end - start)
-    times = [start + span * (i + 0.5) / count for i in range(count)]
+    limit = max(0.0, duration(video) - 0.08)
+    times = [min(limit, start + span * (i + 0.5) / count) for i in range(count)]
     frames = []
+    last = None
     for index, moment in enumerate(times):
         frame = out.parent / f"_f{index}.jpg"
+        frame.unlink(missing_ok=True)
         run(["ffmpeg", "-y", "-v", "error", "-ss", f"{moment:.3f}", "-i", str(video),
              "-frames:v", "1", "-vf", "scale=300:-2", str(frame)])
+        if not frame.exists():
+            if last is not None:
+                frames.append(last.copy())
+            continue
         image = Image.open(frame).convert("RGB")
         draw = ImageDraw.Draw(image)
         draw.rectangle([0, 0, 86, 18], fill=(0, 0, 0))
         draw.text((4, 4), f"{int(moment // 60):02d}:{moment % 60:05.2f}", fill=(255, 255, 0))
         frames.append(image)
+        last = image
         frame.unlink(missing_ok=True)
+    if not frames:
+        raise RuntimeError(f"no frames extracted for {video}")
     columns = 4
     rows = (len(frames) + columns - 1) // columns
     cell_w = max(f.width for f in frames)
@@ -75,7 +85,9 @@ def main() -> None:
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--characters", type=Path, default=None,
                         help='JSON map {"han": "path/to/face.png", ...}')
-    parser.add_argument("--max-identity", type=int, default=6)
+    parser.add_argument("--max-identity", type=int, default=4)
+    parser.add_argument("--grids", type=int, default=3,
+                        help="scene grids to build; chosen evenly across blocks")
     parser.add_argument("--run", action="store_true")
     parser.add_argument("--budget", type=int, default=8)
     args = parser.parse_args()
@@ -101,7 +113,14 @@ def main() -> None:
         cursor += durations[seg["name"]]
 
     tasks = []
-    for index, names in enumerate(edit["blocks"]):
+    blocks = edit["blocks"]
+    if len(blocks) <= args.grids:
+        chosen = list(range(len(blocks)))
+    else:
+        step = (len(blocks) - 1) / max(1, args.grids - 1)
+        chosen = sorted({round(i * step) for i in range(args.grids)})
+    for index in chosen:
+        names = blocks[index]
         begin = starts[names[0]]
         end = starts[names[-1]] + durations[names[-1]]
         sheet = out / "grids" / f"block_{index}.jpg"
@@ -120,7 +139,16 @@ def main() -> None:
             continue
         stem = Path(shot["audio_refs"][0]["file"]).stem
         speaker = stem.split("_")[0]
-        ref = charmap.get(speaker)
+        faces = [r["file"] for r in shot.get("refs", [])
+                 if "face" in Path(r["file"]).stem.lower()]
+        matched = [f for f in faces if speaker in Path(f).stem.lower()]
+        if matched:
+            ref = str((root / matched[0]).resolve())
+        elif len(faces) == 1:
+            # speaker is off screen; still verify the on-screen listener's identity
+            ref = str((root / faces[0]).resolve())
+        else:
+            ref = charmap.get(speaker)
         if not ref or not Path(ref).exists():
             continue
         src = root / "video" / "v1" / f"shot{sid}.mp4"
@@ -153,8 +181,10 @@ def main() -> None:
 
     if not args.run:
         return
+    order = {"T1": 0, "T4": 1, "T2": 2, "T3": 3}
+    ranked = sorted(tasks, key=lambda item: order.get(item["tier"], 9))
     results = []
-    for task in tasks[:args.budget]:
+    for task in ranked[:args.budget]:
         content = [{"type": "text", "text": task["question"]}]
         if task["type"] == "identity":
             content += [{"type": "image_url", "image_url": {"url": data_url(Path(task["inputs"][0]), "image/png")}},

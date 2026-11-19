@@ -105,6 +105,7 @@
 **引用资料**
 
 - [`references/model-behavior.md`](../../../skills/omni-review/references/model-behavior.md)
+- [`references/qwen-mm-plugins.md`](../../../skills/omni-review/references/qwen-mm-plugins.md)
 - [`references/review-tiers.md`](../../../skills/omni-review/references/review-tiers.md)
 - [`references/verdict-schema.md`](../../../skills/omni-review/references/verdict-schema.md)
 
