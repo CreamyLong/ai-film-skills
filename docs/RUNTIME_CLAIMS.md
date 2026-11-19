@@ -16,6 +16,7 @@
 | 单次 5–15 秒内可用 `[Shot N] At …` 切镜 | `h3-timeline-director.md` §0.1 | official | 同上，base 参考文档第 86–92 行 | 是 |
 | >15 秒按连续动作拆段、正重叠 22 帧 | `h3-timeline-director.md` | official + measured | 官方分段规则；插件 README 的 overlap 说明 | 是 |
 | 0 重叠不继承 latent，不能当连续性机制 | `h3-timeline-director.md` | official | 插件 README / 采样层说明 | 是 |
+| turbo 4-step LoRA 配 normal/beta 会崩坏 | `h3-timeline-director.md` | measured | SC001 同镜 normal/beta 输出过曝条纹、换脸 | 是（调度器硬门） |
 | 单段超过 362 帧会整段崩坏 | `h3-timeline-director.md` | measured | SC002 753 帧单段输出从首帧起为噪声 | 是（段长硬门） |
 | `<d>` 可能烧录字幕 | `prompt-compilation-preflight.md` | measured | 2026-11 本项目 20 集、24 个对白镜抽检 | 否，生成后复查 |
 | 负向词会召唤被否定对象 | `prompt-compilation-preflight.md` | measured | 本项目 H3 实测，信封/手机/人物被画入 | 否，提示词建议 |
