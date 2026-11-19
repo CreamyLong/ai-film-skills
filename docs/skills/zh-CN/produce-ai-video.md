@@ -123,6 +123,7 @@
 - [`references/ffmpeg-assembly-toolkit.md`](../../../skills/produce-ai-video/references/ffmpeg-assembly-toolkit.md)
 - [`references/finishing-and-delivery.md`](../../../skills/produce-ai-video/references/finishing-and-delivery.md)
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
+- [`references/h3-official-prompt-contract.md`](../../../skills/produce-ai-video/references/h3-official-prompt-contract.md)
 - [`references/h3-timeline-director.md`](../../../skills/produce-ai-video/references/h3-timeline-director.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
 - [`references/multimodal-review.md`](../../../skills/produce-ai-video/references/multimodal-review.md)

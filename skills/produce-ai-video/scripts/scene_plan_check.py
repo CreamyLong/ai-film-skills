@@ -55,6 +55,11 @@ def main(argv=None) -> int:
         ambience = scene.get("ambience") or {}
         if not (ambience.get("source") or ambience.get("description")):
             findings.append(blocker(f"scene {sid}: no ambience source or description"))
+        lighting = scene.get("lighting") or {}
+        if not lighting.get("key_source"):
+            findings.append(blocker(f"scene {sid}: no lighting.key_source (light has no origin)"))
+        if not lighting.get("key_direction"):
+            findings.append(blocker(f"scene {sid}: no lighting.key_direction"))
         shots = scene.get("shots") or []
         if not shots:
             findings.append(blocker(f"scene {sid}: no shots"))
