@@ -99,6 +99,10 @@ ffmpeg -y -i in.mp4 \
 - `loudnorm`（EBU R128）给出 integrated LUFS、true peak、LRA；用于交付规格和跨集统一。
 - 建议：逐段先用 mean_volume 拉到同一目标（如 −23 dB），整片再用 loudnorm 或 limiter 收到交付目标。
 - 峰值不得高于 −1 dBTP；需要 limiter 时放在最终总线，不在每段重复压。
+- 逐镜目标要分类型：对白镜统一到对话电平（如 −19 dB），环境/反应镜统一到更低的环境电平（如 −30 dB）；不要全片一个 `volume=0.9`。
+- 每个镜头首尾各加 20 ms `afade`，消除硬切爆音；这不是叠化，不改变画面。
+- 静帧的 `tone_from` 必须指向无对白镜；指向对白镜会把那句台词以低音量重放一遍（鬼声）。
+- 逐镜电平和切点跳变的检查见 `scripts/audio_continuity_check.py` 与 `audio-continuity.md`；同场对白切点差应 ≤3 dB。
 
 ### 4.2 混音
 

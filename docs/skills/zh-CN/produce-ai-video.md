@@ -114,6 +114,7 @@
 **引用资料**
 
 - [`references/asset-retention-and-cleanup.md`](../../../skills/produce-ai-video/references/asset-retention-and-cleanup.md)
+- [`references/audio-continuity.md`](../../../skills/produce-ai-video/references/audio-continuity.md)
 - [`references/audio-dubbing-post.md`](../../../skills/produce-ai-video/references/audio-dubbing-post.md)
 - [`references/audio-route-ab.md`](../../../skills/produce-ai-video/references/audio-route-ab.md)
 - [`references/autonomous-production-workflow.md`](../../../skills/produce-ai-video/references/autonomous-production-workflow.md)
@@ -141,6 +142,7 @@
 
 **确定性辅助脚本**
 
+- [`scripts/audio_continuity_check.py`](../../../skills/produce-ai-video/scripts/audio_continuity_check.py)
 - [`scripts/caption_frame_qc.py`](../../../skills/produce-ai-video/scripts/caption_frame_qc.py)
 - [`scripts/caption_preflight.py`](../../../skills/produce-ai-video/scripts/caption_preflight.py)
 - [`scripts/context_ir_check.py`](../../../skills/produce-ai-video/scripts/context_ir_check.py)
