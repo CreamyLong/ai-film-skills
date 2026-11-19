@@ -125,6 +125,7 @@
 - [`references/h3-base-format.md`](../../../skills/produce-ai-video/references/h3-base-format.md)
 - [`references/h3-timeline-director.md`](../../../skills/produce-ai-video/references/h3-timeline-director.md)
 - [`references/keyframe-visual-review.md`](../../../skills/produce-ai-video/references/keyframe-visual-review.md)
+- [`references/omni-review.md`](../../../skills/produce-ai-video/references/omni-review.md)
 - [`references/pregeneration-quality-gate.md`](../../../skills/produce-ai-video/references/pregeneration-quality-gate.md)
 - [`references/production-controls.md`](../../../skills/produce-ai-video/references/production-controls.md)
 - [`references/production-ledger.md`](../../../skills/produce-ai-video/references/production-ledger.md)
