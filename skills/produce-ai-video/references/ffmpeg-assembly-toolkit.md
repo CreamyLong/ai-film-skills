@@ -62,10 +62,12 @@
 
 | 情况 | 方法 |
 |---|---|
-| 所有片段已严格同规格、同编码、同 timebase | concat demuxer + `-c copy`（最快） |
+| 所有片段已严格同规格、同编码、同 timebase | concat filter（推荐）；纯同源视频段才用 demuxer |
 | 规格有差异、需要重编码 | concat filter，或先 conform 再 demuxer |
 | 需要音频交叉淡化但视频硬切 | 逐段裁剪视频尾部 + 音频 `acrossfade`，见 3.3 |
 | 场景之间 | 视频 `fadeblack` 0.2–0.3 s + 音频 `acrossfade`，不是叠化 |
+
+**实测：concat demuxer 会在静止图/视频交界处截掉尾帧。** EP012 的五个 block 用 demuxer 拼接后，成片 99.6 秒，而各段时长相加 121.8 秒，少了 22 秒；表现为镜头被跳切、人物突然换装、同一场戏跳到另一间房。改成 concat filter 后恢复 120.7 秒，画面连续。判断方法：成片时长应约等于 `Σ段长 − 转场数×转场时长`，偏差超过 0.2 秒就查拼接层，不要先怀疑生成。
 
 ### 3.2 受控命令形态
 

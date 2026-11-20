@@ -53,6 +53,40 @@ python3 scripts/auto_review.py --video video/scenes/shotSC001.mp4
 - 只从 `OMNI_API_KEY` / `DASHSCOPE_API_KEY` 读密钥；
 - 不把密钥写进命令、仓库或报告。
 
+## 5.1 自动修复路由
+
+`auto_review.py` 加 `--repair-queue` 后，只要判决里有 `block` 或 `major`，就会自动把问题写入修复队列：
+
+```bash
+python3 scripts/auto_review.py --video video/v1/shot07.mp4 \
+  --repair-queue edit/repair_queue.json --shot 07
+```
+
+路由按“最早责任层”分类，不靠重写提示词硬碰：
+
+| defect | 责任层 | 默认动作 | 自动重渲 |
+|---|---|---|---|
+| `text_prop` | prompt/edit | 道具离焦、闭合、背面或后期静态图 | 否 |
+| `prompt_contract` | prompt | 先跑 `shot_contract_check.py` / `prompt_preflight.py`，修提示词结构再渲 | 否 |
+| `speaker_split` | storyboard | 拆成每人一镜 | 否 |
+| `reference_lock` | asset/generation | 锁角色参考后重渲，同场共享服装/场景参考 | 是 |
+| `environment_anchor` | asset/generation | 给同一场每个镜头补同一场景/视频参考 | 是 |
+| `artifact` | generation | 8 步换 seed 重渲，或换静态道具 | 是 |
+| `audio_gain` | sound | 逐镜增益 + L-cut | 是 |
+| `assembly_truncation` | edit | 用 concat filter 重组 | 是 |
+| `unknown_defect` | generation | 8 步换 seed 重渲并重审；同类缺陷重复出现才升级 | 是 |
+
+队列按 `shot + defect + time + claim` 去重，重复复审不会重复排任务。`mode: authored` 的任务必须先改镜，不允许直接开渲。
+
+重渲完成后必须跑 `scripts/repair_close.py` 收环：
+
+```bash
+python3 scripts/repair_close.py --queue edit/repair_queue.json \
+  --review-root video/v1 --episode-dir .
+```
+
+它复跑最新审核报告，同一 defect 消失→`closed`，仍为 major/block→`escalated`，降为 minor→`reduced`。只有 `closed` 的任务才算修完。跨集聚合同类根因用 `scripts/defect_triage.py --reports '制作/EP*/EP*_final_omni_review.json'`，达到阈值的簇生成资产级修复提案，避免逐镜头重复返工。
+
 ## 6. 硬规则
 
 - 没有审核报告或报告是 `review`/`error`，不得进入组装；

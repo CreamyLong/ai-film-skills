@@ -50,22 +50,24 @@ def compress(video: Path, out: Path) -> None:
 
 
 def ask(video: Path, timeout: int) -> str:
-    from openai import OpenAI
+    import base64
+    import requests
     key = os.environ.get("OMNI_API_KEY") or os.environ.get("DASHSCOPE_API_KEY")
     if not key:
         raise RuntimeError("set OMNI_API_KEY or DASHSCOPE_API_KEY")
-    client = OpenAI(api_key=key,
-                    base_url=os.environ.get("OMNI_BASE_URL", DEFAULT_BASE),
-                    timeout=timeout)
-    import base64
     data = base64.b64encode(video.read_bytes()).decode()
-    response = client.chat.completions.create(
-        model=os.environ.get("OMNI_MODEL", DEFAULT_MODEL),
-        messages=[{"role": "user", "content": [
-            {"type": "text", "text": QUESTION},
-            {"type": "video_url", "video_url": {"url": "data:video/mp4;base64," + data}}]}],
-        modalities=["text"])
-    return response.choices[0].message.content
+    response = requests.post(
+        os.environ.get("OMNI_BASE_URL", DEFAULT_BASE).rstrip("/") + "/chat/completions",
+        headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
+        json={"model": os.environ.get("OMNI_MODEL", DEFAULT_MODEL),
+              "messages": [{"role": "user", "content": [
+                  {"type": "text", "text": QUESTION},
+                  {"type": "video_url",
+                   "video_url": {"url": "data:video/mp4;base64," + data}}]}],
+              "modalities": ["text"]},
+        timeout=timeout)
+    response.raise_for_status()
+    return response.json()["choices"][0]["message"]["content"]
 
 
 def parse_verdict(text: str) -> dict | None:
@@ -86,6 +88,10 @@ def main(argv=None) -> int:
     parser.add_argument("--video", required=True, type=Path)
     parser.add_argument("--out", type=Path, default=None)
     parser.add_argument("--timeout", type=int, default=600)
+    parser.add_argument("--repair-queue", type=Path, default=None,
+                        help="append block/major findings to this repair queue")
+    parser.add_argument("--shot", default=None,
+                        help="shot id when the video name does not contain it")
     args = parser.parse_args(argv)
     if not args.video.exists():
         print(json.dumps({"status": "error", "error": "missing video"}, ensure_ascii=False))
@@ -113,8 +119,17 @@ def main(argv=None) -> int:
               "status": verdict["status"], "issues": verdict.get("issues", []),
               "verdict": verdict, "raw_text": text}
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    queued = None
+    if args.repair_queue is not None:
+        try:
+            from repair_router import append_queue, route
+            tasks = route(report, video=str(args.video), shot=args.shot)
+            queued = append_queue(tasks, args.repair_queue)
+        except Exception as exc:  # routing must never hide the review verdict
+            queued = f"error: {type(exc).__name__}: {exc}"[:300]
     print(json.dumps({"status": verdict["status"], "report": str(report_path),
-                      "issues": len(verdict.get("issues", []))}, ensure_ascii=False))
+                      "issues": len(verdict.get("issues", [])),
+                      "repair_queued": queued}, ensure_ascii=False))
     return code
 
 

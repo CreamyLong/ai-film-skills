@@ -104,7 +104,9 @@ def main(argv=None) -> int:
         else:
             path = root / seg["src"]
         if path.exists():
-            levels[name] = mean_volume(path)
+            # gain_db is applied by the assembler; measure the level the
+            # audience will actually hear, not the raw source.
+            levels[name] = mean_volume(path) + float(seg.get("gain_db", 0.0))
         else:
             blockers.append(f"segment {name}: missing source {path}")
 

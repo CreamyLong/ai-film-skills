@@ -17,6 +17,14 @@
 | >15 秒按连续动作拆段、正重叠 22 帧 | `h3-timeline-director.md` | official + measured | 官方分段规则；插件 README 的 overlap 说明 | 是 |
 | 0 重叠不继承 latent，不能当连续性机制 | `h3-timeline-director.md` | official | 插件 README / 采样层说明 | 是 |
 | turbo 4-step LoRA 配 normal/beta 会崩坏 | `h3-timeline-director.md` | measured | SC001 同镜 normal/beta 输出过曝条纹、换脸 | 是（调度器硬门） |
+| 双人近景在 4 步下不稳定，8 步可用 | `h3-timeline-director.md` §0.3 | measured | EP012 shot04 同提示词对照：4 步出现漂浮红环/巨脸/身份漂移；8 步同镜 9.4 秒两人稳定同框 | 是（双人近景默认 8 步） |
+| 参考图实际内容与提示词声称不符会生成漂浮物件 | `asset-scene-consistency.md` | measured | EP012 把整张正面像标成 “isolates the scar”，H3 在肩头/衣领反复生成红色环 | 是（参考图角色核对） |
+| 双人同框的两句对白会被模型对调说话人 | `h3-timeline-director.md` §0.4 | measured | EP012 shot14：儿子台词由父亲口型说出，父亲台词由儿子口型说出；拆 14A/14B 后各自 pass | 是（逐句拆单人镜） |
+| 带字文件做特写会持续乱码，写“背面朝上/失焦”也压不住 | `h3-timeline-director.md` §0.4 | measured | EP012 shot07 四版、shot12、shot14 均在文件封面生成红字乱码 | 是（文件不进入特写） |
+| 结构问题改提示词无效，必须改镜 | `shot-risk-and-rework.md` | measured | EP012 shot07 五版：口型→多人→乱码→乱码+脸崩，最后删动作/前景才 pass；shot14 拆 14A/14B 才 pass | 是（第二次结构失败即改镜） |
+| 512×896 草稿可提前发现结构问题，约快 3 倍 | `shot-risk-and-rework.md` §6 | measured | EP012 shot07 同 prompt/seed：草稿 512×896 约 6 分钟，正式 768×1344 约 18 分钟；草稿 pass 且身份/服装/构图一致 | 是（草稿只作结构门，不作验收） |
+| 分段 `images` 漏挂提示词里的角色/场景会换装、换房或造人 | `h3-timeline-director.md` §8.1 | measured | EP012 同场镜头因缺角色/场景参考出现绿衣前景人、办公室代替安全屋、桌面材质变化 | 是（`timeline_reference_check.py` block） |
+| 单段内多 `[Shot N]`、含换场，是官方能力 | `h3-timeline-director.md` §0.1 | official | MiniMax-H3 MV 示例：同一段 `[Shot 1]` 录音棚 → `[Shot 2] At 00:01.900` 天台；每 shot 有 keyframe panel + retention + 锁定原音贯穿 | 是（需四条件，缺一拆镜） |
 | 单段超过 362 帧会整段崩坏 | `h3-timeline-director.md` | measured | SC002 753 帧单段输出从首帧起为噪声 | 是（段长硬门） |
 | `<d>` 可能烧录字幕 | `prompt-compilation-preflight.md` | measured | 2026-11 本项目 20 集、24 个对白镜抽检 | 否，生成后复查 |
 | 负向词会召唤被否定对象 | `prompt-compilation-preflight.md` | measured | 本项目 H3 实测，信封/手机/人物被画入 | 否，提示词建议 |

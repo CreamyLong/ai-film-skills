@@ -49,6 +49,8 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 
 详细送法、提示词和采样规则见 [references/review-tiers.md](references/review-tiers.md)。两个镜头已经剪在一起、你怀疑接缝时，按 [references/seam-review.md](references/seam-review.md) 先分类（同镜续接/同场换视点/叙事跳跃），再用 `scripts/seam_review.py` 取 A 末帧、B 首帧和切点音频对。
 
+**T7 故事复述（整集）**：六层都查的是“像不像、连不连续”，这一层查“盲看观众能不能把故事讲清楚”。整集组装后用 `scripts/story_comprehension_review.py --video <成片.mp4>`，模型不看剧本复述 setting/goals/events/turn/cliffhanger，并列出 confusions；判定阈值和系列级用法见 [references/story-comprehension-gate.md](references/story-comprehension-gate.md)。它不能判“好不好看”，只能判“讲没讲清”。
+
 ## 4. 判定规则
 
 分三级，禁止只写“有问题”：

@@ -31,21 +31,23 @@ QUESTION = (
 
 
 def ask(image: Path, items: list[str], timeout: int) -> str:
-    from openai import OpenAI
+    import requests
     key = os.environ.get("OMNI_API_KEY") or os.environ.get("DASHSCOPE_API_KEY")
     if not key:
         raise RuntimeError("set OMNI_API_KEY or DASHSCOPE_API_KEY")
-    client = OpenAI(api_key=key,
-                    base_url=os.environ.get("OMNI_BASE_URL", DEFAULT_BASE),
-                    timeout=timeout)
     data = base64.b64encode(image.read_bytes()).decode()
-    response = client.chat.completions.create(
-        model=os.environ.get("OMNI_MODEL", DEFAULT_MODEL),
-        messages=[{"role": "user", "content": [
-            {"type": "text", "text": QUESTION.format(items=", ".join(items))},
-            {"type": "image_url", "image_url": {"url": "data:image/png;base64," + data}}]}],
-        modalities=["text"])
-    return response.choices[0].message.content
+    response = requests.post(
+        os.environ.get("OMNI_BASE_URL", DEFAULT_BASE).rstrip("/") + "/chat/completions",
+        headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
+        json={"model": os.environ.get("OMNI_MODEL", DEFAULT_MODEL),
+              "messages": [{"role": "user", "content": [
+                  {"type": "text", "text": QUESTION.format(items=", ".join(items))},
+                  {"type": "image_url",
+                   "image_url": {"url": "data:image/png;base64," + data}}]}],
+              "modalities": ["text"]},
+        timeout=timeout)
+    response.raise_for_status()
+    return response.json()["choices"][0]["message"]["content"]
 
 
 def parse(text: str) -> dict | None:
