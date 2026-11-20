@@ -26,6 +26,7 @@ Read the user's material, current scope, locked facts and relevant preceding sta
 | Dialogue craft: writing or revising lines, subtext, exposition, distinct character voices | `references/dialogue-writing-techniques.md`; line-level techniques that run only after structural gates pass — when a line carries no choice or reaction, repair the scene action first |
 | 剧本诊断 | Writing core and the state-engine sections relevant to the suspected break; locate the earliest failure before polishing symptoms |
 | 剧情硬绕、机械降神、巧合解围、角色降智、证据链不成立 | `references/contrivance-audit.md`; 对每个重大转折跑权限/时机/代价/反制/知情/证据链/巧合方向/删掉测试八问 |
+| 分集写作前的故事设定总表检查 | `scripts/story_bible_check.py --bible <json> --appearances <jsonl>`; 出场角色必须有档案与锁定资产，反派必须有动机/筹码/手段，缺即 block，回到编剧层补，不进分集写作 |
 | Full screenplay or substantial quality calibration | Add `references/screenplay-exemplar-benchmarks.md`; examples are mechanisms, never plot or dialogue to copy |
 | 导演方案、导演分析、分镜前分析、创意镜头/转场思路 | `references/director-thinking-spine.md`; read `references/verified-director-logic.md` when the decision needs its detailed framework or source-sensitive premise |
 | AI可执行剧本、AI漫剧剧本 | Only after readable story and state verification, `references/screenplay-ai-execution-compiler.md`; preserve the readable master |
