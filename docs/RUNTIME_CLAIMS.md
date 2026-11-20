@@ -24,6 +24,7 @@
 | 结构问题改提示词无效，必须改镜 | `shot-risk-and-rework.md` | measured | EP012 shot07 五版：口型→多人→乱码→乱码+脸崩，最后删动作/前景才 pass；shot14 拆 14A/14B 才 pass | 是（第二次结构失败即改镜） |
 | 512×896 草稿可提前发现结构问题，约快 3 倍 | `shot-risk-and-rework.md` §6 | measured | EP012 shot07 同 prompt/seed：草稿 512×896 约 6 分钟，正式 768×1344 约 18 分钟；草稿 pass 且身份/服装/构图一致 | 是（草稿只作结构门，不作验收） |
 | 分段 `images` 漏挂提示词里的角色/场景会换装、换房或造人 | `h3-timeline-director.md` §8.1 | measured | EP012 同场镜头因缺角色/场景参考出现绿衣前景人、办公室代替安全屋、桌面材质变化 | 是（`timeline_reference_check.py` block） |
+| 场级连续多段（22 帧重叠）可解决空间/服装/轴线连续，但每段必须挂全所有出镜角色参考 | `h3-timeline-director.md` §0.1 | measured | EP012 A/B：缺参考版 20s 连续体 review 2 major（远景造人、反打身份不符）；每段挂全 5 参考版同内容仅 1 个资产级 major（外套 Logo）+1 minor | 是（配方前置条件） |
 | 单段内多 `[Shot N]`、含换场，是官方能力 | `h3-timeline-director.md` §0.1 | official | MiniMax-H3 MV 示例：同一段 `[Shot 1]` 录音棚 → `[Shot 2] At 00:01.900` 天台；每 shot 有 keyframe panel + retention + 锁定原音贯穿 | 是（需四条件，缺一拆镜） |
 | 单段超过 362 帧会整段崩坏 | `h3-timeline-director.md` | measured | SC002 753 帧单段输出从首帧起为噪声 | 是（段长硬门） |
 | `<d>` 可能烧录字幕 | `prompt-compilation-preflight.md` | measured | 2026-11 本项目 20 集、24 个对白镜抽检 | 否，生成后复查 |

@@ -99,7 +99,8 @@ def time_to_shot(time_value: str | None, editlist: Path | None) -> str | None:
 
 
 def route(report: dict, video: str | None = None, shot: str | None = None,
-          editlist: Path | None = None, episode_dir: Path | None = None) -> list[dict]:
+          editlist: Path | None = None, episode_dir: Path | None = None,
+          use_decision: bool = False) -> list[dict]:
     tasks = []
     video = video or report.get("video")
     for issue in report.get("issues", []):
@@ -108,7 +109,30 @@ def route(report: dict, video: str | None = None, shot: str | None = None,
             continue
         text = f"{issue.get('claim', '')} {issue.get('evidence', '')}"
         rule = classify(text)
-        if rule is None:
+        if rule is None and use_decision:
+            try:
+                from decision_client import triage
+                answer = triage(text)
+                if (answer.get("defect") and answer["defect"] != "unknown_defect"
+                        and (answer.get("confidence") or 0) >= 0.5):
+                    defect = answer["defect"]
+                    structural = bool(answer.get("structural"))
+                    auto = structural
+                    owner = "generation" if structural else "storyboard"
+                    action = ("rerender at 8 steps with a new seed, then re-review"
+                              if structural else
+                              "redesign the shot structure; do not reword the same framing")
+                else:
+                    defect, owner, action, auto = (
+                        "unknown_defect", "generation",
+                        "rerender at 8 steps with a new seed and re-review; "
+                        "escalate only if the same defect repeats", True)
+            except Exception:
+                defect, owner, action, auto = (
+                    "unknown_defect", "generation",
+                    "rerender at 8 steps with a new seed and re-review; "
+                    "escalate only if the same defect repeats", True)
+        elif rule is None:
             defect, owner, action, auto = (
                 "unknown_defect", "generation",
                 "rerender at 8 steps with a new seed and re-review; "
@@ -175,6 +199,8 @@ def main(argv=None) -> int:
                         help="map issue timestamps to shot ids")
     parser.add_argument("--episode-dir", type=Path, default=None,
                         help="episode package root for suggested commands")
+    parser.add_argument("--decision", action="store_true",
+                        help="use SystemOne intern-decision-4b for unknown findings")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
     try:
@@ -183,7 +209,7 @@ def main(argv=None) -> int:
         print(json.dumps({"status": "error", "error": str(exc)[:500]}, ensure_ascii=False))
         return 3
     tasks = route(report, shot=args.shot, editlist=args.editlist,
-                  episode_dir=args.episode_dir)
+                  episode_dir=args.episode_dir, use_decision=args.decision)
     added = append_queue(tasks, args.queue)
     result = {"status": "queued" if tasks else "clean", "tasks": tasks, "added": added,
               "queue": str(args.queue)}

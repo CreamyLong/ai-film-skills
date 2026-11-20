@@ -76,6 +76,8 @@ python3 scripts/auto_review.py --video video/v1/shot07.mp4 \
 | `assembly_truncation` | edit | 用 concat filter 重组 | 是 |
 | `unknown_defect` | generation | 8 步换 seed 重渲并重审；同类缺陷重复出现才升级 | 是 |
 
+`repair_router.py --decision` 会把关键词规则判不了的问题交给书生-Decision-4B（SystemOne `/v1/systemone`，只做判断不生成文本）：输出缺陷类别 choice、是否可同结构重渲 noul、严重度 score；置信度 <0.5 保持 `unknown_defect` 走重渲路径。密钥从环境变量或 0600 配置文件读取。
+
 队列按 `shot + defect + time + claim` 去重，重复复审不会重复排任务。`mode: authored` 的任务必须先改镜，不允许直接开渲。
 
 重渲完成后必须跑 `scripts/repair_close.py` 收环：

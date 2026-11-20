@@ -22,6 +22,16 @@ def issue(severity, claim, evidence=""):
     return {"severity": severity, "time": "00:01", "claim": claim, "evidence": evidence}
 
 
+class _FakeDecision:
+    calls = []
+
+    @staticmethod
+    def triage(text, timeout=60):
+        _FakeDecision.calls.append(text)
+        return {"defect": "artifact", "structural": True, "severity": 2.0,
+                "confidence": 0.9}
+
+
 class RepairRouterTests(unittest.TestCase):
     def test_wardrobe_becomes_autor_reference_lock(self):
         tasks = router.route(report(issue("major", "Wardrobe continuity break", "shirt changes")))
@@ -53,6 +63,17 @@ class RepairRouterTests(unittest.TestCase):
         tasks = router.route(report(issue("major", "Dialogue unclear", "speech is slurred")))
         self.assertEqual(tasks[0]["defect"], "prompt_contract")
         self.assertEqual(tasks[0]["owner"], "prompt")
+
+    def test_decision_model_classifies_unknown_when_confident(self):
+        import sys
+        fake_module = type("M", (), {"triage": staticmethod(_FakeDecision.triage)})()
+        sys.modules["decision_client"] = fake_module
+        try:
+            tasks = router.route(report(issue("major", "a weird flicker")), use_decision=True)
+        finally:
+            sys.modules.pop("decision_client", None)
+        self.assertEqual(tasks[0]["defect"], "artifact")
+        self.assertEqual(tasks[0]["mode"], "auto")
 
     def test_queue_deduplicates(self):
         tasks = router.route(report(issue("major", "Wardrobe continuity break")))
