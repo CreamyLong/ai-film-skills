@@ -52,6 +52,31 @@ class RepairCloseTests(unittest.TestCase):
             self.assertEqual(json.loads(queue.read_text())[0]["status"], "closed")
 
 
+class PromptRiskScanTests(unittest.TestCase):
+    def test_flags_high_risk_and_passes_clean(self):
+        import sys, tempfile, json
+        scanner = load("prompt_risk_scan")
+        def fake_decide(state, questions, timeout=60):
+            return {k: {"type": "noul", "noul": 0.9} for k in questions}
+        sys.modules["decision_client"] = type("M", (), {"decide": staticmethod(fake_decide)})()
+        try:
+            with tempfile.TemporaryDirectory() as raw:
+                path = Path(raw) / "p.json"
+                path.write_text(json.dumps({"shots": [
+                    {"shot": "01", "prompt": "summary:
+detailed_description:
+[Shot 1] A speaks."},
+                    {"shot": "02", "prompt": "summary:
+detailed_description:
+[Shot 1] B walks."},
+                ]}))
+                report = scanner.scan_prompts(path, None)
+        finally:
+            sys.modules.pop("decision_client", None)
+        self.assertEqual(report["status"], "block")
+        self.assertEqual(len(report["findings"]), 6)
+
+
 class DefectTriageTests(unittest.TestCase):
     def test_repeated_anchor_becomes_proposal(self):
         with tempfile.TemporaryDirectory() as raw:

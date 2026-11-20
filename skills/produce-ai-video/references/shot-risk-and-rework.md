@@ -32,6 +32,14 @@ python3 scripts/continuity_audit.py --prompts <prompt-set.json> --shots 03,04,09
 
 它把各镜头的 detailed_description 按角色汇总，问决策模型站位/服装是否一致。实测：修复版 EP012（声明了站位）pass；人为把 shot09 的父亲翻到左侧后立即报 `AXIS_CONFLICT`（agree=0.377）。这能在烧 GPU 前抓住轴线翻转和服装矛盾。注意：提示词不声明站位它无从判起——**先声明，再校对**。
 
+### 1.2 提示词风险扫描
+
+```bash
+python3 scripts/prompt_risk_scan.py --prompts <prompt-set.json>
+```
+
+渲染前用决策模型对每镜的 `detailed_description` 评三个实测风险类：台词+多动作竞争、带字道具成焦点、站位/机位欠声明（P≥0.7 block，0.4–0.7 review）。EP012 回测：pass 版 shot07 干净；带风险的旧镜被标出。诚实的边界：它不是“完美提示词”的证明——生成有随机性，它只压缩已知失败类的概率；且它漏抓过 shot07 v1 的历史案例（短描述下能抓到 0.90，全段上下文下信号被稀释），所以它是 review 级辅助，不是单独的门。
+
 ## 2. 失败分类
 
 拿到 `auto_review` 或人工看片结果后，先归类，再决定动作：
