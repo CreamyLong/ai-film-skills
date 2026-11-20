@@ -63,12 +63,8 @@ class PromptRiskScanTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as raw:
                 path = Path(raw) / "p.json"
                 path.write_text(json.dumps({"shots": [
-                    {"shot": "01", "prompt": "summary:
-detailed_description:
-[Shot 1] A speaks."},
-                    {"shot": "02", "prompt": "summary:
-detailed_description:
-[Shot 1] B walks."},
+                    {"shot": "01", "prompt": "summary:\ndetailed_description:\n[Shot 1] A speaks."},
+                    {"shot": "02", "prompt": "summary:\ndetailed_description:\n[Shot 1] B walks."},
                 ]}))
                 report = scanner.scan_prompts(path, None)
         finally:
