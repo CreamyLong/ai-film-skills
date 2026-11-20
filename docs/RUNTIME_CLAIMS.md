@@ -50,6 +50,11 @@
 | 单段音频易漏切点断裂，A/B 才稳定 | 同上 | measured | 同段单送 1/5，成对送 3/5 | 否 |
 | 视频自带音轨可直接转写 | 同上 | measured | 5 秒 shot05 转写正确 | 否 |
 | 视频 60–90 秒可一次送 | 同上 | measured | 30/60/80 秒样本，token 7.5k/15.6k/21k | 否 |
+| H3 Ref2VA reference 音色逐镜可能漂移，接线正确也会 | `omni-review/references/voice-anchor-check.md` | measured | EP012 shot07（2026-11-20）：workflow 音频接线、参考文件、同锚点对照全部正确，盲听判定嗓音与父亲锚点不符；EP009 同锚点文件渲染通过 | 是（`voice_anchor_check.py` fail → 换种子重渲） |
+| 音色判断会被画面带偏 | 同上 | measured | 同一段 shot07 带画面判“不同人（秃顶老者）”，黑屏盲听带同锚点对照判“同人” | 是（必须黑屏盲听 + 对照） |
+| 同一嗓音判断多次调用结论会抖动 | 同上 | measured | shot07 三次调用两次 yes 一次 no；带已知好对照的请求结论稳定 | 否，矛盾时复验取多数，仍矛盾转人工 |
+| 该兼容端点不接受 `audio_url`/`input_audio` 内容类型，黑屏 mp4 可用 | 同上 | measured | `input_audio` 被网关错映射成 `image_url` 直接 400；音频包成黑屏 mp4 走 `video_url` 成功 | 否 |
+| 无对白 silent 镜可能含嘀咕人声 | 同上 | measured | EP012 shot06 剧本无声镜，00:01–00:02 检出低声咕哝 | 是（silent 镜也检人声） |
 
 ## 标记规则
 

@@ -44,10 +44,11 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 | T2 文字 | 烧录字幕、伪文字、错字 | 六帧抽检图 | 字幕内容、位置、是否遮脸 |
 | T3 空间 | 同场是否同一房间 | 同场 10–12 帧网格（带时间码） | 墙面、门窗、座椅、人群、光源跳变 |
 | T4 声音 | 切点是否换房间 | 切点前后各 2 s，成对送 | 响度台阶、底噪断裂、鬼声、爆音 |
+| T4.5 音色锚定 | 对白嗓音是否真是该角色（reference 音频是否生效） | 参考 wav + 同锚点已验收对照 + 候选镜，全部转黑屏 mp4 盲听 | 嗓音漂移、说错人、silent 镜出人声 |
 | T5 序列 | 观众能否看懂 | 同场 12 帧 + 人物背景 | 谁是谁、关系是否建立、流程是否清楚、有无无源特写 |
 | T6 伪影 | 手指、肢体、拖影、重影、漂浮物 | 5–10 s 原片或可疑帧 | 多指、断肢、叠影、粒子、穿模 |
 
-详细送法、提示词和采样规则见 [references/review-tiers.md](references/review-tiers.md)。两个镜头已经剪在一起、你怀疑接缝时，按 [references/seam-review.md](references/seam-review.md) 先分类（同镜续接/同场换视点/叙事跳跃），再用 `scripts/seam_review.py` 取 A 末帧、B 首帧和切点音频对。
+详细送法、提示词和采样规则见 [references/review-tiers.md](references/review-tiers.md)。T4.5 的盲听协议（黑屏 mp4、同锚点对照、抖动处理）见 [references/voice-anchor-check.md](references/voice-anchor-check.md)。两个镜头已经剪在一起、你怀疑接缝时，按 [references/seam-review.md](references/seam-review.md) 先分类（同镜续接/同场换视点/叙事跳跃），再用 `scripts/seam_review.py` 取 A 末帧、B 首帧和切点音频对。
 
 **T7 故事复述（整集）**：六层都查的是“像不像、连不连续”，这一层查“盲看观众能不能把故事讲清楚”。整集组装后用 `scripts/story_comprehension_review.py --video <成片.mp4>`，模型不看剧本复述 setting/goals/events/turn/cliffhanger，并列出 confusions；判定阈值和系列级用法见 [references/story-comprehension-gate.md](references/story-comprehension-gate.md)。它不能判“好不好看”，只能判“讲没讲清”。
 
@@ -55,7 +56,7 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 
 分三级，禁止只写“有问题”：
 
-- **blocker**：观众会直接出戏或看不懂——换脸、烧录字幕、同场空间断裂、切点声音跳变、明显多指/断肢。
+- **blocker**：观众会直接出戏或看不懂——换脸、烧录字幕、同场空间断裂、切点声音跳变、明显多指/断肢、**对白嗓音与角色锚定不符（T4.5 fail）**。
 - **major**：不致命但持续削弱可信度——造型漂移、背景人群穿帮、机位与提示词矛盾、静帧无运动。
 - **minor**：可留待下一版——轻微噪点、远处伪文字、非焦点区小瑕疵。
 
@@ -87,6 +88,7 @@ description: 用多模态模型充当成片“审判员”，审查已生成的 
 |---|---|
 | `scripts/episode_audit.py` | 从 editlist/prompts/成片生成证据包：场网格、身份对、切点音频、manifest；可用 `--run` 调模型 |
 | `scripts/omni_review.py` | 单次审查：`identity` / `sheet` / `video` / `audio`，输出 JSON |
+| `scripts/voice_anchor_check.py` | T4.5 音色锚定：参考 wav + 已验收对照 + 候选镜盲听比对，fail 禁止进组装（见 [references/voice-anchor-check.md](references/voice-anchor-check.md)） |
 | `scripts/seam_review.py` | 两镜接缝：A 末帧 + B 首帧 + 切点音频对，检查身份/空间/轴线/动作/声场 |
 | `scripts/repair_plan.py` | 把审查结果转成修复计划：缺陷分类、归属层、动作、复验方式；不自动执行 |
 | `scripts/repair_plan.py` | 把审查结果路由成技术修复计划：缺陷类 → 根因 → 动作 → 复验 → 命令 |

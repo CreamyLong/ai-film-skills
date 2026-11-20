@@ -36,6 +36,15 @@ class RuntimeConsistencyTests(unittest.TestCase):
         self.assertIn("单段不要超过 362 帧", text)
         self.assertIn("turbo 4-step LoRA 必须配 `simple`", text)
 
+    def test_voice_anchor_gate_is_wired(self):
+        text = self.all_skill_text()
+        self.assertIn("voice_anchor_check.py", text)
+        self.assertIn("黑屏", text)
+        gate = (ROOT / "skills" / "produce-ai-video" / "references" /
+                "auto-review-gate.md").read_text(encoding="utf-8")
+        self.assertIn("不得进入组装", gate)
+        self.assertIn("silent", gate)
+
 
 if __name__ == "__main__":
     unittest.main()
