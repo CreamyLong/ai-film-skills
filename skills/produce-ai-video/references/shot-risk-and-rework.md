@@ -22,6 +22,16 @@ python3 scripts/shot_contract_check.py --prompts <prompt-set.json>
 
 `block` 必须在提交前改结构；`review` 是已知风险，要在生产记录里写明“接受/拆分”。
 
+## 1.1 跨镜连续性文字校对
+
+同一场多个镜头**写清站位后再提交**：每个双人镜声明谁在哪侧（"Shen Guodong sits on the right side of the frame"）。然后跑：
+
+```bash
+python3 scripts/continuity_audit.py --prompts <prompt-set.json> --shots 03,04,09
+```
+
+它把各镜头的 detailed_description 按角色汇总，问决策模型站位/服装是否一致。实测：修复版 EP012（声明了站位）pass；人为把 shot09 的父亲翻到左侧后立即报 `AXIS_CONFLICT`（agree=0.377）。这能在烧 GPU 前抓住轴线翻转和服装矛盾。注意：提示词不声明站位它无从判起——**先声明，再校对**。
+
 ## 2. 失败分类
 
 拿到 `auto_review` 或人工看片结果后，先归类，再决定动作：
