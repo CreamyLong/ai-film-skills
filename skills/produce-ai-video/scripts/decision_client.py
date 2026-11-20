@@ -86,6 +86,26 @@ def triage(text: str, timeout: int = 60) -> dict:
     return result
 
 
+CONFUSION_QUESTIONS = {
+    "layer": {
+        "type": "choice",
+        "instructions": "A first-time viewer is confused about this while watching a drama episode. "
+                        "Is the confusion mainly caused by the script or by the edit?",
+        "criteria": {
+            "script_gap": "the information was never written into the story",
+            "edit_gap": "the script implies it but the edit/coverage fails to show it",
+            "acceptable": "reasonable ambiguity a viewer can live with",
+        },
+    }
+}
+
+
+def attribute_confusion(confusion: str, timeout: int = 60) -> dict:
+    answers = decide(confusion, CONFUSION_QUESTIONS, timeout=timeout)
+    layer = answers.get("layer") or {}
+    return {"layer": layer.get("choice"), "confidence": layer.get("confidence")}
+
+
 def main(argv=None) -> int:
     ap_argv = argv if argv is not None else sys.argv[1:]
     if not ap_argv:

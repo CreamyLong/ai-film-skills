@@ -78,6 +78,20 @@ python3 scripts/auto_review.py --video video/v1/shot07.mp4 \
 
 `repair_router.py --decision` 会把关键词规则判不了的问题交给书生-Decision-4B（SystemOne `/v1/systemone`，只做判断不生成文本）：输出缺陷类别 choice、是否可同结构重渲 noul、严重度 score；置信度 <0.5 保持 `unknown_defect` 走重渲路径。密钥从环境变量或 0600 配置文件读取。
 
+### 5.2 决策模型实测记录（2026-11-20，书生-Decision-4B）
+
+接入方式：级联——**关键词规则优先，仅 unknown 交给决策模型，置信度 ≥0.5 才采纳**。20 条人工标注的真实 findings：关键词 14/20，决策模型单独 13/20，**级联 16/20**；被采纳的 12 次里 11 次正确（91.7%），低置信答案全部被门挡住、不覆盖规则结论。
+
+| 试用点 | 结果 | 结论 |
+|---|---|---|
+| repair_router unknown 分诊（级联） | 16/20，高置信 91.7% 准 | ✅ 保留（`--decision`） |
+| defect_triage 提案根因确认 | 9 提案 → 8 保留（根因置信 0.67–0.82），1 降级镜头级 | ✅ 保留（`--decision`） |
+| 故事门 confusions 归因（剧本缺口/剪辑缺口） | EP012 三条真实困惑全部判 script_gap（0.56–0.92），与人工判断一致 | ✅ 保留（`decision_client.attribute_confusion`） |
+| authored 改镜方案选择 | shot07 实测：模型选 reframe(0.79)，但实测赢家是删动作（v5 pass） | ❌ 不自动化，改镜顺序仍以 `shot-risk-and-rework.md` 策略为准 |
+| 确定性比对环节（repair_close 等） | 规则已最优 | ❌ 不适用，不替换 |
+
+硬约束：该模型纯文本、无视觉、不做生成；只用于“文本进、概率判断出”的环节。计费仅输入 token，单次分诊约 300 token。
+
 队列按 `shot + defect + time + claim` 去重，重复复审不会重复排任务。`mode: authored` 的任务必须先改镜，不允许直接开渲。
 
 重渲完成后必须跑 `scripts/repair_close.py` 收环：

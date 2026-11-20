@@ -1,0 +1,22 @@
+[
+{"text":"Audio line plays while the seated man mouths different words; the reply is attributed to the wrong speaker.","gold":"speaker_split"},
+{"text":"Watch dial shows pseudo-lettering brand text in a static product insert.","gold":"text_prop"},
+{"text":"The red title characters on the file folder cover are malformed and mirrored.","gold":"text_prop"},
+{"text":"The chest logo on the yellow delivery jacket is gibberish that mutates between frames.","gold":"text_prop"},
+{"text":"In the same continuous scene the detective's shirt changes from plain dark to horizontally striped and the phone changes color.","gold":"reference_lock"},
+{"text":"The same dialogue exchange jumps from a dim lamp-lit apartment to a bright fluorescent office with no transition.","gold":"environment_anchor"},
+{"text":"Door plaque reads 3207 in one angle and 2027/1025 seconds later in the same hallway.","gold":"text_prop"},
+{"text":"A partial bald head of a third person appears at the left frame edge although only two people are in the scene.","gold":"artifact"},
+{"text":"Fingers of the hand gripping the drawer are fused and elongated, no clear digit separation.","gold":"artifact"},
+{"text":"Cut between two dialogue shots shows a +13.9 dB loudness jump.","gold":"audio_gain"},
+{"text":"The assembled episode is 99.6s while the sum of segments is 121.8s; shots appear skipped.","gold":"assembly_truncation"},
+{"text":"The narration plays as voice-over while the on-screen man's mouth stays closed for most of the clip.","gold":"speaker_split"},
+{"text":"The wooden tabletop flickers between light and dark brown across adjacent shots in the same room.","gold":"environment_anchor"},
+{"text":"The man clearly wears thin-framed glasses at 00:00 and is bare-faced from 00:01 with no cut.","gold":"reference_lock"},
+{"text":"The pale healed scar above the man's left eyebrow vanishes once the angle shifts frontal.","gold":"reference_lock"},
+{"text":"Dozens of glowing red ring shapes float across the frame behind the two speakers.","gold":"artifact"},
+{"text":"The first frame of the clip is fully black before the image fades in.","gold":"artifact"},
+{"text":"The framed notice on the back wall contains garbled pseudo-Chinese text for the entire clip.","gold":"text_prop"},
+{"text":"The old man stands at 00:57 but is seated again at 01:27 with no transition shown.","gold":"unknown_defect"},
+{"text":"The low sustained drone music drops out abruptly at one cut and returns later.","gold":"unknown_defect"}
+]

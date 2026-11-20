@@ -119,12 +119,47 @@ def triage(reports: list[Path], threshold: int) -> list[dict]:
     return proposals
 
 
+def decision_gate(proposals: list[dict], threshold: float = 0.6) -> list[dict]:
+    """Ask intern-decision-4b whether a proposal's findings share one root cause."""
+    try:
+        from decision_client import decide
+    except Exception:
+        return proposals
+    kept = []
+    for proposal in proposals:
+        state = json.dumps({"asset": proposal["asset"], "defect": proposal["defect"],
+                            "examples": proposal.get("examples", [])}, ensure_ascii=False)[:5000]
+        try:
+            answers = decide(state, {
+                "same_root_cause": {
+                    "type": "noul",
+                    "instructions": "These are video-review findings clustered by an automated tool. "
+                                    "Do they most likely share ONE asset-level root cause that can be "
+                                    "fixed once (regenerate/rebind one asset) instead of fixing each "
+                                    "shot separately?",
+                    "criteria": {"true": "single shared asset/root-cause fix",
+                                 "false": "similar symptoms but different causes per shot"},
+                }
+            })
+            p_yes = (answers.get("same_root_cause") or {}).get("noul", 0.0)
+        except Exception:
+            p_yes = 1.0  # API failure keeps the proposal for human review
+        proposal["root_cause_confidence"] = round(p_yes, 3)
+        if p_yes >= threshold:
+            kept.append(proposal)
+        else:
+            proposal["status"] = "demoted_to_shot_level"
+    return kept
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--reports", required=True,
                         help="glob, e.g. '制作/EP*/EP*_final_omni_review.json'")
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--threshold", type=int, default=3)
+    parser.add_argument("--decision", action="store_true",
+                        help="confirm proposals via SystemOne intern-decision-4b")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
     reports = [Path(p) for p in sorted(glob.glob(args.reports))]
@@ -132,6 +167,8 @@ def main(argv=None) -> int:
         print(json.dumps({"status": "error", "error": "no reports matched"}, ensure_ascii=False))
         return 3
     proposals = triage(reports, args.threshold)
+    if args.decision:
+        proposals = decision_gate(proposals)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps({"status": "proposed" if proposals else "clean",
                                     "threshold": args.threshold, "reports": len(reports),

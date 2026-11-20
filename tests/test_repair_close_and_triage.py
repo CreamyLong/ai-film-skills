@@ -66,6 +66,21 @@ class DefectTriageTests(unittest.TestCase):
             self.assertEqual(proposals[0]["asset"], "asset:delivery_uniform")
             self.assertEqual(proposals[0]["count"], 3)
 
+    def test_decision_gate_demotes_low_confidence(self):
+        import sys
+        def fake_decide(state, questions, timeout=60):
+            return {"same_root_cause": {"type": "noul", "noul": 0.2}}
+        fake_module = type("M", (), {"decide": staticmethod(fake_decide)})()
+        sys.modules["decision_client"] = fake_module
+        try:
+            kept = triage.decision_gate([
+                {"asset": "a", "defect": "b", "examples": [], "status": "proposed"},
+                {"asset": "c", "defect": "d", "examples": [], "status": "proposed"},
+            ])
+        finally:
+            sys.modules.pop("decision_client", None)
+        self.assertEqual(len(kept), 0)
+
     def test_below_threshold_stays_clean(self):
         with tempfile.TemporaryDirectory() as raw:
             root = Path(raw)
